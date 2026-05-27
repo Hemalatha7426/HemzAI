@@ -2172,25 +2172,25 @@ export default function SqlPlayground({ onBack }) {
       {/* 1. Sleek Glassmorphic Category Header Bar */}
       <div style={{
         width: '100%',
-        background: 'rgba(17, 24, 39, 0.65)',
+        background: 'var(--panel-bg)',
         backdropFilter: 'blur(16px)',
         WebkitBackdropFilter: 'blur(16px)',
-        border: '1px solid rgba(255, 255, 255, 0.08)',
+        border: 'var(--glass-border)',
         borderLeft: '4px solid var(--cyan-neon)',
         padding: '12px 30px',
         borderRadius: '12px',
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.25), 0 0 15px rgba(6, 182, 212, 0.1)',
+        boxShadow: 'var(--panel-shadow)',
         marginBottom: '10px'
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
           <button 
             onClick={onBack}
             style={{
-              background: 'rgba(255, 255, 255, 0.03)',
-              border: '1px solid rgba(255, 255, 255, 0.08)',
+              background: 'var(--input-bg)',
+              border: 'var(--glass-border)',
               borderRadius: '50%',
               width: '32px',
               height: '32px',
@@ -2201,8 +2201,8 @@ export default function SqlPlayground({ onBack }) {
               cursor: 'pointer',
               transition: 'all 0.3s'
             }}
-            onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)'}
-            onMouseLeave={(e) => e.currentTarget.style.background = 'rgba(255, 255, 255, 0.03)'}
+            onMouseEnter={(e) => e.currentTarget.style.background = 'var(--input-bg-focus)'}
+            onMouseLeave={(e) => e.currentTarget.style.background = 'var(--input-bg)'}
           >
             <ArrowLeft size={16} />
           </button>
@@ -2211,7 +2211,7 @@ export default function SqlPlayground({ onBack }) {
             fontFamily: 'var(--font-sans)',
             fontSize: '1.25rem',
             fontWeight: '800',
-            color: '#fff',
+            color: 'var(--text-primary)',
             letterSpacing: '0.5px'
           }}>
             Placement SQL Prep Chamber
@@ -2245,7 +2245,7 @@ export default function SqlPlayground({ onBack }) {
         {/* LEFT COLUMN: Collapsible problem directories */}
         <div className="glass-panel" style={{
           padding: '20px',
-          background: 'rgba(17, 24, 39, 0.65)',
+          background: 'var(--panel-bg)',
           display: 'flex',
           flexDirection: 'column',
           gap: '15px',
@@ -2381,7 +2381,7 @@ export default function SqlPlayground({ onBack }) {
             
             {/* LEFT SPECIFICATIONS PANEL */}
             <div className="glass-panel" style={{
-              background: 'rgba(17, 24, 39, 0.65)',
+              background: 'var(--panel-bg)',
               padding: '25px',
               display: 'flex',
               flexDirection: 'column',
@@ -2396,7 +2396,7 @@ export default function SqlPlayground({ onBack }) {
                 <span style={{ fontSize: '0.62rem', fontFamily: 'var(--font-mono)', color: 'var(--cyan-neon)', fontWeight: 'bold', letterSpacing: '1px', textTransform: 'uppercase' }}>
                   DATABASE SPEC CARD
                 </span>
-                <h3 style={{ margin: '4px 0 0 0', fontSize: '1.35rem', fontWeight: '800', color: '#fff' }}>
+                <h3 style={{ margin: '4px 0 0 0', fontSize: '1.35rem', fontWeight: '800', color: 'var(--text-primary)' }}>
                   {selectedProblem.id}. {selectedProblem.title}
                 </h3>
                 
@@ -2655,7 +2655,7 @@ export default function SqlPlayground({ onBack }) {
 
           {/* Bottom Panel: Custom Console & Action Bars */}
           <div className="glass-panel" style={{
-            background: 'rgba(17, 24, 39, 0.65)',
+            background: 'var(--panel-bg)',
             padding: '20px',
             display: 'grid',
             gridTemplateColumns: queryResult.length > 0 ? '1.2fr 1fr' : '1fr 240px',

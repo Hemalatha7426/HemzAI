@@ -270,14 +270,14 @@ export default function App() {
       <div style={{ maxWidth: '1100px', width: '100%', margin: '0 auto', position: 'relative', zIndex: 1 }}>
         
         {/* Futuristic Global Header */}
-        <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '45px', background: 'rgba(17, 24, 39, 0.4)', padding: '16px 24px', borderRadius: '16px', border: '1px solid rgba(255,255,255,0.06)', backdropFilter: 'blur(8px)' }}>
+        <header className="glass-panel" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '45px', background: 'var(--panel-bg)', padding: '16px 24px', borderRadius: '16px', border: 'var(--glass-border)', backdropFilter: 'blur(8px)' }}>
           <div 
             style={{ display: 'flex', alignItems: 'center', gap: '12px', cursor: (user && appState !== 'AUTH') ? 'pointer' : 'default' }} 
             onClick={() => { if (user && appState !== 'AUTH') setAppState('HUB'); }}
           >
             <AudioLines size={30} style={{ color: 'var(--cyan-neon)', filter: 'drop-shadow(0 0 8px rgba(6, 182, 212, 0.4))' }} />
             <div>
-              <h1 style={{ fontFamily: 'var(--font-mono)', fontSize: '1.4rem', fontWeight: '800', letterSpacing: '1px', color: '#ffffff' }}>
+              <h1 style={{ fontFamily: 'var(--font-mono)', fontSize: '1.4rem', fontWeight: '800', letterSpacing: '1px', color: 'var(--text-primary)' }}>
                 HEMZ AI
               </h1>
               <p style={{ fontSize: '0.62rem', fontFamily: 'var(--font-sans)', fontWeight: '600', color: 'var(--text-secondary)', letterSpacing: '0.5px' }}>
