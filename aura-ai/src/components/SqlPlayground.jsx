@@ -1976,6 +1976,31 @@ const SQL_PROBLEMS = {
   ]
 };
 
+const getSqlStarterCode = (p) => {
+  if (!p || !p.schema) return "-- Write your SQL query here...\n";
+  
+  let code = "-- Write your SQL query here...\n";
+  const tables = Object.keys(p.schema);
+  
+  tables.forEach(tableName => {
+    code += `-- Table "${tableName}" Schema:\n`;
+    const cols = p.schema[tableName] || [];
+    cols.forEach(col => {
+      code += `--   ${col.name} (${col.type})\n`;
+    });
+  });
+  
+  code += "\nSELECT \nFROM ";
+  if (tables.length > 0) {
+    code += tables[0];
+  } else {
+    code += "[Table]";
+  }
+  code += ";";
+  
+  return code;
+};
+
 export default function SqlPlayground({ onBack }) {
   const [activeCategory, setActiveCategory] = useState("Basic SELECT Queries");
   const [selectedProblem, setSelectedProblem] = useState(SQL_PROBLEMS["Basic SELECT Queries"][0]);
@@ -1983,7 +2008,7 @@ export default function SqlPlayground({ onBack }) {
   // Initialize userCode based on the initial selected problem
   const [userCode, setUserCode] = useState(() => {
     const initialProb = SQL_PROBLEMS["Basic SELECT Queries"][0];
-    return initialProb.boilerplate || `/* Write your SQL query here... */\nSELECT * FROM ${Object.keys(initialProb.mockData)[0]};`;
+    return getSqlStarterCode(initialProb);
   });
 
   const [solvedList, setSolvedList] = useState(() => {
@@ -2014,7 +2039,7 @@ export default function SqlPlayground({ onBack }) {
   // Custom handler to sync problem selection and relevant states
   const handleSelectProblem = (p) => {
     setSelectedProblem(p);
-    setUserCode(p.boilerplate || `/* Write your SQL query here... */\nSELECT * FROM ${Object.keys(p.mockData)[0]};`);
+    setUserCode(getSqlStarterCode(p));
     setConsoleLogs([]);
     setConsoleStatus("IDLE");
     setQueryResult([]);
@@ -2576,9 +2601,23 @@ export default function SqlPlayground({ onBack }) {
                   <Zap size={11} /> IN-MEMORY DATABASE COMPILE WORKSPACE
                 </span>
                 
-                <span style={{ fontSize: '0.64rem', fontFamily: 'var(--font-mono)', padding: '2px 8px', borderRadius: '12px', background: 'rgba(6, 182, 212, 0.08)', color: 'var(--cyan-neon)', fontWeight: 'bold' }}>
-                  SQL Dialect: PostgreSQL / Standard
-                </span>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <button
+                    onClick={() => {
+                      if (window.confirm("Reset editor to default starter template?")) {
+                        setUserCode(getSqlStarterCode(selectedProblem));
+                      }
+                    }}
+                    style={{
+                      background: 'none', border: 'none', color: 'var(--text-muted)', fontSize: '0.68rem', cursor: 'pointer', fontFamily: 'var(--font-mono)'
+                    }}
+                  >
+                    [Reset Code]
+                  </button>
+                  <span style={{ fontSize: '0.64rem', fontFamily: 'var(--font-mono)', padding: '2px 8px', borderRadius: '12px', background: 'rgba(6, 182, 212, 0.08)', color: 'var(--cyan-neon)', fontWeight: 'bold' }}>
+                    SQL Dialect: PostgreSQL / Standard
+                  </span>
+                </div>
               </div>
 
               {/* Editor Workspace Textarea */}
