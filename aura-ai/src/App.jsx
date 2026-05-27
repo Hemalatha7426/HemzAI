@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Shield, Sparkles, AudioLines, PlusCircle, History, RefreshCw, BarChart3, Award, Calendar, ChevronRight, HelpCircle, ChevronDown, ChevronUp, LogOut, Trash2, Sun, Moon, Code, Database } from 'lucide-react';
+import { Shield, Sparkles, AudioLines, PlusCircle, History, RefreshCw, BarChart3, Award, Calendar, ChevronRight, HelpCircle, ChevronDown, ChevronUp, LogOut, Trash2, Sun, Moon, Code, Database, Globe } from 'lucide-react';
 import ResumeScanner from './components/ResumeScanner';
 import ChamberConfig from './components/ChamberConfig';
 import InterviewChamber from './components/InterviewChamber';
@@ -9,6 +9,7 @@ import UserProfile from './components/UserProfile';
 import ChibiCopilot from './components/ChibiCopilot';
 import DsaPlayground from './components/DsaPlayground';
 import SqlPlayground from './components/SqlPlayground';
+import NetworksTheory from './components/NetworksTheory';
 
 const faqs = [
   {
@@ -382,6 +383,38 @@ export default function App() {
                   {appState === 'SQL_PLAYGROUND' ? 'EXIT PLAYGROUND' : 'SQL PLAYGROUND'}
                 </button>
 
+                {/* Networks Prep navigation pill */}
+                <button
+                  onClick={() => setAppState(appState === 'NETWORKS_THEORY' ? 'HUB' : 'NETWORKS_THEORY')}
+                  style={{
+                    background: appState === 'NETWORKS_THEORY' ? 'rgba(245, 158, 11, 0.15)' : 'rgba(255, 255, 255, 0.03)',
+                    border: '1px solid rgba(245, 158, 11, 0.3)',
+                    borderRadius: '10px',
+                    padding: '6px 14px',
+                    color: 'var(--yellow-neon)',
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: '0.72rem',
+                    fontWeight: 'bold',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                    boxShadow: appState === 'NETWORKS_THEORY' ? '0 0 10px rgba(245, 158, 11, 0.3)' : 'none',
+                    transition: 'all 0.2s'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = 'rgba(245, 158, 11, 0.1)';
+                    e.currentTarget.style.boxShadow = '0 0 12px rgba(245, 158, 11, 0.5)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = appState === 'NETWORKS_THEORY' ? 'rgba(245, 158, 11, 0.15)' : 'rgba(255, 255, 255, 0.03)';
+                    e.currentTarget.style.boxShadow = appState === 'NETWORKS_THEORY' ? '0 0 10px rgba(245, 158, 11, 0.3)' : 'none';
+                  }}
+                >
+                  <Globe size={13} />
+                  {appState === 'NETWORKS_THEORY' ? 'EXIT PLAYGROUND' : 'NETWORKS PREP'}
+                </button>
+
                 {/* Glowing Profile Avatar pill */}
                 <div 
                   onClick={() => setAppState('PROFILE')}
@@ -517,6 +550,23 @@ export default function App() {
                   onClick={() => setAppState('SQL_PLAYGROUND')}
                 >
                   SQL PLAYGROUND <Database size={20} />
+                </button>
+                <button 
+                  className="btn-cyber" 
+                  style={{ 
+                    padding: '16px 36px', 
+                    fontSize: '0.95rem',
+                    background: 'rgba(245, 158, 11, 0.08)',
+                    border: '1px solid var(--yellow-neon)',
+                    color: 'var(--yellow-neon)',
+                    boxShadow: '0 0 15px rgba(245, 158, 11, 0.2)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '10px'
+                  }} 
+                  onClick={() => setAppState('NETWORKS_THEORY')}
+                >
+                  NETWORKS PREP <Globe size={20} />
                 </button>
               </div>
             </div>
@@ -804,6 +854,12 @@ export default function App() {
 
         {appState === 'SQL_PLAYGROUND' && (
           <SqlPlayground 
+            onBack={() => setAppState('HUB')}
+          />
+        )}
+
+        {appState === 'NETWORKS_THEORY' && (
+          <NetworksTheory 
             onBack={() => setAppState('HUB')}
           />
         )}
