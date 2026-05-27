@@ -2007,6 +2007,7 @@ export default function SqlPlayground({ onBack }) {
 
   const [queryResult, setQueryResult] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   const editorRef = useRef(null);
 
@@ -2106,6 +2107,9 @@ export default function SqlPlayground({ onBack }) {
             if (!solvedList.includes(selectedProblem.id)) {
               toggleSolved(selectedProblem.id);
             }
+            setTimeout(() => {
+              setShowSuccessModal(true);
+            }, 600);
           } else {
             capture.push("\n❌ Validation Failed against Expected database results!");
             capture.push(`   Expected Rowset: ${JSON.stringify(expected)}`);
@@ -2815,6 +2819,188 @@ export default function SqlPlayground({ onBack }) {
         </div>
 
       </div>
+
+      {/* SQL Success Modal Overlay with Chibi Success Girl & Motivational Quote */}
+      {showSuccessModal && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100vw',
+          height: '100vh',
+          background: 'rgba(5, 8, 20, 0.85)',
+          backdropFilter: 'blur(12px)',
+          WebkitBackdropFilter: 'blur(12px)',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          zIndex: 9999,
+          animation: 'sqlFadeIn 0.35s ease-out forwards'
+        }}>
+          {/* Modal Container */}
+          <div style={{
+            background: 'rgba(17, 24, 39, 0.8)',
+            border: '2px solid transparent',
+            backgroundImage: 'linear-gradient(rgba(17, 24, 39, 0.95), rgba(17, 24, 39, 0.95)), linear-gradient(135deg, var(--cyan-neon), var(--pink-neon))',
+            backgroundOrigin: 'border-box',
+            backgroundClip: 'padding-box, border-box',
+            borderRadius: '24px',
+            padding: '40px',
+            width: '90%',
+            maxWidth: '520px',
+            textAlign: 'center',
+            boxShadow: '0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(6, 182, 212, 0.2), 0 0 50px rgba(255, 0, 127, 0.1)',
+            animation: 'sqlScaleIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: '24px',
+            position: 'relative'
+          }}>
+            {/* Embedded animations <style> block */}
+            <style>{`
+              @keyframes sqlFadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
+              }
+              @keyframes sqlScaleIn {
+                from { transform: scale(0.85); opacity: 0; }
+                to { transform: scale(1); opacity: 1; }
+              }
+              @keyframes sqlNeonPulse {
+                0%, 100% { box-shadow: 0 0 15px rgba(6,182,212,0.3), 0 0 30px rgba(255,0,127,0.2); }
+                50% { box-shadow: 0 0 25px rgba(6,182,212,0.5), 0 0 45px rgba(255,0,127,0.4); }
+              }
+            `}</style>
+
+            {/* Glowing background gradient effect */}
+            <div style={{
+              position: 'absolute',
+              top: '-10%',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              width: '180px',
+              height: '180px',
+              background: 'radial-gradient(circle, rgba(6,182,212,0.15) 0%, transparent 70%)',
+              pointerEvents: 'none',
+              zIndex: 0
+            }} />
+
+            {/* Chibi Anime Success Artwork Frame */}
+            <div style={{
+              position: 'relative',
+              width: '260px',
+              height: '290px',
+              borderRadius: '16px',
+              overflow: 'hidden',
+              border: '2px solid rgba(255, 255, 255, 0.08)',
+              boxShadow: '0 8px 24px rgba(0, 0, 0, 0.3)',
+              background: '#0a0f1d',
+              zIndex: 1
+            }}>
+              <img 
+                src="/sql_success_quote.png" 
+                alt="SQL Success Quote Girl" 
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover'
+                }}
+              />
+            </div>
+
+            {/* Motivational Text Block */}
+            <div style={{ zIndex: 1, display: 'flex', flexDirection: 'column', gap: '8px' }}>
+              <span style={{ 
+                fontSize: '0.68rem', 
+                color: 'var(--cyan-neon)', 
+                fontFamily: 'var(--font-mono)', 
+                fontWeight: '900', 
+                letterSpacing: '2px', 
+                textTransform: 'uppercase' 
+              }}>
+                🌟 SQL PREPARATION UPDATE 🌟
+              </span>
+              <h3 style={{ 
+                margin: '5px 0 10px 0', 
+                fontSize: '1.45rem', 
+                fontWeight: '900', 
+                color: '#fff',
+                fontFamily: 'var(--font-sans)',
+                letterSpacing: '0.5px',
+                background: 'linear-gradient(135deg, #00f2fe, #4facfe)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent'
+              }}>
+                Query Validation Passed!
+              </h3>
+              
+              <div style={{ 
+                padding: '16px 20px', 
+                background: 'rgba(255, 255, 255, 0.02)', 
+                border: '1px solid rgba(255,255,255,0.06)', 
+                borderRadius: '12px',
+                fontStyle: 'italic',
+                fontFamily: 'var(--font-sans)',
+                fontSize: '0.92rem',
+                color: '#e2e8f0',
+                lineHeight: '1.5',
+                position: 'relative'
+              }}>
+                <span style={{ 
+                  position: 'absolute', 
+                  top: '-5px', 
+                  left: '10px', 
+                  fontSize: '2.5rem', 
+                  color: 'rgba(6, 182, 212, 0.1)', 
+                  fontFamily: 'serif',
+                  pointerEvents: 'none'
+                }}>“</span>
+                Hey, <strong style={{ color: 'var(--pink-neon)' }}>Be proud of yourself</strong> how hard you are trying everyday.
+                <span style={{ 
+                  position: 'absolute', 
+                  bottom: '-25px', 
+                  right: '15px', 
+                  fontSize: '2.5rem', 
+                  color: 'rgba(6, 182, 212, 0.1)', 
+                  fontFamily: 'serif',
+                  pointerEvents: 'none'
+                }}>”</span>
+              </div>
+            </div>
+
+            {/* Action Buttons */}
+            <button
+              onClick={() => setShowSuccessModal(false)}
+              style={{
+                background: 'linear-gradient(135deg, var(--cyan-neon), var(--purple-neon))',
+                border: 'none',
+                borderRadius: '12px',
+                padding: '12px 36px',
+                fontSize: '0.85rem',
+                fontWeight: '900',
+                color: '#fff',
+                cursor: 'pointer',
+                outline: 'none',
+                boxShadow: '0 0 15px rgba(6,182,212,0.3)',
+                transition: 'all 0.25s',
+                animation: 'sqlNeonPulse 2s infinite',
+                width: '100%',
+                zIndex: 1
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'scale(1.02)';
+                e.currentTarget.style.boxShadow = '0 0 25px rgba(6,182,212,0.6)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'none';
+              }}
+            >
+              Continue Query Practice
+            </button>
+          </div>
+        </div>
+      )}
 
     </div>
   );
