@@ -1,0 +1,9 @@
+# Ignore other projects and files in the scratch directory
+/hemspire
+/hemspire-backend
+/backend.zip
+/testTranspile.js
+
+# Ignore OS files
+.DS_Store
+Thumbs.db

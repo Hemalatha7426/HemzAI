@@ -1,0 +1,449 @@
+/* 
+  Hemz AI: Design System and Core Styling
+  Ultra-Premium SaaS Glassmorphic Multi-Theme Design System
+*/
+
+:root {
+  --space-bg: #050814; /* Elegant deep space canvas background */
+  --panel-bg: rgba(17, 24, 39, 0.65); /* Semi-transparent premium glass card */
+  --header-bg: rgba(17, 24, 39, 0.4);
+  --drawer-bg: rgba(17, 24, 39, 0.7);
+  --input-bg: rgba(17, 24, 39, 0.5);
+  --input-bg-focus: rgba(17, 24, 39, 0.7);
+  --bubble-bot-bg: rgba(17, 24, 39, 0.65);
+  --panel-shadow: 0 12px 30px 0 rgba(0, 0, 0, 0.25);
+  --ink-dark: #1e293b; /* Replaced by elegant slate border */
+  
+  --cyan-neon: #06b6d4; /* Premium sleek cyan */
+  --purple-neon: #8b5cf6; /* Premium violet purple */
+  --pink-neon: #ec4899; /* Premium glowing rose pink */
+  --emerald-neon: #10b981; /* High-fidelity emerald green */
+  --yellow-neon: #f59e0b; /* Deep premium gold amber */
+  
+  --text-primary: #f3f4f6; /* Off-white for high premium contrast */
+  --text-secondary: #9ca3af; /* Soft slate grey for readable descriptions */
+  --text-muted: #6b7280; /* Muted grey for standby elements */
+  
+  --glass-border: 1px solid rgba(255, 255, 255, 0.08); /* Sleek micro glowing border */
+  --dot-grid-color: rgba(255, 255, 255, 0.01);
+  
+  --font-sans: 'Inter', sans-serif;
+  --font-mono: 'Outfit', sans-serif;
+}
+
+:root[data-theme="light"] {
+  --space-bg: #f8fafc; /* Elegant light slate white */
+  --panel-bg: rgba(255, 255, 255, 0.75); /* Clean glossy white glass */
+  --header-bg: rgba(255, 255, 255, 0.65);
+  --drawer-bg: rgba(255, 255, 255, 0.85);
+  --input-bg: rgba(255, 255, 255, 0.8);
+  --input-bg-focus: rgba(255, 255, 255, 0.95);
+  --bubble-bot-bg: rgba(241, 245, 249, 0.85);
+  --panel-shadow: 0 12px 30px 0 rgba(15, 23, 42, 0.06);
+  --ink-dark: #1e293b;
+  
+  --cyan-neon: #0891b2; /* slightly deeper cyan for text legibility */
+  --purple-neon: #7c3aed; /* slightly deeper violet purple */
+  --pink-neon: #db2777; /* slightly deeper rose pink */
+  --emerald-neon: #059669; /* slightly deeper emerald green */
+  --yellow-neon: #d97706; /* slightly deeper gold amber */
+  
+  --text-primary: #0f172a; /* Deep slate dark */
+  --text-secondary: #475569; /* Balanced slate grey */
+  --text-muted: #94a3b8; /* Muted grey for standby elements */
+  
+  --glass-border: 1px solid rgba(15, 23, 42, 0.08);
+  --dot-grid-color: rgba(15, 23, 42, 0.03);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.1) rgba(17, 24, 39, 0.5);
+}
+
+html, body {
+  overflow-x: hidden;
+  background-color: var(--space-bg);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body {
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Cosmic Ambient Backdrop Glows */
+body::before {
+  content: "";
+  position: absolute;
+  top: 15%;
+  left: 20%;
+  width: 50vw;
+  height: 50vw;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, transparent 70%);
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: -2;
+}
+
+body::after {
+  content: "";
+  position: absolute;
+  bottom: 10%;
+  right: 15%;
+  width: 40vw;
+  height: 40vw;
+  background: radial-gradient(circle, rgba(0, 242, 254, 0.05) 0%, transparent 70%);
+  filter: blur(50px);
+  pointer-events: none;
+  z-index: -2;
+}
+
+/* Sleek Glowing Nebula Orbs */
+.orbital-orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(60px);
+  animation: floatOrb 25s infinite alternate ease-in-out;
+}
+
+.orb-cyan {
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.15) 0%, transparent 70%);
+  top: 5%;
+  right: 10%;
+}
+
+.orb-purple {
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.12) 0%, transparent 70%);
+  bottom: 10%;
+  left: -5%;
+  animation-delay: -5s;
+}
+
+.orb-pink {
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(236, 72, 153, 0.1) 0%, transparent 70%);
+  top: 35%;
+  right: 25%;
+  animation-delay: -12s;
+}
+
+@keyframes floatOrb {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(40px, -40px) scale(1.1);
+  }
+  100% {
+    transform: translate(-20px, 20px) scale(0.95);
+  }
+}
+
+/* Premium SaaS Glassmorphic Cards */
+.glass-panel {
+  background: var(--panel-bg) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border: var(--glass-border) !important;
+  border-radius: 16px !important;
+  box-shadow: var(--panel-shadow) !important;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.glass-panel:hover {
+  transform: translateY(-2px);
+  border-color: var(--cyan-neon) !important;
+  box-shadow: var(--panel-shadow), 0 0 20px 0 rgba(6, 182, 212, 0.08) !important;
+}
+
+.glass-panel-pink {
+  border-color: var(--glass-border) !important;
+}
+.glass-panel-pink:hover {
+  border-color: var(--pink-neon) !important;
+  box-shadow: var(--panel-shadow), 0 0 20px 0 rgba(236, 72, 153, 0.08) !important;
+}
+
+/* Dynamic Text Glows */
+.text-glow-cyan {
+  text-shadow: 0 0 10px rgba(6, 182, 212, 0.4);
+}
+.text-glow-pink {
+  text-shadow: 0 0 10px rgba(236, 72, 153, 0.4);
+}
+
+/* Sleek Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(17, 24, 39, 0.3);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border: none !important;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Premium SaaS Buttons */
+.btn-cyber {
+  background: linear-gradient(135deg, var(--cyan-neon), var(--purple-neon)) !important;
+  border: none !important;
+  color: #ffffff !important;
+  font-family: var(--font-mono) !important;
+  font-weight: 700 !important;
+  font-size: 0.85rem !important;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 10px;
+  padding: 12px 24px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  box-shadow: 0 4px 14px 0 rgba(6, 182, 212, 0.2) !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-cyber:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 22px 0 rgba(6, 182, 212, 0.35) !important;
+  filter: brightness(1.08);
+}
+
+.btn-cyber:active {
+  transform: translateY(1px) !important;
+  box-shadow: 0 2px 8px 0 rgba(6, 182, 212, 0.2) !important;
+}
+
+.btn-cyber-pink {
+  background: linear-gradient(135deg, var(--pink-neon), var(--purple-neon)) !important;
+  box-shadow: 0 4px 14px 0 rgba(236, 72, 153, 0.2) !important;
+}
+.btn-cyber-pink:hover {
+  box-shadow: 0 8px 22px 0 rgba(236, 72, 153, 0.35) !important;
+}
+
+.btn-cyber-secondary {
+  background: var(--input-bg) !important;
+  border: var(--glass-border) !important;
+  box-shadow: none !important;
+  color: var(--text-primary) !important;
+}
+.btn-cyber-secondary:hover {
+  background: var(--input-bg-focus) !important;
+  border-color: var(--cyan-neon) !important;
+  box-shadow: var(--panel-shadow) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Sleek Dark/Light Inputs */
+input, select, textarea {
+  border: var(--glass-border) !important;
+  border-radius: 10px !important;
+  color: var(--text-primary) !important;
+  background: var(--input-bg) !important;
+  font-family: var(--font-sans) !important;
+  font-weight: 500 !important;
+  transition: all 0.25s ease !important;
+}
+input:focus, select:focus, textarea:focus {
+  border-color: var(--cyan-neon) !important;
+  box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.15) !important;
+  background: var(--input-bg-focus) !important;
+  transform: none !important;
+}
+
+/* Modern Dialogue Conversation Node */
+.speech-bubble {
+  position: relative;
+  background: var(--panel-bg) !important;
+  border: var(--glass-border) !important;
+  border-left: 4px solid var(--pink-neon) !important;
+  border-radius: 12px !important;
+  padding: 20px 24px !important;
+  box-shadow: var(--panel-shadow) !important;
+  margin-bottom: 20px;
+  color: var(--text-primary) !important;
+}
+
+.speech-bubble::after, .speech-bubble::before {
+  display: none !important; /* Hide old black comic indicators */
+}
+
+/* Floating Animations */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0px); }
+}
+
+.float-animation {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Cyber dash scan visual line */
+.scanner-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent 48%, rgba(6, 182, 212, 0.2) 50%, rgba(6, 182, 212, 0.02) 51%, transparent 70%);
+  background-size: 100% 200%;
+  animation: scan 3.5s infinite linear;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.85;
+}
+
+@keyframes scan {
+  0% { background-position: 0% -100%; }
+  100% { background-position: 0% 100%; }
+}
+
+/* Playful Comic Dot Grid Replaced by Dark dust */
+.dot-grid {
+  background-image: radial-gradient(var(--dot-grid-color) 1px, transparent 1px) !important;
+  background-size: 24px 24px !important;
+}
+
+/* Sleek dynamic soundwave bouncer */
+.wave-bar {
+  display: inline-block;
+  width: 6px;
+  height: 20px;
+  border: none !important;
+  border-radius: 3px;
+  background-color: var(--cyan-neon);
+  margin: 0 2px;
+  animation: soundwave 0.8s infinite ease-in-out alternate;
+}
+
+@keyframes soundwave {
+  0% { transform: scaleY(0.4); background-color: var(--cyan-neon); }
+  50% { background-color: var(--purple-neon); }
+  100% { transform: scaleY(1.8); background-color: var(--pink-neon); }
+}
+
+/* Refined SaaS Badge pills */
+.badge-comic {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.7rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  border: var(--glass-border) !important;
+  color: var(--text-primary) !important;
+  background: var(--input-bg) !important;
+  box-shadow: none !important;
+  text-transform: uppercase;
+}
+
+/* Chatbot Drawer & Chibi Styles for dark and light theme */
+.chibi-drawer {
+  background: var(--drawer-bg) !important;
+  border-left: var(--glass-border) !important;
+  box-shadow: -15px 0 45px rgba(0, 0, 0, 0.35) !important;
+  transition: all 0.3s ease !important;
+}
+
+.chibi-drawer-header {
+  background: var(--header-bg) !important;
+  border-bottom: var(--glass-border) !important;
+  transition: all 0.3s ease !important;
+}
+
+.chibi-drawer-footer {
+  background: var(--drawer-bg) !important;
+  border-top: var(--glass-border) !important;
+  transition: all 0.3s ease !important;
+}
+
+.chibi-fab {
+  background: var(--drawer-bg) !important;
+  transition: all 0.3s ease !important;
+}
+
+.chat-tooltip {
+  background: var(--drawer-bg) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--glass-border) !important;
+}
+
+.chat-bubble-bot {
+  background: var(--bubble-bot-bg) !important;
+  border: var(--glass-border) !important;
+  color: var(--text-secondary) !important;
+  box-shadow: var(--panel-shadow) !important;
+}
+
+.chat-bubble-user {
+  background: rgba(139, 92, 246, 0.12) !important;
+  border: 1px solid rgba(139, 92, 246, 0.25) !important;
+  color: var(--text-primary) !important;
+  box-shadow: var(--panel-shadow) !important;
+}
+
+.chat-bubble-typing {
+  background: var(--bubble-bot-bg) !important;
+  border: var(--glass-border) !important;
+  box-shadow: var(--panel-shadow) !important;
+}
+
+/* Light Theme Text Override and Exceptions */
+:root[data-theme="light"] h1,
+:root[data-theme="light"] h2,
+:root[data-theme="light"] h3,
+:root[data-theme="light"] h4,
+:root[data-theme="light"] h5,
+:root[data-theme="light"] h6,
+:root[data-theme="light"] p:not(.btn-text):not(.wave-bar),
+:root[data-theme="light"] span:not(.badge-comic):not(.wave-bar):not(.typing-dot),
+:root[data-theme="light"] label,
+:root[data-theme="light"] input,
+:root[data-theme="light"] select,
+:root[data-theme="light"] textarea,
+:root[data-theme="light"] strong:not(.btn-text),
+:root[data-theme="light"] div.speech-bubble p {
+  color: var(--text-primary) !important;
+}
+
+/* Cyber Button overrides to ensure text is white in light theme */
+:root[data-theme="light"] button.btn-cyber,
+:root[data-theme="light"] button.btn-cyber-pink,
+:root[data-theme="light"] button.btn-cyber *,
+:root[data-theme="light"] button.btn-cyber-pink * {
+  color: #ffffff !important;
+}
+
+/* Cosmic light glow overrides */
+:root[data-theme="light"] body::before {
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.04) 0%, transparent 70%) !important;
+}
+:root[data-theme="light"] body::after {
+  background: radial-gradient(circle, rgba(0, 242, 254, 0.03) 0%, transparent 70%) !important;
+}
+
