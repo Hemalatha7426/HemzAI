@@ -467,6 +467,7 @@ export default function DsaPlayground({ onBack }) {
             }, 600);
           } else {
             setConsoleStatus("FAILED");
+            capture.push("\n💡 \"Our greatest glory is not in never falling, but in rising every time we fall.\"");
           }
           setConsoleLogs(capture);
 
@@ -506,6 +507,7 @@ export default function DsaPlayground({ onBack }) {
 
       } catch (err) {
         capture.push(`⚠️ Compilation/Execution Error: ${err.message}`);
+        capture.push("\n💡 \"Our greatest glory is not in never falling, but in rising every time we fall.\"");
         setConsoleLogs(capture);
         setConsoleStatus("FAILED");
       }
@@ -1056,8 +1058,15 @@ export default function DsaPlayground({ onBack }) {
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '3px', fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: '#fff', lineHeight: '1.4' }}>
                   {consoleLogs.map((log, idx) => (
                     <div key={idx} style={{ 
-                      color: log.startsWith('✅') ? 'var(--emerald-neon)' : log.startsWith('❌') || log.startsWith('⚠️') ? '#ff4d4d' : '#fff',
-                      whiteSpace: 'pre-wrap'
+                      color: log.startsWith('✅') ? 'var(--emerald-neon)' : log.startsWith('❌') || log.startsWith('⚠️') ? '#ff4d4d' : log.trim().startsWith('💡') ? 'var(--yellow-neon)' : '#fff',
+                      whiteSpace: 'pre-wrap',
+                      fontWeight: log.trim().startsWith('💡') ? 'bold' : 'normal',
+                      padding: log.trim().startsWith('💡') ? '10px 14px' : '0',
+                      borderLeft: log.trim().startsWith('💡') ? '3px solid var(--yellow-neon)' : 'none',
+                      background: log.trim().startsWith('💡') ? 'rgba(245, 158, 11, 0.06)' : 'none',
+                      borderRadius: log.trim().startsWith('💡') ? '8px' : '0',
+                      marginTop: log.trim().startsWith('💡') ? '8px' : '0',
+                      boxShadow: log.trim().startsWith('💡') ? '0 0 10px rgba(245, 158, 11, 0.1)' : 'none'
                     }}>
                       {log}
                     </div>
