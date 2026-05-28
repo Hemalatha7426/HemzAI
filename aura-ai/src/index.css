@@ -32,28 +32,28 @@
 }
 
 :root[data-theme="light"] {
-  --space-bg: #f8fafc; /* Elegant light slate white */
-  --panel-bg: rgba(255, 255, 255, 0.75); /* Clean glossy white glass */
-  --header-bg: rgba(255, 255, 255, 0.65);
-  --drawer-bg: rgba(255, 255, 255, 0.85);
-  --input-bg: rgba(255, 255, 255, 0.8);
-  --input-bg-focus: rgba(255, 255, 255, 0.95);
+  --space-bg: #f4f6fc; /* Ultra-premium light blue-slate space background */
+  --panel-bg: rgba(255, 255, 255, 0.82); /* Frosted glassy white panel */
+  --header-bg: rgba(255, 255, 255, 0.7);
+  --drawer-bg: rgba(255, 255, 255, 0.88);
+  --input-bg: rgba(241, 245, 249, 0.7); /* Soft light-blue slate input */
+  --input-bg-focus: rgba(255, 255, 255, 0.98);
   --bubble-bot-bg: rgba(241, 245, 249, 0.85);
-  --panel-shadow: 0 12px 30px 0 rgba(15, 23, 42, 0.06);
-  --ink-dark: #1e293b;
+  --panel-shadow: 0 20px 40px -15px rgba(99, 102, 241, 0.1), 0 0 1px 1px rgba(0, 0, 0, 0.02); /* Ambient Indigo shadow */
+  --ink-dark: #0f172a;
   
-  --cyan-neon: #0891b2; /* slightly deeper cyan for text legibility */
-  --purple-neon: #7c3aed; /* slightly deeper violet purple */
-  --pink-neon: #db2777; /* slightly deeper rose pink */
-  --emerald-neon: #059669; /* slightly deeper emerald green */
-  --yellow-neon: #d97706; /* slightly deeper gold amber */
+  --cyan-neon: #0284c7; /* Vibrant premium sky-cyan */
+  --purple-neon: #6366f1; /* Radiant premium indigo-purple */
+  --pink-neon: #ec4899; /* Vibrant premium rose-pink */
+  --emerald-neon: #10b981; /* High-fidelity emerald green */
+  --yellow-neon: #f59e0b; /* Vibrant amber-gold */
   
-  --text-primary: #0f172a; /* Deep slate dark */
-  --text-secondary: #475569; /* Balanced slate grey */
-  --text-muted: #94a3b8; /* Muted grey for standby elements */
+  --text-primary: #1e1b4b; /* Sophisticated deep indigo-slate */
+  --text-secondary: #475569; /* Soft balanced slate-gray */
+  --text-muted: #94a3b8; /* Muted gray */
   
-  --glass-border: 1px solid rgba(15, 23, 42, 0.08);
-  --dot-grid-color: rgba(15, 23, 42, 0.03);
+  --glass-border: 1px solid rgba(255, 255, 255, 0.6); /* Highlights white bevel borders */
+  --dot-grid-color: rgba(99, 102, 241, 0.04); /* Sleek lavender dot pattern */
 }
 
 * {
@@ -441,9 +441,20 @@ input:focus, select:focus, textarea:focus {
 
 /* Cosmic light glow overrides */
 :root[data-theme="light"] body::before {
-  background: radial-gradient(circle, rgba(99, 102, 241, 0.04) 0%, transparent 70%) !important;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.16) 0%, transparent 70%) !important;
 }
 :root[data-theme="light"] body::after {
-  background: radial-gradient(circle, rgba(0, 242, 254, 0.03) 0%, transparent 70%) !important;
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.14) 0%, transparent 70%) !important;
+}
+
+/* Vibrant Orbital Orbs for premium light theme */
+:root[data-theme="light"] .orb-cyan {
+  background: radial-gradient(circle, rgba(2, 132, 199, 0.18) 0%, transparent 70%) !important;
+}
+:root[data-theme="light"] .orb-purple {
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%) !important;
+}
+:root[data-theme="light"] .orb-pink {
+  background: radial-gradient(circle, rgba(236, 72, 153, 0.14) 0%, transparent 70%) !important;
 }
 
