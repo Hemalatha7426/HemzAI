@@ -52,7 +52,7 @@
   --text-secondary: #475569; /* Soft balanced slate-gray */
   --text-muted: #94a3b8; /* Muted gray */
   
-  --glass-border: 1px solid rgba(255, 255, 255, 0.6); /* Highlights white bevel borders */
+  --glass-border: 1px solid rgba(15, 23, 42, 0.12); /* Crisp slate borders for maximum premium contrast */
   --dot-grid-color: rgba(99, 102, 241, 0.04); /* Sleek lavender dot pattern */
 }
 

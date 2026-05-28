@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Mic, MicOff, Volume2, SkipForward, Power, Play, RefreshCw, MessageSquare, Video, VideoOff } from 'lucide-react';
+import { Mic, MicOff, Volume2, SkipForward, Power, Play, RefreshCw, MessageSquare, Video, VideoOff, Sparkles } from 'lucide-react';
 
 export default function InterviewChamber({ parsedData, configData, onSessionComplete, onQuit }) {
   const [session, setSession] = useState(null);
@@ -9,6 +9,7 @@ export default function InterviewChamber({ parsedData, configData, onSessionComp
   const [speechActive, setSpeechActive] = useState(false);
   const [micActive, setMicActive] = useState(false);
   const [secondsRemaining, setSecondsRemaining] = useState(90);
+  const [hasStartedSpeech, setHasStartedSpeech] = useState(false);
 
   // References for Speech and Audio
   const recognitionRef = useRef(null);
@@ -129,8 +130,8 @@ export default function InterviewChamber({ parsedData, configData, onSessionComp
                 totalBrightness += luma;
                 lumaValues[y * 80 + x] = luma;
 
-                // Skin Color Segmentation Rule (supports all human skin tones)
-                if (r > 60 && g > 40 && b > 20 && r > g && r > b && (r - g) > 10 && Math.abs(r - b) > 10) {
+                // Skin Color Segmentation Rule (supports all human skin tones and ambient camera white balances)
+                if (r > 50 && g > 35 && b > 20 && r > g && (r - g) > 6 && Math.abs(r - b) > 6) {
                   skinPixels++;
                   skinLumas.push(luma);
                   
@@ -189,7 +190,7 @@ export default function InterviewChamber({ parsedData, configData, onSessionComp
                 const g = data[idx+1];
                 const b = data[idx+2];
                 // Check if the current pixel is skin-tone
-                if (r > 60 && g > 40 && b > 20 && r > g && r > b && (r - g) > 10 && Math.abs(r - b) > 10) {
+                if (r > 50 && g > 35 && b > 20 && r > g && (r - g) > 6 && Math.abs(r - b) > 6) {
                   const idxRight = (y * 80 + (x + 1)) * 4;
                   const idxDown = ((y + 1) * 80 + x) * 4;
                   const lumaSelf = 0.299 * r + 0.587 * g + 0.114 * b;
@@ -209,23 +210,23 @@ export default function InterviewChamber({ parsedData, configData, onSessionComp
 
             // Heuristics:
             // A. Camera Lens Covered (homogeneous colors, extremely low overall contrast)
-            if (stdDev < 8.5) {
+            if (stdDev < 4.5) {
               setCameraWarning("WARNING: CAMERA COVERED OR BLOCKED");
             }
             // B. Camera Blocked / OBSCURED / Low Light (Pitch dark luma values)
-            else if (avgBrightness < 16) {
+            else if (avgBrightness < 8.0) {
               setCameraWarning("WARNING: CAMERA OBSCURED OR PITCH BLACK");
             }
-            // C. Face Presence Check:
-            // 1. Skin percentage is too low (less than 4% of frame is skin)
-            // 2. Skin percentage is too high and too uniform (indicates flat wall/door covering the camera, e.g. skinPercent > 75% and relativeBlockStdDev is very uniform/low)
-            // 3. Average spatial color gradient in skin region is too flat (e.g. wall/door has avgSkinGradient < 1.6, whereas human faces have features creating high micro-gradients > 2.5)
-            // 4. Standard deviation of skin pixels is extremely low (completely uniform color, e.g. skinStdDev < 10.0, whereas face has lighting highlights/shadows > 15.0)
+            // C. Face Presence Check (calibrated to prevent false warnings on smooth laptop webcams/varying lighting conditions):
+            // 1. Skin percentage is too low (less than 1.5% of frame is skin)
+            // 2. Skin percentage is too high and too uniform (indicates flat wall/door covering the camera, e.g. skinPercent > 85% and relativeBlockStdDev is very uniform/low)
+            // 3. Average spatial color gradient in skin region is too flat (e.g. wall/door has avgSkinGradient < 0.8, whereas human faces have features creating high micro-gradients)
+            // 4. Standard deviation of skin pixels is extremely low (completely uniform color, e.g. skinStdDev < 4.5, whereas face has lighting highlights/shadows)
             else if (
-              skinPercent < 4.0 || 
-              (skinPercent > 75.0 && relativeBlockStdDev < 0.22) ||
-              (skinPercent > 5.0 && avgSkinGradient < 1.6) ||
-              (skinPercent > 5.0 && skinStdDev < 10.0)
+              skinPercent < 1.5 || 
+              (skinPercent > 85.0 && relativeBlockStdDev < 0.15) ||
+              (skinPercent > 5.0 && avgSkinGradient < 0.8) ||
+              (skinPercent > 5.0 && skinStdDev < 4.5)
             ) {
               setCameraWarning("FACE NOT DETECTED IN FRAME");
             }
@@ -249,6 +250,15 @@ export default function InterviewChamber({ parsedData, configData, onSessionComp
 
   // 1. Fetch Questions / Initialize Session on Mount
   useEffect(() => {
+    if (window.speechSynthesis) {
+      window.speechSynthesis.getVoices();
+      if ('onvoiceschanged' in window.speechSynthesis) {
+        window.speechSynthesis.onvoiceschanged = () => {
+          window.speechSynthesis.getVoices();
+        };
+      }
+    }
+
     const initializeChamber = async () => {
       setChamberState('PREPARING');
       
@@ -757,7 +767,9 @@ export default function InterviewChamber({ parsedData, configData, onSessionComp
     if (!session) return;
     
     if (chamberState === 'SPEAKING') {
-      speakQuestion();
+      if (currentRound > 0) {
+        speakQuestion();
+      }
     } else if (chamberState === 'LISTENING') {
       startListening();
     } else if (chamberState === 'THINKING') {
@@ -1587,18 +1599,74 @@ export default function InterviewChamber({ parsedData, configData, onSessionComp
               gap: '20px'
             }}>
               
-              {/* Question bubble Card */}
-              <div className="speech-bubble" style={{ borderLeftColor: 'var(--pink-neon) !important' }}>
-                <p style={{
-                  fontSize: '1.15rem',
-                  fontWeight: '800',
-                  lineHeight: '1.5',
-                  color: 'var(--text-primary)',
-                  margin: 0
+              {!hasStartedSpeech && currentRound === 0 ? (
+                /* Beautiful Direct Interaction Panel to Bypass Browser Autoplay Policies */
+                <div className="glass-panel" style={{
+                  padding: '30px',
+                  border: '2px solid var(--pink-neon) !important',
+                  background: 'rgba(5, 6, 15, 0.4)',
+                  boxShadow: '0 0 25px rgba(236, 72, 153, 0.15)',
+                  textAlign: 'center',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: '20px',
+                  animation: 'fadeIn 0.3s ease-out',
+                  borderRadius: '16px'
                 }}>
-                  Q{currentRound + 1}. {activeQuestion}
-                </p>
-              </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <Sparkles size={16} style={{ color: 'var(--pink-neon)' }} />
+                    <span style={{ fontSize: '0.72rem', fontFamily: 'var(--font-mono)', color: 'var(--pink-neon)', fontWeight: 'bold', letterSpacing: '1px', textTransform: 'uppercase' }}>
+                      VOCAL SYNCHRONIZATION ESTABLISHED
+                    </span>
+                  </div>
+
+                  <h3 style={{ fontSize: '1.4rem', fontWeight: '800', color: 'var(--text-primary)', margin: 0 }}>
+                    Activate AI Voice Fields
+                  </h3>
+
+                  <div style={{ 
+                    background: 'rgba(245, 158, 11, 0.06)',
+                    borderLeft: '4px solid var(--yellow-neon)',
+                    borderRadius: '8px',
+                    padding: '12px 16px',
+                    textAlign: 'left',
+                    width: '100%'
+                  }}>
+                    <p style={{ margin: 0, fontStyle: 'italic', fontWeight: '600', fontSize: '0.8rem', color: 'var(--text-primary)', lineHeight: '1.4' }}>
+                      "Your calm mind is the ultimate weapon against your challenges. So relax!"
+                    </p>
+                  </div>
+
+                  <p style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', margin: 0, lineHeight: '1.4' }}>
+                    Tap below to initialize Speech Synthesis and start your first mock question.
+                  </p>
+
+                  <button 
+                    onClick={() => {
+                      setHasStartedSpeech(true);
+                      speakQuestion();
+                    }}
+                    className="btn-cyber btn-cyber-pink"
+                    style={{ width: '100%', padding: '12px 24px', fontSize: '0.82rem', fontWeight: 'bold' }}
+                  >
+                    START VOCAL RUN
+                  </button>
+                </div>
+              ) : (
+                /* Question bubble Card */
+                <div className="speech-bubble" style={{ borderLeftColor: 'var(--pink-neon) !important' }}>
+                  <p style={{
+                    fontSize: '1.15rem',
+                    fontWeight: '800',
+                    lineHeight: '1.5',
+                    color: 'var(--text-primary)',
+                    margin: 0
+                  }}>
+                    Q{currentRound + 1}. {activeQuestion}
+                  </p>
+                </div>
+              )}
 
               {/* Hidden canvas context wrapper to preserve audio analysis logic */}
               <div style={{ display: 'none' }}>

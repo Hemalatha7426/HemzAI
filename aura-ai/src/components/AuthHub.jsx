@@ -143,7 +143,7 @@ export default function AuthHub({ onLoginSuccess }) {
       {/* RIGHT PANEL - Login Form */}
       <div style={{ padding: '45px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
         <div style={{ marginBottom: '25px', textAlign: 'center' }}>
-          <h3 style={{ fontSize: '1.35rem', fontWeight: '800', color: '#ffffff', marginBottom: '6px', fontFamily: 'var(--font-mono)' }}>
+          <h3 style={{ fontSize: '1.35rem', fontWeight: '800', color: 'var(--text-primary)', marginBottom: '6px', fontFamily: 'var(--font-mono)' }}>
             {isSignUp ? 'Establish Identity' : 'Welcome Candidate'}
           </h3>
           <p style={{ color: 'var(--text-secondary)', fontSize: '0.78rem', fontWeight: '500' }}>
@@ -209,9 +209,9 @@ export default function AuthHub({ onLoginSuccess }) {
 
         {/* SSO Divider */}
         <div style={{ display: 'flex', alignItems: 'center', margin: '20px 0', gap: '10px' }}>
-          <div style={{ flex: 1, height: '1px', background: 'rgba(255, 255, 255, 0.08)' }} />
+          <div style={{ flex: 1, height: '1px', background: 'var(--text-muted)', opacity: 0.2 }} />
           <span style={{ fontSize: '0.6rem', fontFamily: 'var(--font-mono)', color: 'var(--text-muted)', letterSpacing: '1px' }}>OR CHOOSE SSO</span>
-          <div style={{ flex: 1, height: '1px', background: 'rgba(255, 255, 255, 0.08)' }} />
+          <div style={{ flex: 1, height: '1px', background: 'var(--text-muted)', opacity: 0.2 }} />
         </div>
 
         {/* Google Mock */}
@@ -221,9 +221,9 @@ export default function AuthHub({ onLoginSuccess }) {
             width: '100%',
             padding: '11px',
             borderRadius: '10px',
-            background: 'rgba(255,255,255,0.03)',
-            border: '1px solid rgba(255,255,255,0.08)',
-            color: '#fff',
+            background: 'var(--input-bg)',
+            border: '1.5px solid var(--glass-border)',
+            color: 'var(--text-primary)',
             fontFamily: 'var(--font-sans)',
             fontSize: '0.85rem',
             cursor: 'pointer',
@@ -233,8 +233,8 @@ export default function AuthHub({ onLoginSuccess }) {
             gap: '10px',
             transition: 'all 0.3s'
           }}
-          onMouseEnter={(e) => e.currentTarget.style.borderColor = 'rgba(255,255,255,0.18)'}
-          onMouseLeave={(e) => e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)'}
+          onMouseEnter={(e) => e.currentTarget.style.borderColor = 'var(--cyan-neon)'}
+          onMouseLeave={(e) => e.currentTarget.style.borderColor = 'var(--glass-border)'}
         >
           <span style={{ fontWeight: 'bold', fontFamily: 'var(--font-mono)' }}><span style={{ color: '#4285F4' }}>G</span><span style={{ color: '#EA4335' }}>o</span><span style={{ color: '#FBBC05' }}>o</span><span style={{ color: '#34A853' }}>g</span><span style={{ color: '#4285F4' }}>l</span><span style={{ color: '#EA4335' }}>e</span></span> Continue with Google
         </button>

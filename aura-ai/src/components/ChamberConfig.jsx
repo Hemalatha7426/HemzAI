@@ -131,7 +131,7 @@ export default function ChamberConfig({ parsedData, onConfigComplete, onBack }) 
           />
         </div>
         <div style={{ textAlign: 'left' }}>
-          <h2 style={{ fontFamily: 'var(--font-mono)', fontSize: '2rem', fontWeight: '800', color: '#ffffff', marginBottom: '6px', letterSpacing: '0.5px' }}>
+          <h2 style={{ fontFamily: 'var(--font-mono)', fontSize: '2rem', fontWeight: '800', color: 'var(--text-primary)', marginBottom: '6px', letterSpacing: '0.5px' }}>
             CHAMBER CONFIG
           </h2>
           <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', fontWeight: '500', margin: 0 }}>
@@ -149,7 +149,7 @@ export default function ChamberConfig({ parsedData, onConfigComplete, onBack }) 
         marginBottom: '30px',
         textAlign: 'left'
       }}>
-        <p style={{ margin: 0, fontStyle: 'italic', fontWeight: '600', fontSize: '0.8rem', color: '#ffffff', lineHeight: '1.4' }}>
+        <p style={{ margin: 0, fontStyle: 'italic', fontWeight: '600', fontSize: '0.8rem', color: 'var(--text-primary)', lineHeight: '1.4' }}>
           "What is yours will always find you. Keep putting in the effort, sharpening your technical tools, and the right engineering role will meet your preparation."
         </p>
       </div>
@@ -169,12 +169,12 @@ export default function ChamberConfig({ parsedData, onConfigComplete, onBack }) 
                   key={t.id}
                   onClick={() => setTrack(t.id)}
                   style={{
-                    border: isSelected ? `2px solid ${t.color}` : '1.5px solid rgba(255,255,255,0.06)',
+                    border: isSelected ? `2px solid ${t.color}` : '1.5px solid var(--glass-border)',
                     borderRadius: '16px',
                     padding: '20px',
                     cursor: 'pointer',
-                    background: isSelected ? 'rgba(255,255,255,0.05)' : 'rgba(255,255,255,0.02)',
-                    color: '#ffffff',
+                    background: isSelected ? 'rgba(255,255,255,0.05)' : 'var(--input-bg)',
+                    color: 'var(--text-primary)',
                     boxShadow: isSelected ? `0 0 15px ${t.color}33` : 'none',
                     transform: isSelected ? 'translateY(-2px)' : 'none',
                     transition: 'all 0.25s ease',
@@ -197,7 +197,7 @@ export default function ChamberConfig({ parsedData, onConfigComplete, onBack }) 
                   }}
                 >
                   <Icon size={24} style={{ color: t.color, filter: `drop-shadow(0 0 5px ${t.color}88)` }} />
-                  <h3 style={{ fontSize: '1rem', fontWeight: '700', fontFamily: 'var(--font-sans)', color: '#ffffff' }}>{t.title}</h3>
+                  <h3 style={{ fontSize: '1rem', fontWeight: '700', fontFamily: 'var(--font-sans)', color: 'var(--text-primary)' }}>{t.title}</h3>
                   <p style={{ fontSize: '0.74rem', color: 'var(--text-secondary)', fontWeight: '500', lineHeight: '1.4' }}>{t.desc}</p>
                 </div>
               );
@@ -217,8 +217,8 @@ export default function ChamberConfig({ parsedData, onConfigComplete, onBack }) 
                 padding: '20px',
                 borderRadius: '16px',
                 cursor: 'pointer',
-                border: mode === 'Mock' ? '2px solid var(--pink-neon)' : '1.5px solid rgba(255,255,255,0.06)',
-                background: mode === 'Mock' ? 'rgba(255,255,255,0.05)' : 'rgba(255,255,255,0.02)',
+                border: mode === 'Mock' ? '2px solid var(--pink-neon)' : '1.5px solid var(--glass-border)',
+                background: mode === 'Mock' ? 'rgba(255,255,255,0.05)' : 'var(--input-bg)',
                 boxShadow: mode === 'Mock' ? '0 0 15px rgba(236, 72, 153, 0.2)' : 'none',
                 transform: mode === 'Mock' ? 'translateY(-2px)' : 'none',
                 display: 'flex',
@@ -241,7 +241,7 @@ export default function ChamberConfig({ parsedData, onConfigComplete, onBack }) 
             >
               <Award size={24} style={{ color: 'var(--pink-neon)', flexShrink: 0, filter: 'drop-shadow(0 0 5px rgba(236,72,153,0.4))' }} />
               <div>
-                <h4 style={{ fontSize: '0.9rem', fontWeight: '700', color: '#ffffff' }}>Mock Evaluation</h4>
+                <h4 style={{ fontSize: '0.9rem', fontWeight: '700', color: 'var(--text-primary)' }}>Mock Evaluation</h4>
                 <p style={{ fontSize: '0.72rem', color: 'var(--text-secondary)', fontWeight: '500', marginTop: '4px', lineHeight: '1.3' }}>Full interview rounds recorded in repository database with technical grades.</p>
               </div>
             </div>
@@ -252,8 +252,8 @@ export default function ChamberConfig({ parsedData, onConfigComplete, onBack }) 
                 padding: '20px',
                 borderRadius: '16px',
                 cursor: 'pointer',
-                border: mode === 'Practice' ? '2px solid var(--emerald-neon)' : '1.5px solid rgba(255,255,255,0.06)',
-                background: mode === 'Practice' ? 'rgba(255,255,255,0.05)' : 'rgba(255,255,255,0.02)',
+                border: mode === 'Practice' ? '2px solid var(--emerald-neon)' : '1.5px solid var(--glass-border)',
+                background: mode === 'Practice' ? 'rgba(255,255,255,0.05)' : 'var(--input-bg)',
                 boxShadow: mode === 'Practice' ? '0 0 15px rgba(16, 185, 129, 0.2)' : 'none',
                 transform: mode === 'Practice' ? 'translateY(-2px)' : 'none',
                 display: 'flex',
@@ -276,7 +276,7 @@ export default function ChamberConfig({ parsedData, onConfigComplete, onBack }) 
             >
               <Sparkles size={24} style={{ color: 'var(--emerald-neon)', flexShrink: 0, filter: 'drop-shadow(0 0 5px rgba(16,185,129,0.4))' }} />
               <div>
-                <h4 style={{ fontSize: '0.9rem', fontWeight: '700', color: '#ffffff' }}>Warmup Practice</h4>
+                <h4 style={{ fontSize: '0.9rem', fontWeight: '700', color: 'var(--text-primary)' }}>Warmup Practice</h4>
                 <p style={{ fontSize: '0.72rem', color: 'var(--text-secondary)', fontWeight: '500', marginTop: '4px', lineHeight: '1.3' }}>Low stress interactive sandbox designed for quick warmups. No record log created.</p>
               </div>
             </div>
@@ -294,12 +294,12 @@ export default function ChamberConfig({ parsedData, onConfigComplete, onBack }) 
             gap: '15px',
             padding: '20px',
             borderRadius: '16px',
-            border: '1.5px solid rgba(255,255,255,0.06)',
-            background: 'rgba(255,255,255,0.015)'
+            border: '1.5px solid var(--glass-border)',
+            background: 'var(--input-bg)'
           }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <div>
-                <h4 style={{ margin: 0, fontSize: '0.9rem', fontWeight: '700', color: '#ffffff' }}>Enable Webcam Feed</h4>
+                <h4 style={{ margin: 0, fontSize: '0.9rem', fontWeight: '700', color: 'var(--text-primary)' }}>Enable Webcam Feed</h4>
                 <p style={{ margin: '4px 0 0 0', fontSize: '0.72rem', color: 'var(--text-secondary)', fontWeight: '500', lineHeight: '1.3' }}>
                   Analyze and display your camera feed in a glassmorphic HUD overlay during the mock interview.
                 </p>
@@ -318,8 +318,8 @@ export default function ChamberConfig({ parsedData, onConfigComplete, onBack }) 
                   width: '56px',
                   height: '28px',
                   borderRadius: '15px',
-                  background: useCamera ? 'var(--emerald-neon)' : 'rgba(255,255,255,0.08)',
-                  border: '1.5px solid rgba(255,255,255,0.12)',
+                  background: useCamera ? 'var(--emerald-neon)' : 'var(--input-bg)',
+                  border: '1.5px solid var(--text-muted)',
                   position: 'relative',
                   cursor: 'pointer',
                   boxShadow: useCamera ? '0 0 12px rgba(16, 185, 129, 0.45)' : 'none',

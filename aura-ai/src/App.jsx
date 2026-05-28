@@ -10,6 +10,7 @@ import ChibiCopilot from './components/ChibiCopilot';
 import DsaPlayground from './components/DsaPlayground';
 import SqlPlayground from './components/SqlPlayground';
 import NetworksTheory from './components/NetworksTheory';
+import RelaxZone from './components/RelaxZone';
 
 const faqs = [
   {
@@ -424,6 +425,38 @@ export default function App() {
                   {appState === 'NETWORKS_THEORY' ? 'EXIT PLAYGROUND' : 'NETWORKS PREP'}
                 </button>
 
+                {/* Relax Zone navigation pill */}
+                <button
+                  onClick={() => setAppState(appState === 'RELAX_ZONE' ? 'HUB' : 'RELAX_ZONE')}
+                  style={{
+                    background: appState === 'RELAX_ZONE' ? 'rgba(16, 185, 129, 0.15)' : 'rgba(255, 255, 255, 0.03)',
+                    border: '1px solid rgba(16, 185, 129, 0.3)',
+                    borderRadius: '10px',
+                    padding: '6px 14px',
+                    color: 'var(--emerald-neon)',
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: '0.72rem',
+                    fontWeight: 'bold',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                    boxShadow: appState === 'RELAX_ZONE' ? '0 0 10px rgba(16, 185, 129, 0.3)' : 'none',
+                    transition: 'all 0.2s'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = 'rgba(16, 185, 129, 0.1)';
+                    e.currentTarget.style.boxShadow = '0 0 12px rgba(16, 185, 129, 0.5)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = appState === 'RELAX_ZONE' ? 'rgba(16, 185, 129, 0.15)' : 'rgba(255, 255, 255, 0.03)';
+                    e.currentTarget.style.boxShadow = appState === 'RELAX_ZONE' ? '0 0 10px rgba(16, 185, 129, 0.3)' : 'none';
+                  }}
+                >
+                  <Sparkles size={13} />
+                  {appState === 'RELAX_ZONE' ? 'EXIT ARCADE' : 'RELAX ARCADE'}
+                </button>
+
                 {/* Glowing Profile Avatar pill */}
                 <div 
                   onClick={() => setAppState('PROFILE')}
@@ -818,6 +851,12 @@ export default function App() {
 
         {appState === 'NETWORKS_THEORY' && (
           <NetworksTheory 
+            onBack={() => setAppState('HUB')}
+          />
+        )}
+
+        {appState === 'RELAX_ZONE' && (
+          <RelaxZone 
             onBack={() => setAppState('HUB')}
           />
         )}
