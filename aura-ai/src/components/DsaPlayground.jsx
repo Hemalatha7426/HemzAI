@@ -620,18 +620,18 @@ export default function DsaPlayground({ onBack }) {
               onChange={(e) => setSearchQuery(e.target.value)}
               style={{
                 width: '100%',
-                background: 'rgba(5, 8, 20, 0.65)',
-                border: '1px solid rgba(255,255,255,0.08)',
+                background: 'var(--input-bg)',
+                border: 'var(--glass-border)',
                 borderRadius: '8px',
                 padding: '8px 12px 8px 34px',
                 fontSize: '0.78rem',
-                color: '#fff',
+                color: 'var(--text-primary)',
                 fontFamily: 'var(--font-sans)',
                 outline: 'none',
                 transition: 'all 0.25s'
               }}
               onFocus={(e) => e.target.style.borderColor = 'var(--cyan-neon)'}
-              onBlur={(e) => e.target.style.borderColor = 'rgba(255,255,255,0.08)'}
+              onBlur={(e) => e.target.style.borderColor = 'var(--glass-border)'}
             />
           </div>
 
@@ -651,20 +651,20 @@ export default function DsaPlayground({ onBack }) {
                       justifyContent: 'space-between',
                       alignItems: 'center',
                       padding: '10px 14px',
-                      background: isSelectedCategory ? 'rgba(6, 182, 212, 0.08)' : 'rgba(255, 255, 255, 0.02)',
-                      border: isSelectedCategory ? '1px solid rgba(6, 182, 212, 0.25)' : '1px solid rgba(255,255,255,0.05)',
+                      background: isSelectedCategory ? 'rgba(6, 182, 212, 0.08)' : 'var(--input-bg)',
+                      border: isSelectedCategory ? '1px solid rgba(6, 182, 212, 0.25)' : 'var(--glass-border)',
                       borderRadius: '8px',
                       cursor: 'pointer',
                       fontSize: '0.8rem',
                       fontWeight: '700',
-                      color: isSelectedCategory ? 'var(--cyan-neon)' : '#fff',
+                      color: isSelectedCategory ? 'var(--cyan-neon)' : 'var(--text-primary)',
                       transition: 'all 0.25s'
                     }}
                     onMouseEnter={(e) => {
-                      if (!isSelectedCategory) e.currentTarget.style.borderColor = 'rgba(255,255,255,0.18)';
+                      if (!isSelectedCategory) e.currentTarget.style.borderColor = 'var(--cyan-neon)';
                     }}
                     onMouseLeave={(e) => {
-                      if (!isSelectedCategory) e.currentTarget.style.borderColor = 'rgba(255,255,255,0.05)';
+                      if (!isSelectedCategory) e.currentTarget.style.borderColor = 'var(--glass-border)';
                     }}
                   >
                     <span>{category}</span>
@@ -702,7 +702,7 @@ export default function DsaPlayground({ onBack }) {
                               transition: 'all 0.2s'
                             }}
                             onMouseEnter={(e) => {
-                              if (!isSelectedProblem) e.currentTarget.style.color = '#fff';
+                              if (!isSelectedProblem) e.currentTarget.style.color = 'var(--text-primary)';
                             }}
                             onMouseLeave={(e) => {
                               if (!isSelectedProblem) e.currentTarget.style.color = 'var(--text-secondary)';
@@ -802,13 +802,13 @@ export default function DsaPlayground({ onBack }) {
               </div>
 
               {/* Spec Selection: Spec vs Solution tabs */}
-              <div style={{ display: 'flex', borderBottom: '1px solid rgba(255,255,255,0.06)', gap: '10px', marginTop: '5px' }}>
+              <div style={{ display: 'flex', borderBottom: '1px solid var(--glass-border)', gap: '10px', marginTop: '5px' }}>
                 <button 
                   onClick={() => setActiveWorkspaceTab("editor")}
                   style={{
                     background: 'none', border: 'none', 
                     borderBottom: activeWorkspaceTab === 'editor' ? '2.5px solid var(--cyan-neon)' : '2.5px solid transparent',
-                    color: activeWorkspaceTab === 'editor' ? '#fff' : 'var(--text-secondary)',
+                    color: activeWorkspaceTab === 'editor' ? 'var(--text-primary)' : 'var(--text-secondary)',
                     padding: '8px 16px', fontSize: '0.78rem', fontWeight: '800', cursor: 'pointer', outline: 'none'
                   }}
                 >
@@ -819,7 +819,7 @@ export default function DsaPlayground({ onBack }) {
                   style={{
                     background: 'none', border: 'none', 
                     borderBottom: activeWorkspaceTab === 'solutions' ? '2.5px solid var(--pink-neon)' : '2.5px solid transparent',
-                    color: activeWorkspaceTab === 'solutions' ? '#fff' : 'var(--text-secondary)',
+                    color: activeWorkspaceTab === 'solutions' ? 'var(--text-primary)' : 'var(--text-secondary)',
                     padding: '8px 16px', fontSize: '0.78rem', fontWeight: '800', cursor: 'pointer', outline: 'none'
                   }}
                 >
@@ -839,7 +839,7 @@ export default function DsaPlayground({ onBack }) {
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginTop: '5px' }}>
                       <span style={{ fontSize: '0.72rem', color: 'var(--text-secondary)', fontWeight: '800', textTransform: 'uppercase', fontFamily: 'var(--font-mono)' }}>Examples</span>
                       {selectedProblem.examples.map((ex, idx) => (
-                        <div key={idx} style={{ padding: '12px 16px', background: 'rgba(5, 8, 20, 0.45)', border: '1px solid rgba(255,255,255,0.06)', borderRadius: '8px', fontSize: '0.78rem', fontFamily: 'var(--font-mono)', color: 'var(--text-primary)', lineHeight: '1.4' }}>
+                        <div key={idx} style={{ padding: '12px 16px', background: 'var(--input-bg)', border: 'var(--glass-border)', borderRadius: '8px', fontSize: '0.78rem', fontFamily: 'var(--font-mono)', color: 'var(--text-primary)', lineHeight: '1.4' }}>
                           <div><strong>Input:</strong> {ex.input}</div>
                           <div style={{ marginTop: '4px' }}><strong>Output:</strong> {ex.output}</div>
                         </div>
@@ -862,7 +862,7 @@ export default function DsaPlayground({ onBack }) {
               ) : (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
                   {/* Language select tabs */}
-                  <div style={{ display: 'flex', gap: '8px', background: 'rgba(5, 8, 20, 0.45)', border: '1px solid rgba(255,255,255,0.06)', padding: '4px', borderRadius: '8px', width: 'fit-content' }}>
+                  <div style={{ display: 'flex', gap: '8px', background: 'var(--input-bg)', border: 'var(--glass-border)', padding: '4px', borderRadius: '8px', width: 'fit-content' }}>
                     {['cpp', 'java'].map(lang => (
                       <button
                         key={lang}
@@ -911,11 +911,11 @@ export default function DsaPlayground({ onBack }) {
 
                   {/* Complexity spec tags */}
                   <div style={{ display: 'flex', gap: '15px' }}>
-                    <div style={{ flex: '1', padding: '12px', background: 'rgba(255, 255, 255, 0.02)', border: '1px solid rgba(255,255,255,0.06)', borderRadius: '8px', textAlign: 'center' }}>
+                    <div style={{ flex: '1', padding: '12px', background: 'var(--input-bg)', border: 'var(--glass-border)', borderRadius: '8px', textAlign: 'center' }}>
                       <span style={{ fontSize: '0.6rem', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)', fontWeight: 'bold' }}>TIME COMPLEXITY</span>
                       <h4 style={{ margin: '4px 0 0 0', fontSize: '1rem', fontWeight: '900', color: 'var(--pink-neon)' }}>{selectedProblem.optimalSolution?.timeComplexity || 'O(N)'}</h4>
                     </div>
-                    <div style={{ flex: '1', padding: '12px', background: 'rgba(255, 255, 255, 0.02)', border: '1px solid rgba(255,255,255,0.06)', borderRadius: '8px', textAlign: 'center' }}>
+                    <div style={{ flex: '1', padding: '12px', background: 'var(--input-bg)', border: 'var(--glass-border)', borderRadius: '8px', textAlign: 'center' }}>
                       <span style={{ fontSize: '0.6rem', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)', fontWeight: 'bold' }}>SPACE COMPLEXITY</span>
                       <h4 style={{ margin: '4px 0 0 0', fontSize: '1rem', fontWeight: '900', color: 'var(--pink-neon)' }}>{selectedProblem.optimalSolution?.spaceComplexity || 'O(1)'}</h4>
                     </div>
@@ -948,7 +948,7 @@ export default function DsaPlayground({ onBack }) {
                   <span style={{ fontSize: '0.62rem', fontFamily: 'var(--font-mono)', color: 'var(--pink-neon)', fontWeight: 'bold', letterSpacing: '1px', textTransform: 'uppercase', display: 'flex', alignItems: 'center', gap: '5px' }}>
                     <Code size={12} /> COMPILER WORKSPACE:
                   </span>
-                  <div style={{ display: 'flex', gap: '4px', background: 'rgba(5, 8, 20, 0.45)', border: '1px solid rgba(255,255,255,0.06)', padding: '2px', borderRadius: '6px' }}>
+                  <div style={{ display: 'flex', gap: '4px', background: 'var(--input-bg)', border: 'var(--glass-border)', padding: '2px', borderRadius: '6px' }}>
                     {['cpp', 'java'].map(lang => (
                       <button
                         key={lang}
@@ -1035,7 +1035,7 @@ export default function DsaPlayground({ onBack }) {
             {/* Left Console output */}
             <div style={{
               background: '#050814',
-              border: '1px solid rgba(255,255,255,0.06)',
+              border: 'var(--glass-border)',
               borderRadius: '10px',
               padding: '12px 18px',
               display: 'flex',
@@ -1081,12 +1081,12 @@ export default function DsaPlayground({ onBack }) {
                     value={customInput}
                     onChange={(e) => setCustomInput(e.target.value)}
                     style={{
-                      background: 'rgba(5, 8, 20, 0.75)',
-                      border: '1px solid rgba(255,255,255,0.08)',
+                      background: 'var(--input-bg)',
+                      border: 'var(--glass-border)',
                       borderRadius: '6px',
                       padding: '6px 10px',
                       fontSize: '0.7rem',
-                      color: '#fff',
+                      color: 'var(--text-primary)',
                       fontFamily: 'var(--font-mono)',
                       outline: 'none'
                     }}
@@ -1101,13 +1101,13 @@ export default function DsaPlayground({ onBack }) {
                   disabled={consoleStatus === 'RUNNING'}
                   style={{
                     flex: '1',
-                    background: 'rgba(255,255,255,0.03)',
-                    border: '1px solid rgba(255,255,255,0.12)',
+                    background: 'var(--input-bg)',
+                    border: 'var(--glass-border)',
                     borderRadius: '8px',
                     padding: '8px 12px',
                     fontSize: '0.74rem',
                     fontWeight: 'bold',
-                    color: '#fff',
+                    color: 'var(--text-primary)',
                     cursor: 'pointer',
                     outline: 'none',
                     display: 'flex',
@@ -1116,8 +1116,8 @@ export default function DsaPlayground({ onBack }) {
                     gap: '5px',
                     transition: 'all 0.2s'
                   }}
-                  onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.08)'}
-                  onMouseLeave={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.03)'}
+                  onMouseEnter={(e) => e.currentTarget.style.background = 'var(--input-bg-focus)'}
+                  onMouseLeave={(e) => e.currentTarget.style.background = 'var(--input-bg)'}
                 >
                   Run Code
                 </button>

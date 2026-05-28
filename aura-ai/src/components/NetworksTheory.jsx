@@ -691,7 +691,7 @@ export default function NetworksTheory({ onBack }) {
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                   <Trophy size={16} style={{ color: 'var(--yellow-neon)' }} />
                   <div>
-                    <div style={{ fontSize: '0.85rem', fontWeight: '900', color: '#ffffff', lineHeight: '1.2' }}>
+                    <div style={{ fontSize: '0.85rem', fontWeight: '900', color: 'var(--text-primary)', lineHeight: '1.2' }}>
                       {scoreboard.solvedCount} / {PRACTICE_QUESTIONS.length}
                     </div>
                     <div style={{ fontSize: '0.56rem', color: 'var(--text-muted)', fontWeight: 'bold', textTransform: 'uppercase' }}>
@@ -703,7 +703,7 @@ export default function NetworksTheory({ onBack }) {
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                   <Activity size={16} style={{ color: 'var(--cyan-neon)' }} />
                   <div>
-                    <div style={{ fontSize: '0.85rem', fontWeight: '900', color: '#ffffff', lineHeight: '1.2' }}>
+                    <div style={{ fontSize: '0.85rem', fontWeight: '900', color: 'var(--text-primary)', lineHeight: '1.2' }}>
                       {scoreboard.accuracy}%
                     </div>
                     <div style={{ fontSize: '0.56rem', color: 'var(--text-muted)', fontWeight: 'bold', textTransform: 'uppercase' }}>
@@ -781,7 +781,7 @@ export default function NetworksTheory({ onBack }) {
                 </div>
 
                 {/* Question body description */}
-                <div style={{ fontSize: '1rem', fontWeight: '800', color: '#ffffff', lineHeight: '1.4' }}>
+                <div style={{ fontSize: '1rem', fontWeight: '800', color: 'var(--text-primary)', lineHeight: '1.4' }}>
                   {selectedQuestion.question}
                 </div>
 

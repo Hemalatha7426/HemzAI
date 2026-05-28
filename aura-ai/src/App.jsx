@@ -140,7 +140,7 @@ function ChibiWisdomCarousel() {
         <span style={{ fontSize: '0.62rem', fontFamily: 'var(--font-mono)', color: slide.color, fontWeight: 'bold', letterSpacing: '1px', textTransform: 'uppercase' }}>
           DAILY MOCK MENTORSHIP & WISDOM
         </span>
-        <p style={{ fontSize: '0.95rem', fontStyle: 'italic', fontWeight: '500', color: '#f3f4f6', lineHeight: '1.5', margin: 0 }}>
+        <p style={{ fontSize: '0.95rem', fontStyle: 'italic', fontWeight: '500', color: 'var(--text-primary)', lineHeight: '1.5', margin: 0 }}>
           "{slide.quote}"
         </p>
         <span style={{ fontSize: '0.72rem', fontWeight: '700', color: 'var(--text-secondary)' }}>
@@ -502,7 +502,7 @@ export default function App() {
                 </span>
               </div>
 
-              <h2 style={{ fontFamily: 'var(--font-sans)', fontSize: '2.8rem', fontWeight: '900', color: '#fff', letterSpacing: '-1px', lineHeight: '1.1', marginBottom: '15px' }}>
+              <h2 style={{ fontFamily: 'var(--font-sans)', fontSize: '2.8rem', fontWeight: '900', color: 'var(--text-primary)', letterSpacing: '-1px', lineHeight: '1.1', marginBottom: '15px' }}>
                 Perfect Your Interviews Through <br />
                 <span style={{ background: 'linear-gradient(90deg, var(--cyan-neon), var(--purple-neon))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }} className="text-glow-cyan">
                   Immersive Voice Fields
@@ -579,7 +579,7 @@ export default function App() {
                 </div>
                 <div>
                   <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', textTransform: 'uppercase', fontFamily: 'var(--font-mono)', letterSpacing: '1px' }}>Total Runs</p>
-                  <h4 style={{ fontSize: '1.5rem', fontWeight: '800', color: '#fff' }}>{totalRuns}</h4>
+                  <h4 style={{ fontSize: '1.5rem', fontWeight: '800', color: 'var(--text-primary)' }}>{totalRuns}</h4>
                 </div>
               </div>
 
@@ -589,7 +589,7 @@ export default function App() {
                 </div>
                 <div>
                   <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', textTransform: 'uppercase', fontFamily: 'var(--font-mono)', letterSpacing: '1px' }}>Avg Hemz Index</p>
-                  <h4 style={{ fontSize: '1.5rem', fontWeight: '800', color: '#fff' }}>{avgScore}%</h4>
+                  <h4 style={{ fontSize: '1.5rem', fontWeight: '800', color: 'var(--text-primary)' }}>{avgScore}%</h4>
                 </div>
               </div>
 
@@ -599,7 +599,7 @@ export default function App() {
                 </div>
                 <div>
                   <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', textTransform: 'uppercase', fontFamily: 'var(--font-mono)', letterSpacing: '1px' }}>Overall Standing</p>
-                  <h4 style={{ fontSize: '1.5rem', fontWeight: '800', color: '#fff' }}>{getRating(avgScore)}</h4>
+                  <h4 style={{ fontSize: '1.5rem', fontWeight: '800', color: 'var(--text-primary)' }}>{getRating(avgScore)}</h4>
                 </div>
             </div>
           </div>
@@ -610,7 +610,7 @@ export default function App() {
             {/* Session History Log List */}
             <div className="glass-panel dot-grid" style={{ padding: '35px' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '25px' }}>
-                <h3 style={{ fontFamily: 'var(--font-mono)', fontSize: '1.1rem', color: '#fff', letterSpacing: '1px', display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <h3 style={{ fontFamily: 'var(--font-mono)', fontSize: '1.1rem', color: 'var(--text-primary)', letterSpacing: '1px', display: 'flex', alignItems: 'center', gap: '10px' }}>
                   <History size={18} style={{ color: 'var(--cyan-neon)' }} /> SESSION CHAMBER LOGS
                 </h3>
                 <button 
@@ -665,7 +665,7 @@ export default function App() {
                     >
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                          <span style={{ fontSize: '0.95rem', fontWeight: 'bold', color: '#fff' }}>{sess.candidateName || 'Anonymous'}</span>
+                          <span style={{ fontSize: '0.95rem', fontWeight: 'bold', color: 'var(--text-primary)' }}>{sess.candidateName || 'Anonymous'}</span>
                           <span style={{ fontSize: '0.7rem', padding: '2px 8px', borderRadius: '12px', border: '1px solid rgba(0, 242, 254, 0.3)', color: 'var(--cyan-neon)', background: 'rgba(0, 242, 254, 0.05)', fontFamily: 'var(--font-mono)' }}>
                             {sess.track}
                           </span>
@@ -733,7 +733,7 @@ export default function App() {
 
           {/* FAQs Panel */}
           <div className="glass-panel dot-grid" style={{ padding: '35px' }}>
-            <h3 style={{ fontFamily: 'var(--font-mono)', fontSize: '1.1rem', color: '#fff', letterSpacing: '1px', marginBottom: '25px', display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <h3 style={{ fontFamily: 'var(--font-mono)', fontSize: '1.1rem', color: 'var(--text-primary)', letterSpacing: '1px', marginBottom: '25px', display: 'flex', alignItems: 'center', gap: '10px' }}>
               <HelpCircle size={18} style={{ color: 'var(--pink-neon)' }} /> VOCAL CHAMBER FAQ DATABASE
             </h3>
 

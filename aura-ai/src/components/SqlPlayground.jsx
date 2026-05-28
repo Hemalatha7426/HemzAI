@@ -2529,7 +2529,7 @@ export default function SqlPlayground({ onBack }) {
                               {(selectedProblem.mockData[activeTableTab] || []).map((row, idx) => (
                                 <tr key={idx} style={{ borderBottom: '1px solid rgba(255,255,255,0.03)' }}>
                                   {(selectedProblem.schema[activeTableTab] || []).map(col => (
-                                    <td key={col.name} style={{ padding: '8px 12px', color: '#fff' }}>
+                                    <td key={col.name} style={{ padding: '8px 12px', color: 'var(--text-primary)' }}>
                                       {row[col.name] === null ? 'NULL' : row[col.name]}
                                     </td>
                                   ))}
@@ -2553,11 +2553,11 @@ export default function SqlPlayground({ onBack }) {
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
                     <div style={{ padding: '8px 12px', background: 'rgba(255,0,127,0.03)', border: '1px solid rgba(255,0,127,0.15)', borderRadius: '8px' }}>
                       <span style={{ fontSize: '0.58rem', fontFamily: 'var(--font-mono)', color: 'var(--pink-neon)', fontWeight: 'bold' }}>TIME COMPLEXITY</span>
-                      <div style={{ fontSize: '1rem', fontWeight: 'bold', fontFamily: 'var(--font-mono)', color: '#fff', marginTop: '2px' }}>{selectedProblem.timeComplexity}</div>
+                      <div style={{ fontSize: '1rem', fontWeight: 'bold', fontFamily: 'var(--font-mono)', color: 'var(--text-primary)', marginTop: '2px' }}>{selectedProblem.timeComplexity}</div>
                     </div>
                     <div style={{ padding: '8px 12px', background: 'rgba(255,0,127,0.03)', border: '1px solid rgba(255,0,127,0.15)', borderRadius: '8px' }}>
                       <span style={{ fontSize: '0.58rem', fontFamily: 'var(--font-mono)', color: 'var(--pink-neon)', fontWeight: 'bold' }}>SPACE COMPLEXITY</span>
-                      <div style={{ fontSize: '1rem', fontWeight: 'bold', fontFamily: 'var(--font-mono)', color: '#fff', marginTop: '2px' }}>{selectedProblem.spaceComplexity}</div>
+                      <div style={{ fontSize: '1rem', fontWeight: 'bold', fontFamily: 'var(--font-mono)', color: 'var(--text-primary)', marginTop: '2px' }}>{selectedProblem.spaceComplexity}</div>
                     </div>
                   </div>
 
@@ -2686,10 +2686,10 @@ export default function SqlPlayground({ onBack }) {
                   Compiler is idle. Run or Submit code to execute validation query checks.
                 </p>
               ) : (
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '3px', fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: '#fff', lineHeight: '1.4' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '3px', fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: 'var(--text-primary)', lineHeight: '1.4' }}>
                   {consoleLogs.map((log, idx) => (
                     <div key={idx} style={{ 
-                      color: log.startsWith('✅') ? 'var(--emerald-neon)' : log.startsWith('❌') || log.startsWith('⚠️') ? '#ff4d4d' : '#fff',
+                      color: log.startsWith('✅') ? 'var(--emerald-neon)' : log.startsWith('❌') || log.startsWith('⚠️') ? '#ff4d4d' : 'var(--text-primary)',
                       whiteSpace: 'pre-wrap'
                     }}>
                       {log}
