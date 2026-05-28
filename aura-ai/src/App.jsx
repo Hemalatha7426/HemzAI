@@ -180,6 +180,7 @@ export default function App() {
   const [appState, setAppState] = useState('AUTH'); // AUTH -> HUB -> PROFILE | SCAN -> CONFIG -> PREVIEW -> CHAMBER -> DIAGNOSTIC
   const [user, setUser] = useState(null);
   const [showLoginSuccess, setShowLoginSuccess] = useState(false);
+  const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
@@ -457,8 +458,7 @@ export default function App() {
                 {/* Glowing Cyber Logout Button */}
                 <button 
                   onClick={() => {
-                    setUser(null);
-                    setAppState('AUTH');
+                    setShowLogoutConfirm(true);
                   }}
                   style={{
                     background: 'rgba(236, 72, 153, 0.08)',
@@ -973,6 +973,100 @@ export default function App() {
             >
               INITIALIZE INTERFACE & ENTER
             </button>
+          </div>
+        </div>
+      )}
+
+      {/* Glassmorphic Logout Confirmation Modal with Chibi and Quote */}
+      {showLogoutConfirm && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100vw',
+          height: '100vh',
+          background: 'rgba(5, 6, 15, 0.85)',
+          backdropFilter: 'blur(8px)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          zIndex: 9999,
+          animation: 'modalFadeIn 0.3s ease-out'
+        }}>
+          <div className="glass-panel" style={{
+            maxWidth: '480px',
+            width: '90%',
+            padding: '30px',
+            border: '2px solid var(--pink-neon)',
+            boxShadow: '0 0 35px rgba(236, 72, 153, 0.25)',
+            textAlign: 'center',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: '20px',
+            position: 'relative',
+            animation: 'modalScaleIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)'
+          }}>
+            {/* Header branding */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <Sparkles size={16} style={{ color: 'var(--pink-neon)' }} />
+              <span style={{ fontSize: '0.72rem', fontFamily: 'var(--font-mono)', color: 'var(--pink-neon)', fontWeight: 'bold', letterSpacing: '1px', textTransform: 'uppercase' }}>
+                Disconnect Session • Farewell
+              </span>
+            </div>
+
+            {/* Custom Welcome Chibi Image */}
+            <div style={{
+              border: '3px solid var(--ink-dark)',
+              borderRadius: '24px',
+              overflow: 'hidden',
+              width: '180px',
+              height: '180px',
+              boxShadow: '6px 6px 0px var(--ink-dark)',
+              background: '#fff'
+            }}>
+              <img 
+                src="/images/logout_chibi.png" 
+                alt="Farewell Reading Girl" 
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              />
+            </div>
+
+            {/* Quote Card */}
+            <div style={{
+              background: 'var(--panel-bg)',
+              border: '2px solid var(--glass-border)',
+              borderRadius: '16px',
+              padding: '16px 20px',
+              width: '100%',
+              boxShadow: 'var(--panel-shadow)'
+            }}>
+              <p style={{ margin: 0, fontStyle: 'italic', fontWeight: '800', fontSize: '0.92rem', color: 'var(--text-primary)', lineHeight: '1.5' }}>
+                "All change is hard at first, messy in the middle and gorgeous at the end."
+              </p>
+            </div>
+
+            {/* Actions */}
+            <div style={{ display: 'flex', gap: '15px', width: '100%' }}>
+              <button 
+                onClick={() => {
+                  setUser(null);
+                  setAppState('AUTH');
+                  setShowLogoutConfirm(false);
+                }}
+                className="btn-cyber btn-cyber-pink"
+                style={{ flex: 1, padding: '12px 24px', fontSize: '0.82rem', fontWeight: 'bold' }}
+              >
+                DISCONNECT
+              </button>
+              <button 
+                onClick={() => setShowLogoutConfirm(false)}
+                className="btn-cyber btn-cyber-secondary"
+                style={{ flex: 1, padding: '12px 24px', fontSize: '0.82rem', fontWeight: 'bold' }}
+              >
+                STAY CONNECTED
+              </button>
+            </div>
           </div>
         </div>
       )}
