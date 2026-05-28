@@ -157,7 +157,7 @@ export default function UserProfile({ parsedData, history, onBack, onViewPastSes
           textAlign: 'center'
         }}>
           <p style={{ margin: 0, fontStyle: 'italic', fontWeight: '800', fontSize: '0.78rem', color: 'var(--ink-dark)', lineHeight: '1.4' }}>
-            "Behaviour is always greater than knowledge. Because in life there are many situations where knowledge fails but Behaviour can still handle. — A. P. J Abdul Kalam"
+            "Behaviour is always greater than knowledge. Because in life there are many situations where knowledge fails but Behaviour can still handle."
           </p>
         </div>
 

@@ -151,9 +151,7 @@ function ChibiWisdomCarousel() {
         <p style={{ fontSize: '0.95rem', fontStyle: 'italic', fontWeight: '500', color: 'var(--text-primary)', lineHeight: '1.5', margin: 0 }}>
           "{slide.quote}"
         </p>
-        <span style={{ fontSize: '0.72rem', fontWeight: '700', color: 'var(--text-secondary)' }}>
-          — {slide.author}
-        </span>
+
       </div>
 
       {/* Dots Indicator */}
