@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Shield, Sparkles, AudioLines, PlusCircle, History, RefreshCw, BarChart3, Award, Calendar, ChevronRight, HelpCircle, ChevronDown, ChevronUp, LogOut, Trash2, Sun, Moon, Code, Database, Globe } from 'lucide-react';
 import ResumeScanner from './components/ResumeScanner';
 import ChamberConfig from './components/ChamberConfig';
@@ -13,20 +13,28 @@ import NetworksTheory from './components/NetworksTheory';
 
 const faqs = [
   {
-    q: "How does the Speech-to-Text translation engine work?",
-    a: "Hemz AI leverages Web Speech APIs that map directly to your local audio hardware. Transcriptions are compiled synchronously as you speak, providing zero-latency processing without external streaming server overhead."
+    q: "How does the AI Mock Interview Chamber and Speech-to-Text evaluation work?",
+    a: "Hemz AI scans your resume capabilities to dynamically build basic 7-question Warmup practices or comprehensive 15-question tracks. Utilizing direct client-side Web Speech APIs, vocal responses are transcribed synchronously with zero network latency. A Spring Boot cognitive grading engine evaluates your answers on technical vocabulary, structural completeness, and contextual coherence."
   },
   {
-    q: "Are my professional documents and vocal responses protected?",
-    a: "Completely. Your scanned resumes, voice transcripts, and performance diagnostics reside inside your system's private storage ecosystem. No data is sent to external trackers or public databases."
+    q: "What does the Biometric Setup lock and Face Presence Telemetry measure?",
+    a: "To ensure exam integrity, the interview chamber config locks entry until your webcam feed is enabled. Our high-fidelity in-browser biometric analyzer runs a 300ms loop executing spatial grid block density checks, skin-tone luma standard deviation, and pixel gradients to verify face presence and prevent backdrop false positives. For strict candidate privacy, webcam hardware tracks are deactivated instantly upon completing your final round."
   },
   {
-    q: "Can I customize the question categories?",
-    a: "Absolutely. Hemz AI scans your resume capabilities and builds personalized Technical, HR, Stress, and Scenario questions. You can toggle these sectors and difficulty scales in the Chamber Configuration hub."
+    q: "What features are included in the exclusive C++ & Java DSA Playground?",
+    a: "The DSA Playground supports 96 high-frequency LeetCode questions across 14 categories, restricted exclusively to C++ and Java. It features dynamic signature boilerplate builders, an optimal solution template drawer with Big-O complexity tables, an in-browser sandbox runner with transpiled JavaScript compilation, and an interactive milestone achievement success modal."
   },
   {
-    q: "What metrics compose the Hemz Competency Index?",
-    a: "Our cognitive grading engine grades candidate responses on technical vocabulary matching, contextual coherence, structural completeness, and speech fluidity, mapping scores onto a detailed dashboard matrix."
+    q: "How does the SQL Prep Chamber execute queries on the client side?",
+    a: "The SQL Prep Chamber curates 68 essential database queries across 7 categories. It implements a secure client-side sandbox utilizing the in-memory AlaSQL engine loaded with mock relational tables. The workspace includes dynamically commented schema structure headers, a [Reset Code] control, and an interactive SQL success dashboard modal."
+  },
+  {
+    q: "How do I use the Networks Prep PDF note reader and Hamming Parity simulator?",
+    a: "Under the Networks Prep tab, you can read the comprehensive study guide directly within a fully responsive, interactive in-browser PDF viewer. You can then validate your placement readiness in the 50-question MCQ practice chamber (10 per unit) or simulate mathematical error correction using the live 7-bit Hamming Code (hashcode) generator."
+  },
+  {
+    q: "Are my scanned resumes, code submissions, and practice logs secure?",
+    a: "100%. Scanned resumes, voice transcripts, code solutions, and interview diagnostics reside securely in your local system's private storage ecosystem and local MongoDB databases. The application also supports an ultra-premium glassmorphic theme switcher that dynamically adjusts layout borders, ambient watercolor glows, and contrast variables for maximum readability."
   }
 ];
 
@@ -185,13 +193,6 @@ export default function App() {
   const [history, setHistory] = useState([]);
   const [loadingHistory, setLoadingHistory] = useState(false);
 
-  // Load Session history on Hub Mount
-  useEffect(() => {
-    if (appState === 'HUB') {
-      fetchSessionHistory();
-    }
-  }, [appState]);
-
   const fetchSessionHistory = async () => {
     setLoadingHistory(true);
     try {
@@ -202,7 +203,7 @@ export default function App() {
       } else {
         throw new Error();
       }
-    } catch (e) {
+    } catch {
       console.warn("Backend API offline. Loading history from local storage storage.");
       const localHistory = JSON.parse(localStorage.getItem('aura_history') || '[]');
       setHistory(localHistory);
@@ -210,6 +211,14 @@ export default function App() {
       setLoadingHistory(false);
     }
   };
+
+  // Load Session history on Hub Mount
+  useEffect(() => {
+    if (appState === 'HUB') {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      fetchSessionHistory();
+    }
+  }, [appState]);
 
   const handleScanComplete = (data) => {
     setParsedData(data);
@@ -239,7 +248,7 @@ export default function App() {
       } else {
         throw new Error();
       }
-    } catch (err) {
+    } catch {
       console.warn("Backend API offline. Deleting session from local storage.");
       const localHistory = JSON.parse(localStorage.getItem('aura_history') || '[]');
       const updatedHistory = localHistory.filter(sess => sess.id !== id);
