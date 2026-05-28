@@ -9,7 +9,6 @@ export default function InterviewChamber({ parsedData, configData, onSessionComp
   const [speechActive, setSpeechActive] = useState(false);
   const [micActive, setMicActive] = useState(false);
   const [secondsRemaining, setSecondsRemaining] = useState(90);
-  const [hasStartedSpeech, setHasStartedSpeech] = useState(false);
 
   // References for Speech and Audio
   const recognitionRef = useRef(null);
@@ -767,9 +766,7 @@ export default function InterviewChamber({ parsedData, configData, onSessionComp
     if (!session) return;
     
     if (chamberState === 'SPEAKING') {
-      if (currentRound > 0) {
-        speakQuestion();
-      }
+      speakQuestion();
     } else if (chamberState === 'LISTENING') {
       startListening();
     } else if (chamberState === 'THINKING') {
@@ -1599,74 +1596,18 @@ export default function InterviewChamber({ parsedData, configData, onSessionComp
               gap: '20px'
             }}>
               
-              {!hasStartedSpeech && currentRound === 0 ? (
-                /* Beautiful Direct Interaction Panel to Bypass Browser Autoplay Policies */
-                <div className="glass-panel" style={{
-                  padding: '30px',
-                  border: '2px solid var(--pink-neon) !important',
-                  background: 'rgba(5, 6, 15, 0.4)',
-                  boxShadow: '0 0 25px rgba(236, 72, 153, 0.15)',
-                  textAlign: 'center',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  gap: '20px',
-                  animation: 'fadeIn 0.3s ease-out',
-                  borderRadius: '16px'
+              {/* Question bubble Card */}
+              <div className="speech-bubble" style={{ borderLeftColor: 'var(--pink-neon) !important' }}>
+                <p style={{
+                  fontSize: '1.15rem',
+                  fontWeight: '800',
+                  lineHeight: '1.5',
+                  color: 'var(--text-primary)',
+                  margin: 0
                 }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <Sparkles size={16} style={{ color: 'var(--pink-neon)' }} />
-                    <span style={{ fontSize: '0.72rem', fontFamily: 'var(--font-mono)', color: 'var(--pink-neon)', fontWeight: 'bold', letterSpacing: '1px', textTransform: 'uppercase' }}>
-                      VOCAL SYNCHRONIZATION ESTABLISHED
-                    </span>
-                  </div>
-
-                  <h3 style={{ fontSize: '1.4rem', fontWeight: '800', color: 'var(--text-primary)', margin: 0 }}>
-                    Activate AI Voice Fields
-                  </h3>
-
-                  <div style={{ 
-                    background: 'rgba(245, 158, 11, 0.06)',
-                    borderLeft: '4px solid var(--yellow-neon)',
-                    borderRadius: '8px',
-                    padding: '12px 16px',
-                    textAlign: 'left',
-                    width: '100%'
-                  }}>
-                    <p style={{ margin: 0, fontStyle: 'italic', fontWeight: '600', fontSize: '0.8rem', color: 'var(--text-primary)', lineHeight: '1.4' }}>
-                      "Your calm mind is the ultimate weapon against your challenges. So relax!"
-                    </p>
-                  </div>
-
-                  <p style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', margin: 0, lineHeight: '1.4' }}>
-                    Tap below to initialize Speech Synthesis and start your first mock question.
-                  </p>
-
-                  <button 
-                    onClick={() => {
-                      setHasStartedSpeech(true);
-                      speakQuestion();
-                    }}
-                    className="btn-cyber btn-cyber-pink"
-                    style={{ width: '100%', padding: '12px 24px', fontSize: '0.82rem', fontWeight: 'bold' }}
-                  >
-                    START VOCAL RUN
-                  </button>
-                </div>
-              ) : (
-                /* Question bubble Card */
-                <div className="speech-bubble" style={{ borderLeftColor: 'var(--pink-neon) !important' }}>
-                  <p style={{
-                    fontSize: '1.15rem',
-                    fontWeight: '800',
-                    lineHeight: '1.5',
-                    color: 'var(--text-primary)',
-                    margin: 0
-                  }}>
-                    Q{currentRound + 1}. {activeQuestion}
-                  </p>
-                </div>
-              )}
+                  Q{currentRound + 1}. {activeQuestion}
+                </p>
+              </div>
 
               {/* Hidden canvas context wrapper to preserve audio analysis logic */}
               <div style={{ display: 'none' }}>

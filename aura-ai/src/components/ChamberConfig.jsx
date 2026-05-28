@@ -97,6 +97,19 @@ export default function ChamberConfig({ parsedData, onConfigComplete, onBack }) 
   ];
 
   const handleStart = () => {
+    // Instantly trigger a silent Speech Synthesis utterance during the direct user click gesture.
+    // This unlocks browser speech synthesis capabilities globally for this page session!
+    if (window.speechSynthesis) {
+      try {
+        window.speechSynthesis.cancel();
+        const silentUtterance = new SpeechSynthesisUtterance(" ");
+        silentUtterance.volume = 0; // completely silent
+        window.speechSynthesis.speak(silentUtterance);
+      } catch (e) {
+        console.warn("Speech pre-authorization blocked: ", e);
+      }
+    }
+
     if (previewStreamRef.current) {
       try {
         previewStreamRef.current.getTracks().forEach(track => track.stop());
