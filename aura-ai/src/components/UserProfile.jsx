@@ -1,14 +1,61 @@
-import React, { useState, useEffect } from 'react';
-import { User, Award, Terminal, Calendar, Sliders, Volume2, Shield, ArrowLeft, History, Zap, Star, Activity, FileText, Trash2 } from 'lucide-react';
+import { useState } from 'react';
+import { Award, Terminal, Calendar, Sliders, ArrowLeft, History, Zap, Star, Activity, FileText, Trash2 } from 'lucide-react';
 
 export default function UserProfile({ parsedData, history, onBack, onViewPastSession, onDeleteSession }) {
   const [activeSubTab, setActiveSubTab] = useState('MASTERY'); // MASTERY -> RESUME -> TIMELINE
   
   // Custom TTS Preferences
-  const [voiceVolume, setVoiceVolume] = useState(0.8);
-  const [voiceSpeed, setVoiceSpeed] = useState(1.0);
-  const [voicePitch, setVoicePitch] = useState(1.0);
-  const [voiceGender, setVoiceGender] = useState('female'); // female vs male vs natural
+  const [voiceVolume, setVoiceVolume] = useState(() => {
+    try {
+      const saved = localStorage.getItem('hemz_tts_pref');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (parsed.volume !== undefined) return parsed.volume;
+      }
+    } catch {
+      // ignore parsing error
+    }
+    return 0.8;
+  });
+
+  const [voiceSpeed, setVoiceSpeed] = useState(() => {
+    try {
+      const saved = localStorage.getItem('hemz_tts_pref');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (parsed.speed !== undefined) return parsed.speed;
+      }
+    } catch {
+      // ignore parsing error
+    }
+    return 1.0;
+  });
+
+  const [voicePitch, setVoicePitch] = useState(() => {
+    try {
+      const saved = localStorage.getItem('hemz_tts_pref');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (parsed.pitch !== undefined) return parsed.pitch;
+      }
+    } catch {
+      // ignore parsing error
+    }
+    return 1.0;
+  });
+
+  const [voiceGender, setVoiceGender] = useState(() => {
+    try {
+      const saved = localStorage.getItem('hemz_tts_pref');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (parsed.gender !== undefined) return parsed.gender;
+      }
+    } catch {
+      // ignore parsing error
+    }
+    return 'female';
+  }); // female vs male vs natural
 
   const candidateName = parsedData?.candidateName || "Anonymous Candidate";
   const skills = parsedData?.skills || ["React", "Spring Boot", "Java", "REST APIs", "SQL"];
@@ -26,20 +73,6 @@ export default function UserProfile({ parsedData, history, onBack, onViewPastSes
     if (score >= 65) return 'PROFICIENT INTERVIEWER';
     return 'DEVELOPING INITIATE';
   };
-
-  // Load Saved TTS Configurations
-  useEffect(() => {
-    const savedConfig = localStorage.getItem('hemz_tts_pref');
-    if (savedConfig) {
-      try {
-        const parsed = JSON.parse(savedConfig);
-        if (parsed.volume !== undefined) setVoiceVolume(parsed.volume);
-        if (parsed.speed !== undefined) setVoiceSpeed(parsed.speed);
-        if (parsed.pitch !== undefined) setVoicePitch(parsed.pitch);
-        if (parsed.gender !== undefined) setVoiceGender(parsed.gender);
-      } catch (e) {}
-    }
-  }, []);
 
   // Save Configs on changes
   const savePreferences = () => {
@@ -124,7 +157,7 @@ export default function UserProfile({ parsedData, history, onBack, onViewPastSes
           textAlign: 'center'
         }}>
           <p style={{ margin: 0, fontStyle: 'italic', fontWeight: '800', fontSize: '0.78rem', color: 'var(--ink-dark)', lineHeight: '1.4' }}>
-            "Your eyes shine when your heart is happy. True professional success is sweetest when it is built on passion, grit, and daily technical progress."
+            "Behaviour is always greater than knowledge. Because in life there are many situations where knowledge fails but Behaviour can still handle. — A. P. J Abdul Kalam"
           </p>
         </div>
 
