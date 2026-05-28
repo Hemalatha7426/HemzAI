@@ -959,25 +959,7 @@ export default function App() {
               alignItems: 'center',
               gap: '12px'
             }}>
-              {/* Quote Image rendered cleanly */}
-              <div style={{
-                borderRadius: '8px',
-                overflow: 'hidden',
-                width: '100%',
-                maxHeight: '65px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                background: 'rgba(255, 255, 255, 0.05)',
-                border: '1px solid rgba(255, 255, 255, 0.08)',
-                padding: '4px'
-              }}>
-                <img 
-                  src="/images/login_quote.png" 
-                  alt="Quote" 
-                  style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', filter: 'brightness(1.05)' }}
-                />
-              </div>
+
 
               {/* Text Quote representation */}
               <p style={{ margin: 0, fontStyle: 'italic', fontWeight: '800', fontSize: '0.9rem', color: 'var(--text-primary)', lineHeight: '1.4' }}>
