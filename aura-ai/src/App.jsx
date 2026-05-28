@@ -181,6 +181,7 @@ export default function App() {
   const [theme, setTheme] = useState(() => localStorage.getItem("hemz_theme") || "dark");
   const [appState, setAppState] = useState('AUTH'); // AUTH -> HUB -> PROFILE | SCAN -> CONFIG -> PREVIEW -> CHAMBER -> DIAGNOSTIC
   const [user, setUser] = useState(null);
+  const [showLoginSuccess, setShowLoginSuccess] = useState(false);
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
@@ -810,6 +811,7 @@ export default function App() {
           <AuthHub onLoginSuccess={(username) => {
             setUser(username);
             setAppState('HUB');
+            setShowLoginSuccess(true);
           }} />
         )}
 
@@ -877,6 +879,123 @@ export default function App() {
         <ChibiCopilot />
 
       </div>
+
+      {/* Glassmorphic Login Success Modal with Chibi and Quote */}
+      {showLoginSuccess && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100vw',
+          height: '100vh',
+          background: 'rgba(5, 6, 15, 0.85)',
+          backdropFilter: 'blur(8px)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          zIndex: 9999,
+          animation: 'modalFadeIn 0.3s ease-out'
+        }}>
+          <style>{`
+            @keyframes modalFadeIn {
+              from { opacity: 0; }
+              to { opacity: 1; }
+            }
+            @keyframes modalScaleIn {
+              from { transform: scale(0.9) translateY(10px); opacity: 0; }
+              to { transform: scale(1) translateY(0); opacity: 1; }
+            }
+          `}</style>
+          
+          <div className="glass-panel" style={{
+            maxWidth: '480px',
+            width: '90%',
+            padding: '30px',
+            border: '2px solid var(--cyan-neon)',
+            boxShadow: '0 0 35px rgba(0, 242, 254, 0.3)',
+            textAlign: 'center',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: '20px',
+            position: 'relative',
+            animation: 'modalScaleIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)'
+          }}>
+            {/* Header branding */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <Sparkles size={16} style={{ color: 'var(--cyan-neon)' }} />
+              <span style={{ fontSize: '0.72rem', fontFamily: 'var(--font-mono)', color: 'var(--cyan-neon)', fontWeight: 'bold', letterSpacing: '1px', textTransform: 'uppercase' }}>
+                Access Granted • Welcome back
+              </span>
+            </div>
+
+            {/* Custom Welcome Chibi Image */}
+            <div style={{
+              border: '3px solid var(--ink-dark)',
+              borderRadius: '24px',
+              overflow: 'hidden',
+              width: '200px',
+              height: '200px',
+              boxShadow: '6px 6px 0px var(--ink-dark)',
+              background: '#fff'
+            }}>
+              <img 
+                src="/images/login_chibi.png" 
+                alt="Welcome Back" 
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              />
+            </div>
+
+            {/* Interactive Quotes Area */}
+            <div style={{
+              background: 'var(--panel-bg)',
+              border: '2px solid var(--glass-border)',
+              borderRadius: '16px',
+              padding: '16px 20px',
+              width: '100%',
+              boxShadow: 'var(--panel-shadow)',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              gap: '12px'
+            }}>
+              {/* Quote Image rendered cleanly */}
+              <div style={{
+                borderRadius: '8px',
+                overflow: 'hidden',
+                width: '100%',
+                maxHeight: '65px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                background: 'rgba(255, 255, 255, 0.05)',
+                border: '1px solid rgba(255, 255, 255, 0.08)',
+                padding: '4px'
+              }}>
+                <img 
+                  src="/images/login_quote.png" 
+                  alt="Quote" 
+                  style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', filter: 'brightness(1.05)' }}
+                />
+              </div>
+
+              {/* Text Quote representation */}
+              <p style={{ margin: 0, fontStyle: 'italic', fontWeight: '800', fontSize: '0.9rem', color: 'var(--text-primary)', lineHeight: '1.4' }}>
+                "Learn from yesterday. Live for today. Hope for tomorrow."
+              </p>
+            </div>
+
+            {/* Acknowledgment action button */}
+            <button 
+              onClick={() => setShowLoginSuccess(false)}
+              className="btn-cyber btn-cyber-pink"
+              style={{ width: '100%', padding: '12px 24px', fontSize: '0.85rem', fontWeight: 'bold' }}
+            >
+              INITIALIZE INTERFACE & ENTER
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
