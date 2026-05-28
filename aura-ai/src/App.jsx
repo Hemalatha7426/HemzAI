@@ -525,57 +525,6 @@ export default function App() {
                 <button className="btn-cyber btn-cyber-pink" style={{ padding: '16px 36px', fontSize: '0.95rem' }} onClick={() => setAppState('SCAN')}>
                   ENTER THE CHAMBERS <PlusCircle size={20} />
                 </button>
-                <button 
-                  className="btn-cyber" 
-                  style={{ 
-                    padding: '16px 36px', 
-                    fontSize: '0.95rem',
-                    background: 'rgba(6, 182, 212, 0.08)',
-                    border: '1px solid var(--cyan-neon)',
-                    color: 'var(--cyan-neon)',
-                    boxShadow: '0 0 15px rgba(6, 182, 212, 0.2)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '10px'
-                  }} 
-                  onClick={() => setAppState('DSA_PLAYGROUND')}
-                >
-                  DSA PLAYGROUND <Code size={20} />
-                </button>
-                <button 
-                  className="btn-cyber" 
-                  style={{ 
-                    padding: '16px 36px', 
-                    fontSize: '0.95rem',
-                    background: 'rgba(139, 92, 246, 0.08)',
-                    border: '1px solid var(--purple-neon)',
-                    color: 'var(--purple-neon)',
-                    boxShadow: '0 0 15px rgba(139, 92, 246, 0.2)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '10px'
-                  }} 
-                  onClick={() => setAppState('SQL_PLAYGROUND')}
-                >
-                  SQL PLAYGROUND <Database size={20} />
-                </button>
-                <button 
-                  className="btn-cyber" 
-                  style={{ 
-                    padding: '16px 36px', 
-                    fontSize: '0.95rem',
-                    background: 'rgba(245, 158, 11, 0.08)',
-                    border: '1px solid var(--yellow-neon)',
-                    color: 'var(--yellow-neon)',
-                    boxShadow: '0 0 15px rgba(245, 158, 11, 0.2)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '10px'
-                  }} 
-                  onClick={() => setAppState('NETWORKS_THEORY')}
-                >
-                  NETWORKS PREP <Globe size={20} />
-                </button>
               </div>
             </div>
 
