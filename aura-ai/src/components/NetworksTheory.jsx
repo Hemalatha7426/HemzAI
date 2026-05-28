@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { ArrowLeft, HelpCircle, Activity, CheckCircle2, XCircle, RotateCw, Trophy, Sparkles } from 'lucide-react';
 
-// Curated 25 note-aligned placement questions compiled directly from the PDF
+// Curated 50 note-aligned placement questions compiled directly from the PDF notes
 const PRACTICE_QUESTIONS = [
-  // Unit 1
+  // Unit 1 - Introduction & Physical Layer (1-10)
   {
     id: 1,
     unit: "Unit I: Introduction & Physical Layer",
@@ -49,7 +49,68 @@ const PRACTICE_QUESTIONS = [
     answerIndex: 1,
     explanation: "Page 18 of the notes details that microwaves operate between 1 and 300 GHz and are highly unidirectional. Because of this unidirectional characteristic, sending and receiving antennas (horn or parabolic dish) need to be aligned and are used for line-of-sight unicast communication."
   },
-  // Unit 2
+  {
+    id: 26,
+    unit: "Unit I: Introduction & Physical Layer",
+    difficulty: "MEDIUM",
+    question: "What is the primary conceptual distinction between a distributed computing system and a classical computer network?",
+    options: [
+      "A distributed system operates over analog lines; networks operate purely on digital links",
+      "In a distributed system, the collection of independent computers appears to its users as a single coherent system; in a network, the autonomy of machines is visible",
+      "Distributed systems do not use routing algorithms; networks rely completely on them",
+      "There is no difference; they are exactly identical"
+    ],
+    answerIndex: 1,
+    explanation: "Citing page 2 of the PDF notes, the key distinction is that in a distributed system, the existence of multiple autonomous computers is hidden from the user, who perceives a single coherent system. In a computer network, autonomous machines are explicitly addressed and visible."
+  },
+  {
+    id: 27,
+    unit: "Unit I: Introduction & Physical Layer",
+    difficulty: "EASY",
+    question: "In which physical network topology are all communication devices linked to a central controller or Hub, preventing direct data transfers between individual stations?",
+    options: ["Mesh Topology", "Bus Topology", "Star Topology", "Ring Topology"],
+    answerIndex: 2,
+    explanation: "Page 9 of the PDF notes shows that in a Star topology, each device has a dedicated point-to-point link only to a central controller, usually called a hub or switch. Devices cannot communicate directly; all data must pass through the central controller."
+  },
+  {
+    id: 28,
+    unit: "Unit I: Introduction & Physical Layer",
+    difficulty: "MEDIUM",
+    question: "Standard copper guided transmission media use different specialized connectors. Which of the following connector classes is specifically matched to Coaxial cabling systems?",
+    options: ["RJ-45 Connector", "BNC (Bayonet Neill-Concelman) Connector", "RJ-11 Connector", "SC Fiber Connector"],
+    answerIndex: 1,
+    explanation: "As detailed on page 13 of the notes, coaxial cable connectors include BNC connectors (used to connect coaxial cable to devices), BNC T connectors, and BNC terminators. RJ-45 is used for twisted-pair cabling."
+  },
+  {
+    id: 29,
+    unit: "Unit I: Introduction & Physical Layer",
+    difficulty: "HARD",
+    question: "Circuit-switched communication networks require physical path reservations. What are the three chronological operational phases of any circuit-switched connection?",
+    options: [
+      "Setup Phase, Data Transfer Phase, and Teardown (Connection Release) Phase",
+      "Framing Phase, Routing Phase, and Error Recovery Phase",
+      "Address Resolution, Flow Control, and Acknowledgment",
+      "Packetization, Buffering, and Multiplexing"
+    ],
+    answerIndex: 0,
+    explanation: "As documented on page 24 of the notes, circuit switching takes place in three distinct phases: (1) Setup phase (establishing a dedicated end-to-end path), (2) Data transfer phase, and (3) Teardown phase (releasing reserved transmission resources)."
+  },
+  {
+    id: 30,
+    unit: "Unit I: Introduction & Physical Layer",
+    difficulty: "HARD",
+    question: "When comparing architectural reference frameworks, how are the Session, Presentation, and Application layers of the 7-layer OSI model represented within the 4-layer TCP/IP reference model?",
+    options: [
+      "They are split between the Transport and Network layers",
+      "They are merged into a single comprehensive Application layer",
+      "They are omitted completely as they do not exist in TCP/IP",
+      "They correspond to the TCP/IP Link layer"
+    ],
+    answerIndex: 1,
+    explanation: "Citing page 22 of the PDF notes, the TCP/IP model does not have separate Session and Presentation layers. Instead, the services provided by these layers are combined along with the application layer into a single, high-fidelity Application layer."
+  },
+
+  // Unit 2 - Data Link Layer & Protocols (6-10, 31-35)
   {
     id: 6,
     unit: "Unit II: Data Link Layer & Protocols",
@@ -95,7 +156,78 @@ const PRACTICE_QUESTIONS = [
     answerIndex: 0,
     explanation: "As described on page 46 and page 49 of the notes, in Go-Back-N, the receive window size is strictly 1, meaning any frame arriving out of order is discarded. In Selective Repeat, the receive window is equal to the send window size (2^(m-1)), allowing it to buffer out-of-order frames and request only the missing ones using NAK."
   },
-  // Unit 3
+  {
+    id: 31,
+    unit: "Unit II: Data Link Layer & Protocols",
+    difficulty: "MEDIUM",
+    question: "What is the main vulnerability of the Character Count framing method at the Data Link Layer?",
+    options: [
+      "It requires double the bandwidth of bit stuffing",
+      "A single bit error in the count field desynchronizes the receiver, causing all subsequent frames to be parsed incorrectly",
+      "It cannot handle ASCII data formats",
+      "It is restricted purely to wireless connections"
+    ],
+    answerIndex: 1,
+    explanation: "Page 39 of the notes outlines the Character Count method. The main problem is that if the count field gets corrupted by transmission noise, the receiver will lose synchronization, completely misinterpreting frame boundaries for all following packets."
+  },
+  {
+    id: 32,
+    unit: "Unit II: Data Link Layer & Protocols",
+    difficulty: "HARD",
+    question: "What is the maximum theoretical channel efficiency (throughput) for the Pure ALOHA and Slotted ALOHA random access protocols respectively?",
+    options: [
+      "Pure ALOHA: 36.8%, Slotted ALOHA: 18.4%",
+      "Pure ALOHA: 18.4%, Slotted ALOHA: 36.8%",
+      "Pure ALOHA: 50.0%, Slotted ALOHA: 100.0%",
+      "Pure ALOHA: 10.0%, Slotted ALOHA: 20.0%"
+    ],
+    answerIndex: 1,
+    explanation: "Citing page 54 and page 56 of the PDF notes, the maximum efficiency of Pure ALOHA is 1/(2e) which equals approximately 18.4%. Slotted ALOHA, by restricting transmissions to slot boundaries, reduces the collision window by half, yielding double the efficiency: 1/e or approximately 36.8%."
+  },
+  {
+    id: 33,
+    unit: "Unit II: Data Link Layer & Protocols",
+    difficulty: "MEDIUM",
+    question: "In CSMA multiple access protocols, what does a station do under the '1-persistent' transmission strategy if it senses that the communication channel is currently busy?",
+    options: [
+      "It backs off for a random time and checks again",
+      "It transmits immediately with probability 'p'",
+      "It continues to monitor the channel continuously and transmits immediately as soon as the channel becomes idle",
+      "It drops the frame and reports a collision"
+    ],
+    answerIndex: 2,
+    explanation: "Page 59 of the notes documents that in 1-persistent CSMA, when a station has data to send, it senses the channel. If busy, it listens continuously, waiting until the channel becomes idle, and then immediately transmits a frame with a probability of 1.0."
+  },
+  {
+    id: 34,
+    unit: "Unit II: Data Link Layer & Protocols",
+    difficulty: "HARD",
+    question: "In CSMA/CD Ethernet systems, why is a minimum frame size constraint required?",
+    options: [
+      "To reduce the frequency of CRC check calculations",
+      "To ensure that a sending station does not finish transmitting its frame before the collision signal has time to propagate back to it",
+      "To save buffer space in intermediate routers",
+      "To enforce compatibility with telephone lines"
+    ],
+    answerIndex: 1,
+    explanation: "As explained on page 61 of the notes, a station must continue transmitting long enough to detect a collision. The minimum transmission time of a frame must be at least twice the maximum propagation delay (2 * Tp). If a frame is too short, a station might finish transmitting before the collision signal returns, failing to detect the collision."
+  },
+  {
+    id: 35,
+    unit: "Unit II: Data Link Layer & Protocols",
+    difficulty: "EASY",
+    question: "The standard IEEE 802.3 Ethernet MAC frame begins with a synchronization sequence. What are the size and binary layout of the Preamble and Start Frame Delimiter (SFD) fields?",
+    options: [
+      "Preamble: 7 bytes of 10101010; SFD: 1 byte of 10101011",
+      "Preamble: 8 bytes of 11111111; SFD: 2 bytes of 00000000",
+      "Preamble: 2 bytes of 10101010; SFD: 6 bytes of 10101011",
+      "Preamble: 64 bits of pure 1s"
+    ],
+    answerIndex: 0,
+    explanation: "Citing page 64 of the notes, the standard Ethernet frame starts with a 7-byte Preamble of alternating 1s and 0s (10101010) for receiver clock synchronization, followed by a 1-byte SFD (10101011) that signals the start of the actual frame headers."
+  },
+
+  // Unit 3 - Network Layer & Routing (11-15, 36-40)
   {
     id: 11,
     unit: "Unit III: Network Layer & Routing",
@@ -141,7 +273,73 @@ const PRACTICE_QUESTIONS = [
     answerIndex: 1,
     explanation: "As documented on pages 101 and 102 of the notes, the Leaky Bucket shaper enforces a constant, uniform output rate (smoothing out bursts). In contrast, the Token Bucket allows the output rate to vary depending on the burst size, letting hosts send accumulated bursts immediately if tokens are saved."
   },
-  // Unit 4
+  {
+    id: 36,
+    unit: "Unit III: Network Layer & Routing",
+    difficulty: "MEDIUM",
+    question: "When comparing datagram networks and virtual-circuit networks, which network layer system bypasses setup phases, routing packets independently using complete destination addresses in their headers?",
+    options: [
+      "Connection-oriented Virtual-Circuit networks",
+      "Connectionless Datagram networks",
+      "Circuit-switched networks",
+      "None of the above"
+    ],
+    answerIndex: 1,
+    explanation: "As documented on page 81 of the notes, in connectionless datagram networks, each packet is treated independently. Packets contain complete destination addresses and are routed one by one through intermediate routers. There is no call setup or teardown phase."
+  },
+  {
+    id: 37,
+    unit: "Unit III: Network Layer & Routing",
+    difficulty: "HARD",
+    question: "In Link State routing protocols (like OSPF), what algorithm is executed locally by each individual router to calculate its shortest-path routing tree?",
+    options: ["Bellman-Ford Algorithm", "Dijkstra's Algorithm", "Kruskal's MST Algorithm", "Flooding Algorithm"],
+    answerIndex: 1,
+    explanation: "Citing page 91 of the notes, once a router has built its complete Link State database from LSP flooding, it runs Dijkstra's shortest-path algorithm locally. This calculates the shortest path from itself to all other nodes, producing the local routing table."
+  },
+  {
+    id: 38,
+    unit: "Unit III: Network Layer & Routing",
+    difficulty: "HARD",
+    question: "What is the role of split horizon and poison reverse in Distance Vector routing systems?",
+    options: [
+      "To optimize LSP packet sizes",
+      "To prevent routing loops by stopping a router from advertising a route back to the neighbor from which it learned that route",
+      "To encrypt routing updates",
+      "To assign unique static IP addresses"
+    ],
+    answerIndex: 1,
+    explanation: "Page 91 of the notes highlights split horizon. It prevents routing loops by ensuring a router does not advertise a route back to the very node it learned it from. Poison reverse is an extreme form where it advertises that route back with a metric of infinity (16)."
+  },
+  {
+    id: 39,
+    unit: "Unit III: Network Layer & Routing",
+    difficulty: "MEDIUM",
+    question: "How does a router utilizing Random Early Discard (RED) react when the calculated average queue size ('avg') is strictly less than the minimum threshold ('min_th')?",
+    options: [
+      "It drops a random fraction of arriving packets",
+      "It drops all incoming packets immediately",
+      "It routes all arriving packets normally without dropping any",
+      "It halts packet routing completely"
+    ],
+    answerIndex: 2,
+    explanation: "According to page 100 of the notes, in the RED algorithm: (1) if avg < min_th, no packets are dropped, (2) if avg > max_th, all packets are dropped, and (3) if min_th <= avg <= max_th, packets are dropped with a linear probability."
+  },
+  {
+    id: 40,
+    unit: "Unit III: Network Layer & Routing",
+    difficulty: "HARD",
+    question: "If a Token Bucket shaper is full of tokens and a sudden burst of packets arrives at the queue, how are these packets handled?",
+    options: [
+      "They are all immediately dropped",
+      "They are transmitted at a constant, smooth Leaky Bucket rate",
+      "They are transmitted immediately at full line rate up to the bucket capacity, consuming the saved tokens",
+      "They are buffered indefinitely"
+    ],
+    answerIndex: 2,
+    explanation: "Page 102 of the notes documents that when a Token Bucket has accumulated tokens, it can send a burst of packets immediately at the full line rate. Each sent packet consumes one token. Once the tokens are exhausted, subsequent packets are throttled to the token arrival rate."
+  },
+
+  // Unit 4 - Transport Layer & TCP/UDP (16-20, 41-45)
   {
     id: 16,
     unit: "Unit IV: Transport Layer & TCP/UDP",
@@ -187,7 +385,68 @@ const PRACTICE_QUESTIONS = [
     answerIndex: 1,
     explanation: "Page 189 and page 190 of the notes explain that the client stub represents the server procedure in the client's address space. It handles marshaling (packing parameters into a network message) and invokes the operating system's transport calls, hiding the network from the client code."
   },
-  // Unit 5
+  {
+    id: 41,
+    unit: "Unit IV: Transport Layer & TCP/UDP",
+    difficulty: "MEDIUM",
+    question: "In transport layer architecture, what are the primary endpoints for communication named, and how do they relate to network layer addresses?",
+    options: [
+      "They are TSAPs (Transport Service Access Points, or Ports) and relate to NSAPs (Network Service Access Points, or IP Addresses)",
+      "They are MAC addresses and relate to DNS records",
+      "They are session keys and relate to subnets",
+      "They are domain labels and relate to TCP flags"
+    ],
+    answerIndex: 0,
+    explanation: "Page 112 of the notes documents that the specific endpoints for transport layer connections are called TSAPs (Transport Service Access Points, commonly implemented as Ports). These map onto network layer addresses, which are called NSAPs (Network Service Access Points, commonly implemented as IP addresses)."
+  },
+  {
+    id: 42,
+    unit: "Unit IV: Transport Layer & TCP/UDP",
+    difficulty: "HARD",
+    question: "Which TCP header flag is specifically used to immediately reject or abort a connection request because the target port is closed or a fatal error has occurred?",
+    options: ["FIN Flag", "SYN Flag", "RST (Reset) Flag", "URG Flag"],
+    answerIndex: 2,
+    explanation: "Citing page 142 of the notes, the RST (Reset) flag is used to reset a connection when a segment arrives that is not expected, such as a connection request for a closed port, or to immediately terminate an active connection due to an unrecoverable host error."
+  },
+  {
+    id: 43,
+    unit: "Unit IV: Transport Layer & TCP/UDP",
+    difficulty: "HARD",
+    question: "During TCP congestion control, how does the congestion window size (cwnd) behave during the 'Slow Start' phase versus the 'Congestion Avoidance' phase?",
+    options: [
+      "Slow Start increases cwnd linearly; Congestion Avoidance increases it exponentially",
+      "Slow Start increases cwnd exponentially (doubling every RTT); Congestion Avoidance increases it linearly (adding 1 MSS per RTT)",
+      "Slow Start keeps cwnd static; Congestion Avoidance decreases it",
+      "Both phases increase cwnd exponentially"
+    ],
+    answerIndex: 1,
+    explanation: "As documented on pages 172 and 173 of the notes, in the Slow Start phase, TCP increases cwnd exponentially, doubling its size for every round-trip time (RTT) until it hits the threshold (ssthresh). Once at ssthresh, it enters Congestion Avoidance, increasing cwnd linearly by 1 MSS per RTT."
+  },
+  {
+    id: 44,
+    unit: "Unit IV: Transport Layer & TCP/UDP",
+    difficulty: "MEDIUM",
+    question: "What does Nagle's Algorithm accomplish inside TCP sending buffers?",
+    options: [
+      "It resolves the Byzantine Generals problem",
+      "It buffers outgoing data to avoid sending small segments (1-byte payloads) continuously, waiting until it can send a full-sized segment or until an outstanding ACK arrives",
+      "It disables checksum verification to speed up routing",
+      "It forces the connection to close automatically after idle periods"
+    ],
+    answerIndex: 1,
+    explanation: "Citing page 150 of the notes, Nagle's algorithm solves the problem of sending tiny packets (1 byte of data in a 41-byte packet). The sender sends the first byte. Subsequent bytes are buffered until a full MSS segment can be formed or until the outstanding sent data is acknowledged by the receiver."
+  },
+  {
+    id: 45,
+    unit: "Unit IV: Transport Layer & TCP/UDP",
+    difficulty: "EASY",
+    question: "Unlike TCP's variable 20- to 60-byte header, what is the exact fixed byte size of a standard User Datagram Protocol (UDP) segment header?",
+    options: ["20 bytes", "8 bytes", "4 bytes", "12 bytes"],
+    answerIndex: 1,
+    explanation: "Page 180 of the PDF notes explicitly documents that the UDP header consists of exactly four 16-bit fields (Source Port, Destination Port, Length, Checksum) which total exactly 8 bytes of overhead."
+  },
+
+  // Unit 5 - Application Layer & DNS (21-25, 46-50)
   {
     id: 21,
     unit: "Unit V: Application Layer & DNS",
@@ -232,6 +491,66 @@ const PRACTICE_QUESTIONS = [
     options: ["HTML, CSS, and JS documents", "Text, Audio, and Video files", "Static, Dynamic, and Active documents", "Local, Remote, and Distributed files"],
     answerIndex: 2,
     explanation: "According to page 275 of the PDF notes, WWW documents are grouped into three broad categories: Static (fixed content created and stored at the server, page 276), Dynamic (created by a web server script on request, page 279), and Active (programs or scripts executed at the client site, page 283)."
+  },
+  {
+    id: 46,
+    unit: "Unit V: Application Layer & DNS",
+    difficulty: "MEDIUM",
+    question: "In DNS address mapping terminology, what is the difference between an FQDN (Fully Qualified Domain Name) and a PQDN (Partially Qualified Domain Name)?",
+    options: [
+      "An FQDN contains only the host name; a PQDN contains the complete domain suffix",
+      "An FQDN is a complete domain path ending with a null string (period) that uniquely identifies a host; a PQDN is an incomplete path that relies on local search suffixes",
+      "FQDN uses dynamic IPs; PQDN uses static IPs",
+      "There is no difference in their tree structure paths"
+    ],
+    answerIndex: 1,
+    explanation: "Citing page 291 of the notes, an FQDN contains the full tree path from node to root, ending in a null string (indicated by a final period, e.g. `mail.google.com.`). A PQDN is an incomplete domain name (e.g. `mail`) that is resolved by appending local domain search lists."
+  },
+  {
+    id: 47,
+    unit: "Unit V: Application Layer & DNS",
+    difficulty: "EASY",
+    question: "In the DNS hierarchical server structure, what name is given to the servers that manage administrative domains like '.com', '.org', '.net', or '.in'?",
+    options: ["Root Name Servers", "Top-Level Domain (TLD) Servers", "Authoritative Primary Servers", "Recursive Resolvers"],
+    answerIndex: 1,
+    explanation: "Page 294 of the notes explains that Top-Level Domain (TLD) servers are responsible for managing domain names that terminate with specific suffixes, such as general top-level domains (.com, .org) and country-specific domains (.in, .uk)."
+  },
+  {
+    id: 48,
+    unit: "Unit V: Application Layer & DNS",
+    difficulty: "MEDIUM",
+    question: "What is the primary operational efficiency gain when transitioning from HTTP 1.0 to HTTP 1.1?",
+    options: [
+      "HTTP 1.1 mandates database triggers",
+      "HTTP 1.1 supports persistent TCP connections by default, allowing multiple request/response transactions to reuse a single open connection",
+      "HTTP 1.1 replaces TCP with UDP",
+      "HTTP 1.1 forces client-side rendering only"
+    ],
+    answerIndex: 1,
+    explanation: "Citing page 278 of the notes, HTTP 1.0 creates a new TCP connection for every single transaction (adding setup overhead). HTTP 1.1 defaults to persistent connections, letting the client request multiple web assets (images, stylesheets) through a single established TCP link."
+  },
+  {
+    id: 49,
+    unit: "Unit V: Application Layer & DNS",
+    difficulty: "HARD",
+    question: "How does DNS caching optimize resolving performance, and what control mechanism manages cache expiration times?",
+    options: [
+      "Caching uses hard disk arrays; expiration is managed by router pings",
+      "Caching stores previous queries in resolver memory; expiration is controlled by the TTL (Time-To-Live) field supplied by authoritative servers",
+      "Caching runs on root servers; expiration is fixed to exactly 24 hours",
+      "Caching stores answers inside UDP flags; expiration occurs on socket close"
+    ],
+    answerIndex: 1,
+    explanation: "Page 304 of the notes documents DNS caching. When a resolver receives a response mapping, it stores it in memory. Authoritative name servers append a TTL (Time-To-Live) value in seconds. The cache holds this mapping, answering subsequent requests immediately until the TTL expires."
+  },
+  {
+    id: 50,
+    unit: "Unit V: Application Layer & DNS",
+    difficulty: "MEDIUM",
+    question: "A standard Uniform Resource Locator (URL) consists of multiple components. In the address 'http://www.google.com:80/index.html', which element represents the resource locator path?",
+    options: ["http", "www.google.com", "80", "/index.html"],
+    answerIndex: 3,
+    explanation: "According to page 274 of the notes, a URL consists of four parts: protocol (http), host (www.google.com), port (80), and path (/index.html) which locates the specific file on the server's filesystem."
   }
 ];
 
@@ -670,7 +989,7 @@ export default function NetworksTheory({ onBack }) {
               <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.7rem', color: 'var(--text-secondary)', fontWeight: 'bold' }}>
                 <span>Solved:</span>
                 <span style={{ color: 'var(--yellow-neon)' }}>
-                  {PRACTICE_QUESTIONS.filter(q => q.unit === activePracticeUnit && solvedQuestions[q.id]).length} / 5
+                  {PRACTICE_QUESTIONS.filter(q => q.unit === activePracticeUnit && solvedQuestions[q.id]).length} / 10
                 </span>
               </div>
             </div>
