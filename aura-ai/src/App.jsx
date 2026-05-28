@@ -291,7 +291,7 @@ export default function App() {
                 HEMZ AI
               </h1>
               <p style={{ fontSize: '0.62rem', fontFamily: 'var(--font-sans)', fontWeight: '600', color: 'var(--text-secondary)', letterSpacing: '0.5px' }}>
-                HOLOGRAPHIC VOICE CHAMBERS
+                YOU WILL WIN, NOT IMMEDIATELY BUT DEFINITELY.
               </p>
             </div>
           </div>
