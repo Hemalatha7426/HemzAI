@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { MessageSquare, X, Send, Sparkles, Cpu, Award, Zap, HelpCircle, ChevronRight, Settings, Eye, EyeOff, Globe } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+import { X, Send, Sparkles, Cpu, Award, Zap, HelpCircle, Settings, Eye, EyeOff } from 'lucide-react';
 
 const CHIBI_ASSISTANT = {
   name: "Hemz AI Assistant",
@@ -35,7 +35,14 @@ const BOT_KNOWLEDGE = {
 
 export default function ChibiCopilot() {
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState(() => [
+    {
+      sender: 'bot',
+      text: CHIBI_ASSISTANT.welcome,
+      timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+      mentor: CHIBI_ASSISTANT
+    }
+  ]);
   const [inputValue, setInputValue] = useState("");
   const [isTyping, setIsTyping] = useState(false);
   const scrollRef = useRef(null);
@@ -60,17 +67,7 @@ export default function ChibiCopilot() {
     localStorage.setItem("aura_gemini_key", geminiKey);
   }, [geminiKey]);
 
-  // Initialize Welcome Message
-  useEffect(() => {
-    setMessages([
-      {
-        sender: 'bot',
-        text: CHIBI_ASSISTANT.welcome,
-        timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-        mentor: CHIBI_ASSISTANT
-      }
-    ]);
-  }, []);
+
 
   // Auto-scroll chats
   useEffect(() => {
@@ -175,13 +172,31 @@ Your tone is professional, extremely supportive, motivational, and technical. Ke
     } catch (e) {
       console.warn("External AI call bypassed or failed. Engaging local cognitive fallback.", e.message);
       
-      const query = text.toLowerCase();
+      const query = text.toLowerCase().trim();
       let notice = "";
       if (selectedEngine !== 'fallback') {
         notice = `\n\n*(Notice: Chatbot connection via ${selectedEngine.toUpperCase()} failed/was keyless. Hemz local cognitive brain engaged.)*`;
       }
 
-      if (query.includes("hi") || query.includes("hello") || query.includes("hey") || query.includes("greetings") || query.trim() === "hi" || query.trim() === "hello") {
+      // Gibberish & Unknown query detector
+      const textOnly = query.replace(/[^a-z]/g, '');
+      const hasVowels = /[aeiouy]/.test(textOnly);
+      const keywords = [
+        "hi", "hello", "hey", "greetings", "motivation", "nervous", "anxious", 
+        "scared", "sad", "system", "database", "architect", "scale", "drill", 
+        "question", "practice", "star", "situation", "method", "app", "hemz", 
+        "aura", "how to", "work", "scan", "voice", "audio", "history", "sentiment",
+        "help", "tip", "react", "spring", "java", "dsa", "sql", "networks", "code"
+      ];
+      const matchesKeyword = keywords.some(kw => query.includes(kw));
+      const isGibberish = (!hasVowels && textOnly.length > 3) || 
+                          (!matchesKeyword && ((textOnly.match(/[aeiouy]/g) || []).length / textOnly.length < 0.15 && textOnly.length > 4)) ||
+                          (!matchesKeyword && !query.includes(' ') && query.length > 10) ||
+                          (!matchesKeyword);
+
+      if (isGibberish) {
+        reply = `This is not a valid query. Please ask a valid question about our placement preparation (such as 'motivation', 'vocal chambers', 'DSA playground', 'SQL prep', or 'networks theory'), and I will happily help you!${notice}`;
+      } else if (query.includes("hi") || query.includes("hello") || query.includes("hey") || query.includes("greetings") || query.trim() === "hi" || query.trim() === "hello") {
         reply = `Hi there! 👋 I am your Hemz AI Assistant. How can I help you sharpen your technical preparation, design scalable architectures, or navigate your career growth today? Feel free to ask me anything about the Hemz AI application or coding frameworks!${notice}`;
       } else if (query.includes("motivation") || query.includes("nervous") || query.includes("anxious") || query.includes("scared") || query.includes("sad")) {
         const list = BOT_KNOWLEDGE.motivation;
