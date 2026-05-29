@@ -583,7 +583,7 @@ export default function App() {
                   fontWeight: '600',
                   lineHeight: '1.4'
                 }}>
-                  <strong style={{ color: 'var(--yellow-neon)' }}>ZEN INTERVIEW FLOW:</strong> "Sometimes magic happens when you stop worrying about how things will work out. Relax your voice, breathe deeply, and let your natural preparation lead the way in the chamber."
+                  "SOMETIMES MAGIC HAPPENS WHEN YOU STOP WORRYING ABOUT HOW THINGS WILL WORK OUT." Relax your voice, breathe deeply, and let your natural preparation lead the way in the chamber.
                 </p>
               </div>
             </div>
