@@ -198,7 +198,8 @@ export default function App() {
   const fetchSessionHistory = async () => {
     setLoadingHistory(true);
     try {
-      const response = await fetch('http://localhost:8080/api/interviews/history');
+      const apiBase = import.meta.env.VITE_API_URL || 'http://localhost:8080';
+      const response = await fetch(`${apiBase}/api/interviews/history`);
       if (response.ok) {
         const dbHistory = await response.json();
         setHistory(dbHistory);
@@ -242,7 +243,8 @@ export default function App() {
       return;
     }
     try {
-      const response = await fetch(`http://localhost:8080/api/interviews/session/${id}`, {
+      const apiBase = import.meta.env.VITE_API_URL || 'http://localhost:8080';
+      const response = await fetch(`${apiBase}/api/interviews/session/${id}`, {
         method: 'DELETE'
       });
       if (response.ok) {

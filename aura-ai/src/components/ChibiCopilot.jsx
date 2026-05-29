@@ -149,7 +149,8 @@ Your tone is professional, extremely supportive, motivational, and technical. Ke
         }
       } else if (selectedEngine === 'gateway') {
         // Spring Boot Backend Chatbot API Controller Gateway Call
-        const response = await fetch('http://localhost:8080/api/chat', {
+        const apiBase = import.meta.env.VITE_API_URL || 'http://localhost:8080';
+        const response = await fetch(`${apiBase}/api/chat`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({

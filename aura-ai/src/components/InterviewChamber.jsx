@@ -267,7 +267,8 @@ export default function InterviewChamber({ parsedData, configData, onSessionComp
       }
 
       try {
-        const response = await fetch('http://localhost:8080/api/interviews/start', {
+        const apiBase = import.meta.env.VITE_API_URL || 'http://localhost:8080';
+        const response = await fetch(`${apiBase}/api/interviews/start`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -1084,7 +1085,8 @@ export default function InterviewChamber({ parsedData, configData, onSessionComp
   const evaluateAndFinish = async () => {
     try {
       // Post all user transcripts to express backend for evaluations
-      const response = await fetch('http://localhost:8080/api/interviews/evaluate', {
+      const apiBase = import.meta.env.VITE_API_URL || 'http://localhost:8080';
+      const response = await fetch(`${apiBase}/api/interviews/evaluate`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(session)

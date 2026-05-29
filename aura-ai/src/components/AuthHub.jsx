@@ -20,9 +20,10 @@ export default function AuthHub({ onLoginSuccess }) {
     setError('');
 
     try {
+      const apiBase = import.meta.env.VITE_API_URL || 'http://localhost:8080';
       const endpoint = isSignUp 
-        ? 'http://localhost:8080/api/auth/register' 
-        : 'http://localhost:8080/api/auth/login';
+        ? `${apiBase}/api/auth/register` 
+        : `${apiBase}/api/auth/login`;
 
       const response = await fetch(endpoint, {
         method: 'POST',
