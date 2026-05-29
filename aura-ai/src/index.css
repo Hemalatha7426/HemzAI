@@ -469,10 +469,24 @@ input:focus, select:focus, textarea:focus {
 }
 
 /* Code Editor Textarea overrides to remain neon-cyan and high-contrast on its dark background */
+:root[data-theme="light"] textarea.code-editor-textarea,
 textarea.code-editor-textarea {
   color: #00f2fe !important;
 }
+:root[data-theme="light"] textarea.code-editor-textarea::placeholder,
 textarea.code-editor-textarea::placeholder {
   color: rgba(255, 255, 255, 0.45) !important;
+}
+
+/* Dark Console overrides to prevent light theme from forcing dark text on dark backgrounds */
+:root[data-theme="light"] .dark-console-block span.console-header-title {
+  color: rgba(255, 255, 255, 0.45) !important;
+}
+:root[data-theme="light"] .dark-console-block p.console-idle-text {
+  color: rgba(255, 255, 255, 0.35) !important;
+}
+:root[data-theme="light"] .dark-console-block div.console-log-line-default,
+:root[data-theme="light"] .dark-console-block div.console-log-line-default * {
+  color: #e2e8f0 !important;
 }
 

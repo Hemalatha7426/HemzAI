@@ -2671,7 +2671,7 @@ export default function SqlPlayground({ onBack }) {
           }}>
             
             {/* Left Console output */}
-            <div style={{
+            <div className="dark-console-block" style={{
               background: '#050814',
               border: '1px solid rgba(255,255,255,0.06)',
               borderRadius: '10px',
@@ -2683,19 +2683,19 @@ export default function SqlPlayground({ onBack }) {
               overflowY: 'auto',
               textAlign: 'left'
             }}>
-              <span style={{ fontSize: '0.58rem', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)', fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: '5px' }}>
+              <span className="console-header-title" style={{ fontSize: '0.58rem', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)', fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: '5px' }}>
                 <Terminal size={10} /> DATABASE TELEMETRY ENGINE LOGS
               </span>
               
               {consoleLogs.length === 0 ? (
-                <p style={{ margin: '15px 0 0 0', fontSize: '0.78rem', color: 'var(--text-muted)', fontStyle: 'italic', fontFamily: 'var(--font-mono)' }}>
+                <p className="console-idle-text" style={{ margin: '15px 0 0 0', fontSize: '0.78rem', color: 'var(--text-muted)', fontStyle: 'italic', fontFamily: 'var(--font-mono)' }}>
                   Compiler is idle. Run or Submit code to execute validation query checks.
                 </p>
               ) : (
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '3px', fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: 'var(--text-primary)', lineHeight: '1.4' }}>
+                <div className="console-log-line-default" style={{ display: 'flex', flexDirection: 'column', gap: '3px', fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: '#e2e8f0', lineHeight: '1.4' }}>
                   {consoleLogs.map((log, idx) => (
                     <div key={idx} style={{ 
-                      color: log.startsWith('✅') ? 'var(--emerald-neon)' : log.startsWith('❌') || log.startsWith('⚠️') ? '#ff4d4d' : log.trim().startsWith('💡') ? 'var(--yellow-neon)' : 'var(--text-primary)',
+                      color: log.startsWith('✅') ? 'var(--emerald-neon)' : log.startsWith('❌') || log.startsWith('⚠️') ? '#ff4d4d' : log.trim().startsWith('💡') ? 'var(--yellow-neon)' : '#e2e8f0',
                       whiteSpace: 'pre-wrap',
                       fontWeight: log.trim().startsWith('💡') ? 'bold' : 'normal',
                       padding: log.trim().startsWith('💡') ? '10px 14px' : '0',
