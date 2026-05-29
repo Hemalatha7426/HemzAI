@@ -379,15 +379,8 @@ export default function ResumeScanner({ onScanComplete }) {
 
 
   return (
-    <div className="glass-panel dot-grid" style={{ 
-      maxWidth: '900px', 
-      width: '100%', 
-      margin: '0 auto', 
-      padding: !scanning ? '0' : '40px', 
-      zIndex: 1, 
-      display: 'grid', 
-      gridTemplateColumns: !scanning ? '1fr 1.15fr' : '1fr',
-      overflow: 'hidden'
+    <div className={`glass-panel dot-grid responsive-scanner-grid ${scanning ? 'scanning-mode' : ''}`} style={{ 
+      padding: !scanning ? '0' : '40px'
     }}>
       {scanning && <div className="scanner-overlay" />}
       
@@ -447,7 +440,7 @@ export default function ResumeScanner({ onScanComplete }) {
       )}
 
       {/* RIGHT COLUMN - Form / Scanner content */}
-      <div style={{ padding: '40px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+      <div className="responsive-scanner-right">
         {!scanning ? (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '22px' }}>
             <div style={{ textAlign: 'center', marginBottom: '10px' }}>

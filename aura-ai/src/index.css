@@ -490,3 +490,645 @@ textarea.code-editor-textarea::placeholder {
   color: #e2e8f0 !important;
 }
 
+/* ----------------------------------------------------
+   Responsive Layout Utilities & Breakpoints
+   ---------------------------------------------------- */
+
+/* 1. Auth Panel Grid */
+.responsive-auth-grid {
+  display: grid !important;
+  grid-template-columns: 1.05fr 1fr !important;
+  max-width: 850px;
+  width: 100%;
+  margin: 0 auto;
+  min-height: 480px;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* 2. Global Header Nav Wrapper */
+.responsive-header {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  margin-bottom: 45px !important;
+  background: var(--panel-bg) !important;
+  padding: 16px 24px !important;
+  border-radius: 16px !important;
+  border: var(--glass-border) !important;
+  backdrop-filter: blur(8px) !important;
+  position: relative !important;
+  z-index: 50 !important;
+}
+
+.responsive-header-nav {
+  display: flex !important;
+  align-items: center !important;
+  gap: 15px !important;
+}
+
+/* 3. Hero statistics */
+.responsive-metrics-grid {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr 1fr !important;
+  gap: 25px !important;
+}
+
+/* 4. Playgrounds Main Sidebar Grid */
+.responsive-sidebar-grid {
+  display: grid !important;
+  grid-template-columns: 300px 1fr !important;
+  gap: 20px !important;
+  width: 100%;
+  align-items: stretch !important;
+}
+
+/* 5. Playgrounds Workspace Splits */
+.responsive-split-workspace {
+  display: grid !important;
+  grid-template-columns: 1.2fr 1.3fr !important;
+  gap: 20px !important;
+  align-items: stretch !important;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* 6. General splits (webcam config, networks guides, user profile, etc.) */
+.responsive-split-container {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 24px !important;
+}
+
+/* 7. Profile Workspace Outer Grid */
+.responsive-profile-grid {
+  display: grid !important;
+  grid-template-columns: 1fr 2.1fr !important;
+  gap: 30px !important;
+  max-width: 980px !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+  z-index: 1 !important;
+}
+
+/* 8. Profile Sub-tabs Row */
+.responsive-profile-tabs {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)) !important;
+  gap: 10px !important;
+}
+
+/* 9. General Two-Column Grid */
+.responsive-two-col {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 15px !important;
+}
+
+/* 10. Networks Theory Workspace Header */
+.responsive-networks-header {
+  width: 100% !important;
+  background: var(--panel-bg) !important;
+  backdrop-filter: blur(16px) !important;
+  WebkitBackdropFilter: blur(16px) !important;
+  border: var(--glass-border) !important;
+  border-left: 4px solid var(--yellow-neon) !important;
+  padding: 12px 30px !important;
+  border-radius: 12px !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  box-shadow: var(--panel-shadow) !important;
+  margin-bottom: 5px !important;
+}
+
+/* 11. Hamming Simulator Bits Flex */
+.responsive-hamming-flex {
+  display: flex !important;
+  gap: 8px !important;
+}
+
+/* 12. Resume Scanner Grid */
+.responsive-scanner-grid {
+  display: grid !important;
+  grid-template-columns: 1fr 1.15fr !important;
+  max-width: 900px !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+  overflow: hidden !important;
+  z-index: 1 !important;
+}
+
+.responsive-scanner-grid.scanning-mode {
+  grid-template-columns: 1fr !important;
+}
+
+/* 13. Diagnostic Dashboard Grid */
+.responsive-diagnostic-grid {
+  display: grid !important;
+  grid-template-columns: 1fr 2fr !important;
+  gap: 30px !important;
+  max-width: 1080px !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+  z-index: 1 !important;
+  position: relative !important;
+}
+
+.responsive-diagnostic-grid.feedback-hidden {
+  display: flex !important;
+  grid-template-columns: 1fr !important;
+  max-width: 450px !important;
+  justify-content: center !important;
+}
+
+/* 14. Relax Chamber Arcade Header & Tabs */
+.responsive-relax-header {
+  padding: 20px 30px !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  background: var(--panel-bg) !important;
+  border-radius: 16px !important;
+  border: var(--glass-border) !important;
+}
+
+.responsive-relax-tabs {
+  display: flex !important;
+  gap: 15px !important;
+  justify-content: center !important;
+  flex-wrap: wrap !important;
+}
+
+/* 15. Responsive Form Columns and Left/Right Cards Alignments */
+.responsive-auth-right {
+  padding: 40px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  width: 100% !important;
+}
+
+.responsive-scanner-right {
+  padding: 40px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  width: 100% !important;
+}
+
+.responsive-profile-left {
+  padding: 35px 25px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 22px !important;
+  height: fit-content !important;
+  width: 100% !important;
+}
+
+.responsive-profile-right {
+  padding: 35px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 25px !important;
+  width: 100% !important;
+}
+
+.responsive-diagnostic-left-card {
+  padding: 35px 25px !important;
+  text-align: center !important;
+  width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 20px !important;
+  background: rgba(17, 24, 39, 0.65) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25) !important;
+  border-radius: 16px !important;
+}
+
+.responsive-diagnostic-right {
+  padding: 40px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 30px !important;
+  background: rgba(17, 24, 39, 0.65) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25) !important;
+  border-radius: 16px !important;
+}
+
+/* 16. App Main Frame Container Margin Padding */
+.responsive-app-container {
+  max-width: 1100px !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+  position: relative !important;
+  z-index: 1 !important;
+  padding: 0 24px !important;
+}
+
+/* 17. Auth Hub Left Panel Illustration Card */
+.responsive-auth-left {
+  background: var(--left-panel-bg) !important;
+  padding: 40px 30px !important;
+  border-right: var(--left-panel-border) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  text-align: center !important;
+  gap: 24px !important;
+  position: relative !important;
+  width: 100% !important;
+}
+
+/* 18. Chibi Copilot FAB Button */
+.chibi-copilot-fab {
+  position: fixed !important;
+  bottom: 30px !important;
+  right: 30px !important;
+  z-index: 999 !important;
+  width: 74px !important;
+  height: 74px !important;
+  border-radius: 50% !important;
+  background: rgba(17, 24, 39, 0.85) !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 5px !important;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+}
+
+/* 19. Responsive Header buttons wrap wrapper */
+.responsive-header-buttons {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+}
+
+/* 19. Responsive Header buttons desktop wrapper */
+.responsive-header-desktop-buttons {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+}
+
+@media (max-width: 890px) {
+  .responsive-header-desktop-buttons {
+    display: none !important;
+  }
+}
+
+/* 20. Mobile menu trigger button styled as a clean pink pill */
+.responsive-header-mobile-trigger {
+  display: none !important;
+}
+
+@media (max-width: 890px) {
+  .responsive-header-mobile-trigger {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border: 1.5px solid var(--pink-neon) !important;
+    background: rgba(236, 72, 153, 0.08) !important;
+    color: var(--pink-neon) !important;
+    font-family: var(--font-sans) !important;
+    font-weight: 700 !important;
+    font-size: 0.85rem !important;
+    border-radius: 24px !important;
+    padding: 6px 20px !important;
+    cursor: pointer !important;
+    transition: all 0.25s ease !important;
+    box-shadow: 0 0 10px rgba(236, 72, 153, 0.15) !important;
+  }
+  
+  .responsive-header-mobile-trigger:hover {
+    background: rgba(236, 72, 153, 0.16) !important;
+    box-shadow: 0 0 15px rgba(236, 72, 153, 0.3) !important;
+    transform: translateY(-1px);
+  }
+}
+
+/* 21. Mobile floating dropdown wrapper */
+.responsive-header-mobile-dropdown {
+  position: absolute !important;
+  top: calc(100% + 8px) !important;
+  right: 0 !important;
+  width: 250px !important;
+  z-index: 1000 !important;
+  padding: 14px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+  border: var(--glass-border) !important;
+  border-color: var(--pink-neon) !important;
+  background: var(--panel-bg) !important;
+  backdrop-filter: blur(16px) !important;
+  box-shadow: var(--panel-shadow), 0 10px 30px rgba(236, 72, 153, 0.15) !important;
+  border-radius: 14px !important;
+}
+
+/* 22. Mobile Dropdown item */
+.responsive-header-dropdown-item {
+  width: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  border-radius: 10px !important;
+  padding: 10px 14px !important;
+  color: var(--text-secondary) !important;
+  font-family: var(--font-mono) !important;
+  font-size: 0.76rem !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  text-align: left !important;
+}
+
+.responsive-header-dropdown-item:hover {
+  color: var(--text-primary) !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: var(--cyan-neon) !important;
+  transform: translateX(4px);
+}
+
+.responsive-header-dropdown-item.active {
+  color: var(--text-primary) !important;
+  background: rgba(6, 182, 212, 0.15) !important;
+  border-color: rgba(6, 182, 212, 0.4) !important;
+  box-shadow: 0 0 10px rgba(6, 182, 212, 0.2) !important;
+}
+
+/* 23. Mobile Dropdown Profile settings */
+.responsive-header-dropdown-profile {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  padding: 10px 14px !important;
+  border-radius: 10px !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  background: rgba(139, 92, 246, 0.08) !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+
+.responsive-header-dropdown-profile:hover {
+  background: rgba(139, 92, 246, 0.16) !important;
+  border-color: var(--purple-neon) !important;
+  transform: translateX(4px);
+}
+
+.responsive-header-dropdown-profile.active {
+  background: rgba(139, 92, 246, 0.25) !important;
+  border-color: var(--purple-neon) !important;
+}
+
+/* 24. Mobile Dropdown Logout button */
+.responsive-header-dropdown-logout {
+  width: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  background: rgba(236, 72, 153, 0.08) !important;
+  border: 1px solid rgba(236, 72, 153, 0.2) !important;
+  border-radius: 10px !important;
+  padding: 10px 14px !important;
+  color: var(--pink-neon) !important;
+  font-family: var(--font-mono) !important;
+  font-size: 0.76rem !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  text-align: left !important;
+}
+
+.responsive-header-dropdown-logout:hover {
+  background: rgba(236, 72, 153, 0.16) !important;
+  border-color: var(--pink-neon) !important;
+  transform: scale(0.98);
+}
+
+/* ----------------------------------------------------
+   CSS Viewport Breakpoints
+   ---------------------------------------------------- */
+
+@media (max-width: 1024px) {
+  .responsive-split-workspace {
+    grid-template-columns: 1fr !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+  
+  .responsive-split-workspace > div {
+    max-height: none !important;
+    height: auto !important;
+  }
+
+  .responsive-sidebar-right-col {
+    height: auto !important;
+    grid-template-rows: auto !important;
+  }
+
+  .responsive-header {
+    flex-direction: column !important;
+    gap: 20px !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  .responsive-header-nav {
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 10px !important;
+  }
+}
+
+@media (max-width: 890px) {
+  .responsive-sidebar-grid {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .responsive-sidebar-grid > div {
+    max-height: none !important;
+    height: auto !important;
+  }
+
+  .responsive-split-container {
+    grid-template-columns: 1fr !important;
+  }
+
+  .responsive-profile-grid {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+
+  .responsive-diagnostic-grid {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+
+  .responsive-profile-left {
+    max-width: 450px !important;
+    margin: 0 auto !important;
+  }
+  
+  .responsive-diagnostic-left-card {
+    max-width: 450px !important;
+    margin: 0 auto !important;
+  }
+
+  .responsive-auth-grid {
+    grid-template-columns: 1fr !important;
+    min-height: auto !important;
+    margin: 0 auto 40px auto !important;
+  }
+
+  .responsive-auth-left {
+    border-right: none !important;
+    border-bottom: var(--left-panel-border) !important;
+    padding: 30px 20px !important;
+    gap: 18px !important;
+  }
+
+  .responsive-auth-right {
+    max-width: 480px !important;
+    margin: 0 auto !important;
+    padding: 35px 24px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .responsive-app-container {
+    padding: 0 16px !important;
+  }
+
+  .chibi-copilot-fab {
+    bottom: 20px !important;
+    right: 20px !important;
+    width: 62px !important;
+    height: 62px !important;
+  }
+
+  .responsive-auth-grid {
+    grid-template-columns: 1fr !important;
+    min-height: auto !important;
+    margin: 0 auto 40px auto !important;
+  }
+
+  .responsive-auth-left {
+    border-right: none !important;
+    border-bottom: var(--left-panel-border) !important;
+    padding: 24px 20px !important;
+    gap: 15px !important;
+  }
+
+  .responsive-metrics-grid {
+    grid-template-columns: 1fr !important;
+    gap: 15px !important;
+  }
+
+  /* Hero section typography adjustments */
+  .hero-heading {
+    font-size: 1.8rem !important;
+  }
+
+  .hero-sub {
+    font-size: 0.85rem !important;
+  }
+
+  .responsive-networks-header {
+    flex-direction: column !important;
+    gap: 15px !important;
+    align-items: stretch !important;
+    text-align: center !important;
+  }
+
+  .responsive-scanner-grid {
+    grid-template-columns: 1fr !important;
+  }
+  
+  /* Hide left panel on mobile to optimize resume scan flow */
+  .responsive-scanner-grid > div:first-child {
+    display: none !important;
+  }
+  .responsive-scanner-grid.scanning-mode > div:first-child {
+    display: none !important;
+  }
+
+  .responsive-relax-header {
+    flex-direction: column !important;
+    gap: 15px !important;
+    align-items: stretch !important;
+    text-align: center !important;
+  }
+  
+  .responsive-relax-header > div:first-child {
+    flex-direction: column !important;
+    gap: 10px !important;
+    align-items: center !important;
+  }
+
+  .responsive-relax-tabs {
+    gap: 10px !important;
+  }
+  
+  .responsive-relax-tabs .relax-tab-btn {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+
+  .responsive-auth-right {
+    max-width: 480px !important;
+    margin: 0 auto !important;
+    padding: 30px 20px !important;
+  }
+
+  .responsive-scanner-right {
+    max-width: 550px !important;
+    margin: 0 auto !important;
+    padding: 30px 20px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .responsive-two-col {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .responsive-app-container {
+    padding: 0 12px !important;
+  }
+
+  .responsive-hamming-flex {
+    gap: 4px !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+  }
+  .responsive-hamming-flex > div {
+    min-width: 45px !important;
+    flex: unset !important;
+  }
+
+  .responsive-profile-left {
+    padding: 25px 15px !important;
+  }
+  .responsive-profile-right {
+    padding: 20px 15px !important;
+  }
+  
+  .responsive-diagnostic-right {
+    padding: 20px 15px !important;
+    gap: 20px !important;
+  }
+}
+

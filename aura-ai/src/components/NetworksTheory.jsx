@@ -665,21 +665,7 @@ export default function NetworksTheory({ onBack }) {
     <div style={{ position: 'relative', width: '100%', minHeight: '85vh', display: 'flex', flexDirection: 'column', gap: '20px', zIndex: 1 }}>
       
       {/* 1. Sleek Glassmorphic Header */}
-      <div className="glass-panel" style={{
-        width: '100%',
-        background: 'var(--panel-bg)',
-        backdropFilter: 'blur(16px)',
-        WebkitBackdropFilter: 'blur(16px)',
-        border: 'var(--glass-border)',
-        borderLeft: '4px solid var(--yellow-neon)',
-        padding: '12px 30px',
-        borderRadius: '12px',
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        boxShadow: 'var(--panel-shadow)',
-        marginBottom: '5px'
-      }}>
+      <div className="responsive-networks-header">
         <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
           <button 
             onClick={onBack}
@@ -851,7 +837,7 @@ export default function NetworksTheory({ onBack }) {
           {hammingOutput && (
             <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
               <span style={{ fontSize: '0.64rem', fontFamily: 'var(--font-mono)', color: 'var(--yellow-neon)', fontWeight: 'bold' }}>GENERATED 7-BIT HAMMING WORD (REVERSED INDEX 7 to 1):</span>
-              <div style={{ display: 'flex', gap: '8px' }}>
+              <div className="responsive-hamming-flex">
                 {hammingOutput.split("").map((bit, idx) => {
                   const pos = 7 - idx;
                   const isRedundant = pos === 1 || pos === 2 || pos === 4;
@@ -887,13 +873,7 @@ export default function NetworksTheory({ onBack }) {
 
       {/* Tab C: Q&A Practice Playground */}
       {activeTab === 'practice' && (
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: '280px 1fr',
-          gap: '20px',
-          width: '100%',
-          alignItems: 'stretch'
-        }}>
+        <div className="responsive-sidebar-grid">
           {/* Side Menu & solved checker sidebar */}
           <div className="glass-panel" style={{
             background: 'var(--panel-bg)',

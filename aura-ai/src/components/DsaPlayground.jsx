@@ -591,13 +591,7 @@ export default function DsaPlayground({ onBack }) {
       </div>
 
       {/* Main Content Area */}
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: '300px 1fr',
-        gap: '20px',
-        width: '100%',
-        alignItems: 'stretch'
-      }}>
+      <div className="responsive-sidebar-grid">
         
         {/* LEFT COLUMN: Collapsible problem directories */}
         <div className="glass-panel" style={{
@@ -747,7 +741,7 @@ export default function DsaPlayground({ onBack }) {
         </div>
 
         {/* RIGHT COLUMN: Split Specs & IDE Workspace */}
-        <div style={{
+        <div className="responsive-sidebar-right-col" style={{
           display: 'grid',
           gridTemplateRows: '1fr 240px',
           gap: '20px',
@@ -755,14 +749,7 @@ export default function DsaPlayground({ onBack }) {
         }}>
           
           {/* Top Panel: Split Specs & Code Editor */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: '1.2fr 1.3fr',
-            gap: '20px',
-            alignItems: 'stretch',
-            height: '100%',
-            overflow: 'hidden'
-          }}>
+          <div className="responsive-split-workspace">
             
             {/* Left Box: Problem Specs, examples, solutions */}
             <div className="glass-panel" style={{

@@ -256,24 +256,10 @@ Your tone is professional, extremely supportive, motivational, and technical. Ke
       {/* 1. Dynamic Chibi FAB Avatar (Unfied Assistant Coder) */}
       <div 
         onClick={() => setIsOpen(true)}
-        className="float-animation"
+        className="chibi-copilot-fab float-animation"
         style={{
-          position: 'fixed',
-          bottom: '30px',
-          right: '30px',
-          zIndex: 999,
-          width: '74px',
-          height: '74px',
-          borderRadius: '50%',
-          background: 'rgba(17, 24, 39, 0.85)',
           border: `2px solid ${CHIBI_ASSISTANT.color}`,
-          boxShadow: `0 0 25px ${CHIBI_ASSISTANT.color}66, inset 0 0 12px rgba(255,255,255,0.1)`,
-          cursor: 'pointer',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          padding: '5px',
-          transition: 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
+          boxShadow: `0 0 25px ${CHIBI_ASSISTANT.color}66, inset 0 0 12px rgba(255,255,255,0.1)`
         }}
         onMouseEnter={(e) => {
           e.currentTarget.style.transform = 'scale(1.1) translateY(-3px)';

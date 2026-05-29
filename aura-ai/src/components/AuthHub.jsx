@@ -75,21 +75,10 @@ export default function AuthHub({ onLoginSuccess }) {
   };
 
   return (
-    <div className="glass-panel dot-grid float-animation" style={{ display: 'grid', gridTemplateColumns: '1.05fr 1fr', maxWidth: '850px', width: '100%', margin: '0 auto', minHeight: '480px', overflow: 'hidden', zIndex: 1 }}>
+    <div className="glass-panel dot-grid float-animation responsive-auth-grid">
       
       {/* LEFT PANEL - AI Cartoon Introduction */}
-      <div style={{ 
-        background: 'var(--left-panel-bg)', 
-        padding: '40px 30px', 
-        borderRight: 'var(--left-panel-border)', 
-        display: 'flex', 
-        flexDirection: 'column', 
-        justifyContent: 'center', 
-        alignItems: 'center', 
-        textAlign: 'center', 
-        gap: '24px', 
-        position: 'relative' 
-      }}>
+      <div className="responsive-auth-left">
         
         {/* Cartoon Girl Image Card with glowing border */}
         <div style={{ 
@@ -141,7 +130,7 @@ export default function AuthHub({ onLoginSuccess }) {
       </div>
 
       {/* RIGHT PANEL - Login Form */}
-      <div style={{ padding: '45px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+      <div className="responsive-auth-right">
         <div style={{ marginBottom: '25px', textAlign: 'center' }}>
           <h3 style={{ fontSize: '1.35rem', fontWeight: '800', color: 'var(--text-primary)', marginBottom: '6px', fontFamily: 'var(--font-mono)' }}>
             {isSignUp ? 'Establish Identity' : 'Welcome Candidate'}

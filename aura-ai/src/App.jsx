@@ -182,6 +182,7 @@ export default function App() {
   const [user, setUser] = useState(null);
   const [showLoginSuccess, setShowLoginSuccess] = useState(false);
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
@@ -278,10 +279,10 @@ export default function App() {
       <div className="orbital-orb orb-pink" />
 
       {/* Main Container */}
-      <div style={{ maxWidth: '1100px', width: '100%', margin: '0 auto', position: 'relative', zIndex: 1 }}>
+      <div className="responsive-app-container">
         
         {/* Futuristic Global Header */}
-        <header className="glass-panel" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '45px', background: 'var(--panel-bg)', padding: '16px 24px', borderRadius: '16px', border: 'var(--glass-border)', backdropFilter: 'blur(8px)' }}>
+        <header className="responsive-header">
           <div 
             style={{ display: 'flex', alignItems: 'center', gap: '12px', cursor: (user && appState !== 'AUTH') ? 'pointer' : 'default' }} 
             onClick={() => { if (user && appState !== 'AUTH') setAppState('HUB'); }}
@@ -297,7 +298,7 @@ export default function App() {
             </div>
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
+          <div className="responsive-header-nav">
             {/* Elegant Glass theme toggler */}
             <button
               onClick={() => setTheme(prev => prev === 'dark' ? 'light' : 'dark')}
@@ -328,201 +329,306 @@ export default function App() {
               {theme === 'dark' ? <Sun size={15} style={{ color: 'var(--yellow-neon)' }} /> : <Moon size={15} style={{ color: 'var(--purple-neon)' }} />}
             </button>
             {user && (
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                {/* DSA Playground navigation pill */}
-                <button
-                  onClick={() => setAppState(appState === 'DSA_PLAYGROUND' ? 'HUB' : 'DSA_PLAYGROUND')}
-                  style={{
-                    background: appState === 'DSA_PLAYGROUND' ? 'rgba(0, 242, 254, 0.15)' : 'rgba(255, 255, 255, 0.03)',
-                    border: '1px solid rgba(0, 242, 254, 0.3)',
-                    borderRadius: '10px',
-                    padding: '6px 14px',
-                    color: 'var(--cyan-neon)',
-                    fontFamily: 'var(--font-mono)',
-                    fontSize: '0.72rem',
-                    fontWeight: 'bold',
-                    cursor: 'pointer',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '6px',
-                    boxShadow: appState === 'DSA_PLAYGROUND' ? '0 0 10px rgba(0, 242, 254, 0.3)' : 'none',
-                    transition: 'all 0.2s'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.background = 'rgba(0, 242, 254, 0.1)';
-                    e.currentTarget.style.boxShadow = '0 0 12px rgba(0, 242, 254, 0.5)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.background = appState === 'DSA_PLAYGROUND' ? 'rgba(0, 242, 254, 0.15)' : 'rgba(255, 255, 255, 0.03)';
-                    e.currentTarget.style.boxShadow = appState === 'DSA_PLAYGROUND' ? '0 0 10px rgba(0, 242, 254, 0.3)' : 'none';
-                  }}
-                >
-                  <Code size={13} />
-                  {appState === 'DSA_PLAYGROUND' ? 'EXIT PLAYGROUND' : 'DSA PLAYGROUND'}
-                </button>
+              <>
+                {/* Desktop Horizontal Navigation */}
+                <div className="responsive-header-desktop-buttons">
+                  {/* DSA Playground navigation pill */}
+                  <button
+                    onClick={() => setAppState(appState === 'DSA_PLAYGROUND' ? 'HUB' : 'DSA_PLAYGROUND')}
+                    style={{
+                      background: appState === 'DSA_PLAYGROUND' ? 'rgba(0, 242, 254, 0.15)' : 'rgba(255, 255, 255, 0.03)',
+                      border: '1px solid rgba(0, 242, 254, 0.3)',
+                      borderRadius: '10px',
+                      padding: '6px 14px',
+                      color: 'var(--cyan-neon)',
+                      fontFamily: 'var(--font-mono)',
+                      fontSize: '0.72rem',
+                      fontWeight: 'bold',
+                      cursor: 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '6px',
+                      boxShadow: appState === 'DSA_PLAYGROUND' ? '0 0 10px rgba(0, 242, 254, 0.3)' : 'none',
+                      transition: 'all 0.2s'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = 'rgba(0, 242, 254, 0.1)';
+                      e.currentTarget.style.boxShadow = '0 0 12px rgba(0, 242, 254, 0.5)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = appState === 'DSA_PLAYGROUND' ? 'rgba(0, 242, 254, 0.15)' : 'rgba(255, 255, 255, 0.03)';
+                      e.currentTarget.style.boxShadow = appState === 'DSA_PLAYGROUND' ? '0 0 10px rgba(0, 242, 254, 0.3)' : 'none';
+                    }}
+                  >
+                    <Code size={13} />
+                    {appState === 'DSA_PLAYGROUND' ? 'EXIT PLAYGROUND' : 'DSA PLAYGROUND'}
+                  </button>
 
-                {/* SQL Playground navigation pill */}
-                <button
-                  onClick={() => setAppState(appState === 'SQL_PLAYGROUND' ? 'HUB' : 'SQL_PLAYGROUND')}
-                  style={{
-                    background: appState === 'SQL_PLAYGROUND' ? 'rgba(139, 92, 246, 0.15)' : 'rgba(255, 255, 255, 0.03)',
-                    border: '1px solid rgba(139, 92, 246, 0.3)',
-                    borderRadius: '10px',
-                    padding: '6px 14px',
-                    color: 'var(--purple-neon)',
-                    fontFamily: 'var(--font-mono)',
-                    fontSize: '0.72rem',
-                    fontWeight: 'bold',
-                    cursor: 'pointer',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '6px',
-                    boxShadow: appState === 'SQL_PLAYGROUND' ? '0 0 10px rgba(139, 92, 246, 0.3)' : 'none',
-                    transition: 'all 0.2s'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.background = 'rgba(139, 92, 246, 0.1)';
-                    e.currentTarget.style.boxShadow = '0 0 12px rgba(139, 92, 246, 0.5)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.background = appState === 'SQL_PLAYGROUND' ? 'rgba(139, 92, 246, 0.15)' : 'rgba(255, 255, 255, 0.03)';
-                    e.currentTarget.style.boxShadow = appState === 'SQL_PLAYGROUND' ? '0 0 10px rgba(139, 92, 246, 0.3)' : 'none';
-                  }}
-                >
-                  <Database size={13} />
-                  {appState === 'SQL_PLAYGROUND' ? 'EXIT PLAYGROUND' : 'SQL PLAYGROUND'}
-                </button>
+                  {/* SQL Playground navigation pill */}
+                  <button
+                    onClick={() => setAppState(appState === 'SQL_PLAYGROUND' ? 'HUB' : 'SQL_PLAYGROUND')}
+                    style={{
+                      background: appState === 'SQL_PLAYGROUND' ? 'rgba(139, 92, 246, 0.15)' : 'rgba(255, 255, 255, 0.03)',
+                      border: '1px solid rgba(139, 92, 246, 0.3)',
+                      borderRadius: '10px',
+                      padding: '6px 14px',
+                      color: 'var(--purple-neon)',
+                      fontFamily: 'var(--font-mono)',
+                      fontSize: '0.72rem',
+                      fontWeight: 'bold',
+                      cursor: 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '6px',
+                      boxShadow: appState === 'SQL_PLAYGROUND' ? '0 0 10px rgba(139, 92, 246, 0.3)' : 'none',
+                      transition: 'all 0.2s'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = 'rgba(139, 92, 246, 0.1)';
+                      e.currentTarget.style.boxShadow = '0 0 12px rgba(139, 92, 246, 0.5)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = appState === 'SQL_PLAYGROUND' ? 'rgba(139, 92, 246, 0.15)' : 'rgba(255, 255, 255, 0.03)';
+                      e.currentTarget.style.boxShadow = appState === 'SQL_PLAYGROUND' ? '0 0 10px rgba(139, 92, 246, 0.3)' : 'none';
+                    }}
+                  >
+                    <Database size={13} />
+                    {appState === 'SQL_PLAYGROUND' ? 'EXIT PLAYGROUND' : 'SQL PLAYGROUND'}
+                  </button>
 
-                {/* Networks Prep navigation pill */}
-                <button
-                  onClick={() => setAppState(appState === 'NETWORKS_THEORY' ? 'HUB' : 'NETWORKS_THEORY')}
-                  style={{
-                    background: appState === 'NETWORKS_THEORY' ? 'rgba(245, 158, 11, 0.15)' : 'rgba(255, 255, 255, 0.03)',
-                    border: '1px solid rgba(245, 158, 11, 0.3)',
-                    borderRadius: '10px',
-                    padding: '6px 14px',
-                    color: 'var(--yellow-neon)',
-                    fontFamily: 'var(--font-mono)',
-                    fontSize: '0.72rem',
-                    fontWeight: 'bold',
-                    cursor: 'pointer',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '6px',
-                    boxShadow: appState === 'NETWORKS_THEORY' ? '0 0 10px rgba(245, 158, 11, 0.3)' : 'none',
-                    transition: 'all 0.2s'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.background = 'rgba(245, 158, 11, 0.1)';
-                    e.currentTarget.style.boxShadow = '0 0 12px rgba(245, 158, 11, 0.5)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.background = appState === 'NETWORKS_THEORY' ? 'rgba(245, 158, 11, 0.15)' : 'rgba(255, 255, 255, 0.03)';
-                    e.currentTarget.style.boxShadow = appState === 'NETWORKS_THEORY' ? '0 0 10px rgba(245, 158, 11, 0.3)' : 'none';
-                  }}
-                >
-                  <Globe size={13} />
-                  {appState === 'NETWORKS_THEORY' ? 'EXIT PLAYGROUND' : 'NETWORKS PREP'}
-                </button>
+                  {/* Networks Prep navigation pill */}
+                  <button
+                    onClick={() => setAppState(appState === 'NETWORKS_THEORY' ? 'HUB' : 'NETWORKS_THEORY')}
+                    style={{
+                      background: appState === 'NETWORKS_THEORY' ? 'rgba(245, 158, 11, 0.15)' : 'rgba(255, 255, 255, 0.03)',
+                      border: '1px solid rgba(245, 158, 11, 0.3)',
+                      borderRadius: '10px',
+                      padding: '6px 14px',
+                      color: 'var(--yellow-neon)',
+                      fontFamily: 'var(--font-mono)',
+                      fontSize: '0.72rem',
+                      fontWeight: 'bold',
+                      cursor: 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '6px',
+                      boxShadow: appState === 'NETWORKS_THEORY' ? '0 0 10px rgba(245, 158, 11, 0.3)' : 'none',
+                      transition: 'all 0.2s'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = 'rgba(245, 158, 11, 0.1)';
+                      e.currentTarget.style.boxShadow = '0 0 12px rgba(245, 158, 11, 0.5)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = appState === 'NETWORKS_THEORY' ? 'rgba(245, 158, 11, 0.15)' : 'rgba(255, 255, 255, 0.03)';
+                      e.currentTarget.style.boxShadow = appState === 'NETWORKS_THEORY' ? '0 0 10px rgba(245, 158, 11, 0.3)' : 'none';
+                    }}
+                  >
+                    <Globe size={13} />
+                    {appState === 'NETWORKS_THEORY' ? 'EXIT PLAYGROUND' : 'NETWORKS PREP'}
+                  </button>
 
-                {/* Relax Zone navigation pill */}
-                <button
-                  onClick={() => setAppState(appState === 'RELAX_ZONE' ? 'HUB' : 'RELAX_ZONE')}
-                  style={{
-                    background: appState === 'RELAX_ZONE' ? 'rgba(16, 185, 129, 0.15)' : 'rgba(255, 255, 255, 0.03)',
-                    border: '1px solid rgba(16, 185, 129, 0.3)',
-                    borderRadius: '10px',
-                    padding: '6px 14px',
-                    color: 'var(--emerald-neon)',
-                    fontFamily: 'var(--font-mono)',
-                    fontSize: '0.72rem',
-                    fontWeight: 'bold',
-                    cursor: 'pointer',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '6px',
-                    boxShadow: appState === 'RELAX_ZONE' ? '0 0 10px rgba(16, 185, 129, 0.3)' : 'none',
-                    transition: 'all 0.2s'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.background = 'rgba(16, 185, 129, 0.1)';
-                    e.currentTarget.style.boxShadow = '0 0 12px rgba(16, 185, 129, 0.5)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.background = appState === 'RELAX_ZONE' ? 'rgba(16, 185, 129, 0.15)' : 'rgba(255, 255, 255, 0.03)';
-                    e.currentTarget.style.boxShadow = appState === 'RELAX_ZONE' ? '0 0 10px rgba(16, 185, 129, 0.3)' : 'none';
-                  }}
-                >
-                  <Sparkles size={13} />
-                  {appState === 'RELAX_ZONE' ? 'EXIT ARCADE' : 'RELAX ARCADE'}
-                </button>
+                  {/* Relax Zone navigation pill */}
+                  <button
+                    onClick={() => setAppState(appState === 'RELAX_ZONE' ? 'HUB' : 'RELAX_ZONE')}
+                    style={{
+                      background: appState === 'RELAX_ZONE' ? 'rgba(16, 185, 129, 0.15)' : 'rgba(255, 255, 255, 0.03)',
+                      border: '1px solid rgba(16, 185, 129, 0.3)',
+                      borderRadius: '10px',
+                      padding: '6px 14px',
+                      color: 'var(--emerald-neon)',
+                      fontFamily: 'var(--font-mono)',
+                      fontSize: '0.72rem',
+                      fontWeight: 'bold',
+                      cursor: 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '6px',
+                      boxShadow: appState === 'RELAX_ZONE' ? '0 0 10px rgba(16, 185, 129, 0.3)' : 'none',
+                      transition: 'all 0.2s'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = 'rgba(16, 185, 129, 0.1)';
+                      e.currentTarget.style.boxShadow = '0 0 12px rgba(16, 185, 129, 0.5)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = appState === 'RELAX_ZONE' ? 'rgba(16, 185, 129, 0.15)' : 'rgba(255, 255, 255, 0.03)';
+                      e.currentTarget.style.boxShadow = appState === 'RELAX_ZONE' ? '0 0 10px rgba(16, 185, 129, 0.3)' : 'none';
+                    }}
+                  >
+                    <Sparkles size={13} />
+                    {appState === 'RELAX_ZONE' ? 'EXIT ARCADE' : 'RELAX ARCADE'}
+                  </button>
 
-                {/* Glowing Profile Avatar pill */}
-                <div 
-                  onClick={() => setAppState('PROFILE')}
-                  style={{
-                    width: '32px',
-                    height: '32px',
-                    borderRadius: '50%',
-                    background: 'var(--purple-neon)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    cursor: 'pointer',
-                    fontWeight: '700',
-                    fontFamily: 'var(--font-mono)',
-                    fontSize: '0.85rem',
-                    color: '#ffffff',
-                    boxShadow: '0 0 10px rgba(139, 92, 246, 0.4)',
-                    transition: 'all 0.2s'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.transform = 'translateY(-1px)';
-                    e.currentTarget.style.boxShadow = '0 0 14px rgba(139, 92, 246, 0.6)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.transform = 'none';
-                    e.currentTarget.style.boxShadow = '0 0 10px rgba(139, 92, 246, 0.4)';
-                  }}
-                >
-                  {user.charAt(0).toUpperCase()}
+                  {/* Glowing Profile Avatar pill */}
+                  <div
+                    onClick={() => setAppState('PROFILE')}
+                    style={{
+                      width: '32px',
+                      height: '32px',
+                      borderRadius: '50%',
+                      background: 'var(--purple-neon)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      cursor: 'pointer',
+                      fontWeight: '700',
+                      fontFamily: 'var(--font-mono)',
+                      fontSize: '0.85rem',
+                      color: '#ffffff',
+                      boxShadow: '0 0 10px rgba(139, 92, 246, 0.4)',
+                      transition: 'all 0.2s'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = 'translateY(-1px)';
+                      e.currentTarget.style.boxShadow = '0 0 14px rgba(139, 92, 246, 0.6)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = 'none';
+                      e.currentTarget.style.boxShadow = '0 0 10px rgba(139, 92, 246, 0.4)';
+                    }}
+                  >
+                    {user.charAt(0).toUpperCase()}
+                  </div>
+
+                  {/* Glowing Cyber Logout Button */}
+                  <button
+                    onClick={() => {
+                      setShowLogoutConfirm(true);
+                    }}
+                    style={{
+                      background: 'rgba(236, 72, 153, 0.08)',
+                      border: '1px solid rgba(236, 72, 153, 0.2)',
+                      borderRadius: '10px',
+                      padding: '6px 12px',
+                      color: 'var(--pink-neon)',
+                      fontFamily: 'var(--font-mono)',
+                      fontSize: '0.72rem',
+                      fontWeight: '600',
+                      cursor: 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '6px',
+                      transition: 'all 0.2s'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = 'var(--pink-neon)';
+                      e.currentTarget.style.color = '#ffffff';
+                      e.currentTarget.style.boxShadow = '0 0 10px rgba(236, 72, 153, 0.4)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = 'rgba(236, 72, 153, 0.08)';
+                      e.currentTarget.style.color = 'var(--pink-neon)';
+                      e.currentTarget.style.boxShadow = 'none';
+                    }}
+                  >
+                    <LogOut size={11} />
+                    DISCONNECT
+                  </button>
                 </div>
 
-                {/* Glowing Cyber Logout Button */}
-                <button 
-                  onClick={() => {
-                    setShowLogoutConfirm(true);
-                  }}
-                  style={{
-                    background: 'rgba(236, 72, 153, 0.08)',
-                    border: '1px solid rgba(236, 72, 153, 0.2)',
-                    borderRadius: '10px',
-                    padding: '6px 12px',
-                    color: 'var(--pink-neon)',
-                    fontFamily: 'var(--font-mono)',
-                    fontSize: '0.72rem',
-                    fontWeight: '600',
-                    cursor: 'pointer',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '6px',
-                    transition: 'all 0.2s'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.background = 'var(--pink-neon)';
-                    e.currentTarget.style.color = '#ffffff';
-                    e.currentTarget.style.boxShadow = '0 0 10px rgba(236, 72, 153, 0.4)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.background = 'rgba(236, 72, 153, 0.08)';
-                    e.currentTarget.style.color = 'var(--pink-neon)';
-                    e.currentTarget.style.boxShadow = 'none';
-                  }}
+                {/* Mobile View Pill Toggle Button */}
+                <button
+                  onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                  className="responsive-header-mobile-trigger"
                 >
-                  <LogOut size={11} />
-                  DISCONNECT
+                  Menu
                 </button>
-              </div>
+
+                {/* Mobile Navigation Dropdown Box */}
+                {mobileMenuOpen && (
+                  <div className="responsive-header-mobile-dropdown glass-panel float-animation">
+                    <button
+                      className={`responsive-header-dropdown-item ${appState === 'DSA_PLAYGROUND' ? 'active' : ''}`}
+                      onClick={() => {
+                        setAppState(appState === 'DSA_PLAYGROUND' ? 'HUB' : 'DSA_PLAYGROUND');
+                        setMobileMenuOpen(false);
+                      }}
+                    >
+                      <Code size={13} style={{ color: 'var(--cyan-neon)' }} />
+                      DSA PLAYGROUND
+                    </button>
+
+                    <button
+                      className={`responsive-header-dropdown-item ${appState === 'SQL_PLAYGROUND' ? 'active' : ''}`}
+                      onClick={() => {
+                        setAppState(appState === 'SQL_PLAYGROUND' ? 'HUB' : 'SQL_PLAYGROUND');
+                        setMobileMenuOpen(false);
+                      }}
+                    >
+                      <Database size={13} style={{ color: 'var(--purple-neon)' }} />
+                      SQL PLAYGROUND
+                    </button>
+
+                    <button
+                      className={`responsive-header-dropdown-item ${appState === 'NETWORKS_THEORY' ? 'active' : ''}`}
+                      onClick={() => {
+                        setAppState(appState === 'NETWORKS_THEORY' ? 'HUB' : 'NETWORKS_THEORY');
+                        setMobileMenuOpen(false);
+                      }}
+                    >
+                      <Globe size={13} style={{ color: 'var(--yellow-neon)' }} />
+                      NETWORKS PREP
+                    </button>
+
+                    <button
+                      className={`responsive-header-dropdown-item ${appState === 'RELAX_ZONE' ? 'active' : ''}`}
+                      onClick={() => {
+                        setAppState(appState === 'RELAX_ZONE' ? 'HUB' : 'RELAX_ZONE');
+                        setMobileMenuOpen(false);
+                      }}
+                    >
+                      <Sparkles size={13} style={{ color: 'var(--emerald-neon)' }} />
+                      RELAX ARCADE
+                    </button>
+
+                    <div style={{ height: '1px', background: 'rgba(255, 255, 255, 0.08)', margin: '4px 0' }} />
+
+                    {/* Profile setting card in dropdown */}
+                    <div 
+                      className={`responsive-header-dropdown-profile ${appState === 'PROFILE' ? 'active' : ''}`}
+                      onClick={() => {
+                        setAppState('PROFILE');
+                        setMobileMenuOpen(false);
+                      }}
+                    >
+                      <div style={{
+                        width: '24px',
+                        height: '24px',
+                        borderRadius: '50%',
+                        background: 'var(--purple-neon)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        fontWeight: '700',
+                        fontFamily: 'var(--font-mono)',
+                        fontSize: '0.65rem',
+                        color: '#ffffff',
+                        boxShadow: '0 0 6px rgba(139, 92, 246, 0.4)'
+                      }}>
+                        {user.charAt(0).toUpperCase()}
+                      </div>
+                      <span style={{ color: 'var(--text-primary)', fontFamily: 'var(--font-mono)', fontSize: '0.72rem', fontWeight: '700' }}>
+                        PROFILE SETTINGS
+                      </span>
+                    </div>
+
+                    <div style={{ height: '1px', background: 'rgba(255, 255, 255, 0.08)', margin: '4px 0' }} />
+
+                    {/* Disconnect/Logout button */}
+                    <button
+                      className="responsive-header-dropdown-logout"
+                      onClick={() => {
+                        setShowLogoutConfirm(true);
+                        setMobileMenuOpen(false);
+                      }}
+                    >
+                      <LogOut size={12} />
+                      DISCONNECT SESSION
+                    </button>
+                  </div>
+                )}
+              </>
             )}
           </div>
         </header>
@@ -543,14 +649,14 @@ export default function App() {
                 </span>
               </div>
 
-              <h2 style={{ fontFamily: 'var(--font-sans)', fontSize: '2.8rem', fontWeight: '900', color: 'var(--text-primary)', letterSpacing: '-1px', lineHeight: '1.1', marginBottom: '15px' }}>
+              <h2 className="hero-heading" style={{ fontFamily: 'var(--font-sans)', fontSize: '2.8rem', fontWeight: '900', color: 'var(--text-primary)', letterSpacing: '-1px', lineHeight: '1.1', marginBottom: '15px' }}>
                 Perfect Your Interviews Through <br />
                 <span style={{ background: 'linear-gradient(90deg, var(--cyan-neon), var(--purple-neon))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }} className="text-glow-cyan">
                   Immersive Voice Fields
                 </span>
               </h2>
 
-              <p style={{ color: 'var(--text-secondary)', maxWidth: '600px', margin: '0 auto 30px auto', fontSize: '1.05rem', lineHeight: '1.6' }}>
+              <p className="hero-sub" style={{ color: 'var(--text-secondary)', maxWidth: '600px', margin: '0 auto 30px auto', fontSize: '1.05rem', lineHeight: '1.6' }}>
                 Hemz AI is a vocal training chamber that scans your professional resume, synthesizes custom technical/HR prompts, transcribes your spoken answers, and delivers complete diagnostic grades.
               </p>
 
@@ -588,7 +694,7 @@ export default function App() {
             </div>
 
             {/* Quick Metrics Panel */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '25px' }}>
+            <div className="responsive-metrics-grid">
               <div className="glass-panel" style={{ padding: '25px', display: 'flex', alignItems: 'center', gap: '20px' }}>
                 <div style={{ padding: '12px', borderRadius: '10px', background: 'rgba(0, 242, 254, 0.08)', border: '1px solid rgba(0, 242, 254, 0.15)', color: 'var(--cyan-neon)' }}>
                   <BarChart3 size={24} />

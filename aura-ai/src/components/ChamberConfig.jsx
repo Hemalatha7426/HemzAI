@@ -173,7 +173,7 @@ export default function ChamberConfig({ parsedData, onConfigComplete, onBack }) 
           <label style={{ display: 'block', fontSize: '0.75rem', color: 'var(--text-secondary)', letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '12px', fontFamily: 'var(--font-mono)' }}>
             Select Sector Track
           </label>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '20px' }}>
+          <div className="responsive-metrics-grid">
             {tracks.map(t => {
               const Icon = t.icon;
               const isSelected = track === t.id;
@@ -223,7 +223,7 @@ export default function ChamberConfig({ parsedData, onConfigComplete, onBack }) 
           <label style={{ display: 'block', fontSize: '0.75rem', color: 'var(--text-secondary)', letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '12px', fontFamily: 'var(--font-mono)' }}>
             Operational Mode
           </label>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+          <div className="responsive-split-container">
             <div 
               onClick={() => setMode('Mock')}
               style={{

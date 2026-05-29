@@ -317,7 +317,7 @@ export default function RelaxZone({ onBack }) {
       `}</style>
 
       {/* Glass header section */}
-      <div className="glass-panel" style={{ padding: '20px 30px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'var(--panel-bg)' }}>
+      <div className="responsive-relax-header">
         <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
           <button 
             onClick={onBack}
@@ -389,7 +389,7 @@ export default function RelaxZone({ onBack }) {
       </div>
 
       {/* Tab select bar */}
-      <div style={{ display: 'flex', gap: '15px', justifyContent: 'center' }}>
+      <div className="responsive-relax-tabs">
         <button 
           className={`relax-tab-btn ${activeTab === 'BREATH' ? 'active' : ''}`}
           onClick={() => { synth.stopChord(); setActiveTab('BREATH'); }}
@@ -612,8 +612,10 @@ function BubblePopper() {
   const handleCanvasClick = (e) => {
     if (!canvasRef.current) return;
     const rect = canvasRef.current.getBoundingClientRect();
-    const mouseX = e.clientX - rect.left;
-    const mouseY = e.clientY - rect.top;
+    const scaleX = CANVAS_WIDTH / rect.width;
+    const scaleY = CANVAS_HEIGHT / rect.height;
+    const mouseX = (e.clientX - rect.left) * scaleX;
+    const mouseY = (e.clientY - rect.top) * scaleY;
 
     let hit = false;
     // Iterate backwards to pop bubbles rendered on top

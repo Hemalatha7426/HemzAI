@@ -2236,13 +2236,7 @@ export default function SqlPlayground({ onBack }) {
       </div>
 
       {/* Main Content Area */}
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: '300px 1fr',
-        gap: '20px',
-        width: '100%',
-        alignItems: 'stretch'
-      }}>
+      <div className="responsive-sidebar-grid">
         
         {/* LEFT COLUMN: Collapsible problem directories */}
         <div className="glass-panel" style={{
@@ -2376,12 +2370,7 @@ export default function SqlPlayground({ onBack }) {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', width: '100%' }}>
           
           {/* Top Workspace Grid: Specs Sheet + Code Editor */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gap: '20px',
-            alignItems: 'stretch'
-          }}>
+          <div className="responsive-split-workspace">
             
             {/* LEFT SPECIFICATIONS PANEL */}
             <div className="glass-panel" style={{

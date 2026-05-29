@@ -109,10 +109,10 @@ export default function UserProfile({ parsedData, history, onBack, onViewPastSes
   ];
 
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '1fr 2.1fr', gap: '30px', maxWidth: '980px', width: '100%', margin: '0 auto', zIndex: 1 }}>
+    <div className="responsive-profile-grid">
       
       {/* LEFT COLUMN - USER IDENTITY CARD & VOCAL CONFIG */}
-      <div className="glass-panel dot-grid" style={{ padding: '35px 25px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '22px', height: 'fit-content' }}>
+      <div className="glass-panel dot-grid responsive-profile-left">
         
         {/* Profile Header */}
         <h4 style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', color: 'var(--ink-dark)', letterSpacing: '1.5px', textTransform: 'uppercase', borderBottom: '3px dashed var(--ink-dark)', paddingBottom: '10px', width: '100%', textAlign: 'center' }}>
@@ -285,7 +285,7 @@ export default function UserProfile({ parsedData, history, onBack, onViewPastSes
       </div>
 
       {/* RIGHT COLUMN - DETAILED SUB-TABS & MASTER DATA */}
-      <div className="glass-panel dot-grid" style={{ padding: '35px', display: 'flex', flexDirection: 'column', gap: '25px' }}>
+      <div className="glass-panel dot-grid responsive-profile-right">
         
         {/* Navigation back and title header */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -327,7 +327,7 @@ export default function UserProfile({ parsedData, history, onBack, onViewPastSes
         </div>
 
         {/* Tab Buttons (Mastery Stats, Decoded Resume, Timeline Logs) */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '10px' }}>
+        <div className="responsive-profile-tabs">
           <button
             onClick={() => setActiveSubTab('MASTERY')}
             style={{
@@ -390,7 +390,7 @@ export default function UserProfile({ parsedData, history, onBack, onViewPastSes
           {/* TAB 1: MASTERY PROGRESS METRICS */}
           {activeSubTab === 'MASTERY' && (
             <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px' }}>
+              <div className="responsive-two-col">
                 {profileMetrics.map((met, idx) => {
                   const Icon = met.icon;
                   return (
@@ -440,7 +440,7 @@ export default function UserProfile({ parsedData, history, onBack, onViewPastSes
                   <FileText size={14} /> Scanned Resume Details
                 </h4>
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px', fontSize: '0.82rem' }}>
+                <div className="responsive-two-col" style={{ fontSize: '0.82rem' }}>
                   <div>
                     <span style={{ color: 'var(--text-muted)', fontSize: '0.65rem', fontFamily: 'var(--font-mono)' }}>NAME ON RECORDS:</span>
                     <p style={{ fontWeight: 'bold', color: 'var(--ink-dark)', fontSize: '0.9rem', marginTop: '2px' }}>{candidateName}</p>

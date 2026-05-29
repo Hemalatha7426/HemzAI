@@ -458,35 +458,13 @@ ${gaps}
   }
 
   return (
-    <div style={{
-      display: hideFeedback ? 'flex' : 'grid',
-      gridTemplateColumns: hideFeedback ? '1fr' : '1fr 2fr',
-      gap: '30px',
-      maxWidth: hideFeedback ? '450px' : '1080px',
-      width: '100%',
-      margin: '0 auto',
-      zIndex: 1,
-      position: 'relative',
-      justifyContent: 'center'
-    }}>
+    <div className={`responsive-diagnostic-grid ${hideFeedback ? 'feedback-hidden' : ''}`}>
       
       {/* LEFT COLUMN - Evaluation Stats Summary Sidebar */}
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
         
         {/* "Well Done 🚀" Sidebar Card */}
-        <div className="glass-panel dot-grid" style={{
-          padding: '35px 25px',
-          textAlign: 'center',
-          width: '100%',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: '20px',
-          background: 'rgba(17, 24, 39, 0.65)',
-          border: '1px solid rgba(255, 255, 255, 0.08)',
-          boxShadow: '0 12px 30px rgba(0, 0, 0, 0.25)',
-          borderRadius: '16px'
-        }}>
+        <div className="glass-panel dot-grid responsive-diagnostic-left-card">
           {/* Celebrating Cartoon success child illustration in glowing circle badge */}
           <div style={{ 
             border: '1px solid rgba(255, 255, 255, 0.1)',
@@ -600,16 +578,7 @@ ${gaps}
 
       {/* RIGHT COLUMN - Question & Answer Diagnostics Feed */}
       {!hideFeedback && (
-        <div className="glass-panel dot-grid" style={{ 
-          padding: '40px', 
-          display: 'flex', 
-          flexDirection: 'column', 
-          gap: '30px', 
-          background: 'rgba(17, 24, 39, 0.65)',
-          border: '1px solid rgba(255, 255, 255, 0.08)',
-          boxShadow: '0 12px 30px rgba(0, 0, 0, 0.25)',
-          borderRadius: '16px'
-        }}>
+        <div className="glass-panel dot-grid responsive-diagnostic-right">
           
           {/* Header section with rating tag */}
           <div style={{ 
@@ -656,7 +625,7 @@ ${gaps}
 
           {/* Three Takeaway Critique Cards with light yellow borders */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px' }}>
+            <div className="responsive-two-col">
               <div style={{ 
                 background: 'rgba(245, 158, 11, 0.04)', 
                 border: '1px solid rgba(245, 158, 11, 0.12)', 
