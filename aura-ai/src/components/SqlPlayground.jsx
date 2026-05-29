@@ -2267,16 +2267,18 @@ export default function SqlPlayground({ onBack }) {
               onChange={(e) => setSearchQuery(e.target.value)}
               style={{
                 width: '100%',
-                background: 'rgba(5, 8, 20, 0.65)',
-                border: '1px solid rgba(255,255,255,0.08)',
+                background: 'var(--input-bg)',
+                border: 'var(--glass-border)',
                 borderRadius: '8px',
                 padding: '8px 12px 8px 34px',
                 fontSize: '0.74rem',
-                color: '#fff',
+                color: 'var(--text-primary)',
                 fontFamily: 'var(--font-sans)',
                 outline: 'none',
                 transition: 'all 0.3s'
               }}
+              onFocus={(e) => e.target.style.borderColor = 'var(--cyan-neon)'}
+              onBlur={(e) => e.target.style.borderColor = 'var(--glass-border)'}
             />
           </div>
 
@@ -2292,7 +2294,7 @@ export default function SqlPlayground({ onBack }) {
                   <button 
                     onClick={() => setActiveCategory(isOpen ? "" : category)}
                     style={{
-                      background: isOpen ? 'rgba(6, 182, 212, 0.05)' : 'transparent',
+                      background: isOpen ? 'rgba(6, 182, 212, 0.08)' : 'transparent',
                       border: 'none',
                       borderRadius: '8px',
                       padding: '10px 12px',
@@ -2301,7 +2303,7 @@ export default function SqlPlayground({ onBack }) {
                       alignItems: 'center',
                       cursor: 'pointer',
                       textAlign: 'left',
-                      color: isOpen ? '#fff' : 'var(--text-secondary)',
+                      color: isOpen ? 'var(--cyan-neon)' : 'var(--text-secondary)',
                       transition: 'all 0.2s'
                     }}
                   >
@@ -2329,19 +2331,19 @@ export default function SqlPlayground({ onBack }) {
                               display: 'flex',
                               alignItems: 'center',
                               justifyContent: 'space-between',
-                              background: isCurrent ? 'rgba(0, 242, 254, 0.08)' : 'transparent',
-                              border: isCurrent ? '1px solid rgba(0, 242, 254, 0.2)' : '1px solid transparent',
+                              background: isCurrent ? 'rgba(6, 182, 212, 0.08)' : 'transparent',
+                              border: isCurrent ? '1px solid rgba(6, 182, 212, 0.25)' : '1px solid transparent',
                               transition: 'all 0.2s'
                             }}
                             onMouseEnter={(e) => {
-                              if (!isCurrent) e.currentTarget.style.background = 'rgba(255, 255, 255, 0.02)';
+                              if (!isCurrent) e.currentTarget.style.background = 'var(--input-bg)';
                             }}
                             onMouseLeave={(e) => {
                               if (!isCurrent) e.currentTarget.style.background = 'transparent';
                             }}
                           >
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '2px', textAlign: 'left' }}>
-                              <span style={{ fontSize: '0.74rem', fontWeight: 'bold', color: isCurrent ? '#fff' : 'var(--text-primary)' }}>
+                              <span style={{ fontSize: '0.74rem', fontWeight: 'bold', color: isCurrent ? 'var(--cyan-neon)' : 'var(--text-primary)' }}>
                                 {p.id}. {p.title}
                               </span>
                               <span style={{ fontSize: '0.58rem', fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>
@@ -2353,7 +2355,7 @@ export default function SqlPlayground({ onBack }) {
                               onClick={(e) => toggleSolved(p.id, e)}
                               style={{
                                 background: 'none', border: 'none', cursor: 'pointer', padding: '2px',
-                                color: isSolved ? 'var(--emerald-neon)' : 'rgba(255, 255, 255, 0.12)'
+                                color: isSolved ? 'var(--emerald-neon)' : 'var(--text-muted)'
                               }}
                             >
                               <CheckCircle size={13} fill={isSolved ? 'rgba(16, 185, 129, 0.1)' : 'none'} />
@@ -2415,20 +2417,20 @@ export default function SqlPlayground({ onBack }) {
                   }}>
                     {selectedProblem.difficulty}
                   </span>
-                  <span style={{ fontSize: '0.64rem', padding: '2px 8px', borderRadius: '12px', background: 'rgba(255, 255, 255, 0.03)', border: '1px solid rgba(255, 255, 255, 0.08)', color: 'var(--text-secondary)', fontWeight: '600' }}>
+                  <span style={{ fontSize: '0.64rem', padding: '2px 8px', borderRadius: '12px', background: 'var(--input-bg)', border: 'var(--glass-border)', color: 'var(--text-secondary)', fontWeight: '600' }}>
                     CONCEPT: {selectedProblem.concept}
                   </span>
                 </div>
               </div>
 
               {/* Spec Selection Tab Switch */}
-              <div style={{ display: 'flex', borderBottom: '1px solid rgba(255,255,255,0.06)', gap: '10px', marginTop: '5px' }}>
+              <div style={{ display: 'flex', borderBottom: 'var(--glass-border)', gap: '10px', marginTop: '5px' }}>
                 <button 
                   onClick={() => setActiveWorkspaceTab("description")}
                   style={{
                     background: 'none', border: 'none', 
                     borderBottom: activeWorkspaceTab === 'description' ? '2.5px solid var(--cyan-neon)' : '2.5px solid transparent',
-                    color: activeWorkspaceTab === 'description' ? '#fff' : 'var(--text-secondary)',
+                    color: activeWorkspaceTab === 'description' ? 'var(--text-primary)' : 'var(--text-secondary)',
                     padding: '8px 16px', fontSize: '0.78rem', fontWeight: '800', cursor: 'pointer', outline: 'none'
                   }}
                 >
@@ -2439,7 +2441,7 @@ export default function SqlPlayground({ onBack }) {
                   style={{
                     background: 'none', border: 'none', 
                     borderBottom: activeWorkspaceTab === 'schema' ? '2.5px solid var(--purple-neon)' : '2.5px solid transparent',
-                    color: activeWorkspaceTab === 'schema' ? '#fff' : 'var(--text-secondary)',
+                    color: activeWorkspaceTab === 'schema' ? 'var(--text-primary)' : 'var(--text-secondary)',
                     padding: '8px 16px', fontSize: '0.78rem', fontWeight: '800', cursor: 'pointer', outline: 'none'
                   }}
                 >
@@ -2450,7 +2452,7 @@ export default function SqlPlayground({ onBack }) {
                   style={{
                     background: 'none', border: 'none', 
                     borderBottom: activeWorkspaceTab === 'solutions' ? '2.5px solid var(--pink-neon)' : '2.5px solid transparent',
-                    color: activeWorkspaceTab === 'solutions' ? '#fff' : 'var(--text-secondary)',
+                    color: activeWorkspaceTab === 'solutions' ? 'var(--text-primary)' : 'var(--text-secondary)',
                     padding: '8px 16px', fontSize: '0.78rem', fontWeight: '800', cursor: 'pointer', outline: 'none'
                   }}
                 >
@@ -2469,9 +2471,9 @@ export default function SqlPlayground({ onBack }) {
 
               {activeWorkspaceTab === 'schema' && (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
-                  
+
                   {/* Select Table Tab */}
-                  <div style={{ display: 'flex', gap: '8px', background: 'rgba(5, 8, 20, 0.45)', border: '1px solid rgba(255,255,255,0.06)', padding: '4px', borderRadius: '8px', width: 'fit-content' }}>
+                  <div style={{ display: 'flex', gap: '8px', background: 'var(--input-bg)', border: 'var(--glass-border)', padding: '4px', borderRadius: '8px', width: 'fit-content' }}>
                     {Object.keys(selectedProblem.mockData || {}).map(tableName => (
                       <button
                         key={tableName}
@@ -2502,7 +2504,7 @@ export default function SqlPlayground({ onBack }) {
                         <span style={{ fontSize: '0.62rem', fontFamily: 'var(--font-mono)', color: 'var(--purple-neon)', fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: '4px', marginBottom: '8px' }}>
                           <Columns size={10} /> SCHEMA COLUMNS
                         </span>
-                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', background: '#050814', border: '1px solid rgba(255,255,255,0.06)', padding: '10px 14px', borderRadius: '8px' }}>
+                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', background: 'var(--input-bg)', border: 'var(--glass-border)', padding: '10px 14px', borderRadius: '8px' }}>
                           {(selectedProblem.schema[activeTableTab] || []).map(col => (
                             <div key={col.name} style={{ fontSize: '0.74rem', fontFamily: 'var(--font-mono)', color: 'var(--text-primary)' }}>
                               <strong style={{ color: 'var(--cyan-neon)' }}>{col.name}</strong>: {col.type}
@@ -2516,10 +2518,11 @@ export default function SqlPlayground({ onBack }) {
                         <span style={{ fontSize: '0.62rem', fontFamily: 'var(--font-mono)', color: 'var(--purple-neon)', fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: '4px', marginBottom: '8px' }}>
                           <Table size={10} /> MOCK INPUT VALUES
                         </span>
-                        <div style={{ overflowX: 'auto', background: '#050814', border: '1px solid rgba(255,255,255,0.06)', borderRadius: '8px' }}>
+
+                        <div style={{ overflowX: 'auto', background: 'var(--input-bg)', border: 'var(--glass-border)', borderRadius: '8px' }}>
                           <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.72rem', fontFamily: 'var(--font-mono)' }}>
                             <thead>
-                              <tr style={{ background: 'rgba(255,255,255,0.02)', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
+                              <tr style={{ background: 'rgba(15, 23, 42, 0.02)', borderBottom: 'var(--glass-border)' }}>
                                 {(selectedProblem.schema[activeTableTab] || []).map(col => (
                                   <th key={col.name} style={{ padding: '8px 12px', textAlign: 'left', color: 'var(--text-secondary)', fontWeight: '800' }}>
                                     {col.name}
@@ -2529,7 +2532,7 @@ export default function SqlPlayground({ onBack }) {
                             </thead>
                             <tbody>
                               {(selectedProblem.mockData[activeTableTab] || []).map((row, idx) => (
-                                <tr key={idx} style={{ borderBottom: '1px solid rgba(255,255,255,0.03)' }}>
+                                <tr key={idx} style={{ borderBottom: 'var(--glass-border)' }}>
                                   {(selectedProblem.schema[activeTableTab] || []).map(col => (
                                     <td key={col.name} style={{ padding: '8px 12px', color: 'var(--text-primary)' }}>
                                       {row[col.name] === null ? 'NULL' : row[col.name]}
@@ -2588,8 +2591,8 @@ export default function SqlPlayground({ onBack }) {
 
             {/* RIGHT CODE EDITOR PANEL */}
             <div className="glass-panel" style={{
-              background: '#050814',
-              border: '1px solid rgba(255,255,255,0.08)',
+              background: 'var(--compiler-card-bg)',
+              border: 'var(--glass-border)',
               padding: '25px',
               display: 'flex',
               flexDirection: 'column',
@@ -2598,7 +2601,7 @@ export default function SqlPlayground({ onBack }) {
               overflow: 'hidden',
               boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.3)'
             }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '10px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: 'var(--glass-border)', paddingBottom: '10px' }}>
                 <span style={{ fontSize: '0.62rem', fontFamily: 'var(--font-mono)', color: 'var(--cyan-neon)', fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: '6px' }}>
                   <Zap size={11} /> IN-MEMORY DATABASE COMPILE WORKSPACE
                 </span>
@@ -2625,10 +2628,10 @@ export default function SqlPlayground({ onBack }) {
               {/* Editor Workspace Textarea */}
               <div style={{
                 flex: 1,
-                border: '1px solid rgba(255,255,255,0.04)',
+                border: '1.5px solid var(--glass-border)',
                 borderRadius: '10px',
                 padding: '15px',
-                background: 'rgba(5, 8, 20, 0.75)',
+                background: '#050814',
                 overflowY: 'auto'
               }}>
                 <textarea
@@ -2735,13 +2738,13 @@ export default function SqlPlayground({ onBack }) {
                       onClick={() => runSQL(false)}
                       disabled={consoleStatus === 'RUNNING'}
                       style={{
-                        background: 'rgba(255,255,255,0.03)',
-                        border: '1px solid rgba(255,255,255,0.12)',
+                        background: 'var(--input-bg)',
+                        border: 'var(--glass-border)',
                         borderRadius: '6px',
                         padding: '4px 10px',
                         fontSize: '0.64rem',
                         fontWeight: 'bold',
-                        color: '#fff',
+                        color: 'var(--text-primary)',
                         cursor: 'pointer',
                         transition: 'all 0.2s'
                       }}
@@ -2768,10 +2771,10 @@ export default function SqlPlayground({ onBack }) {
                   </div>
                 </div>
 
-                <div style={{ overflowX: 'auto', border: '1px solid rgba(255,255,255,0.04)', borderRadius: '6px' }}>
+                <div style={{ overflowX: 'auto', border: 'var(--glass-border)', borderRadius: '6px' }}>
                   <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.68rem', fontFamily: 'var(--font-mono)' }}>
                     <thead>
-                      <tr style={{ background: 'rgba(255,255,255,0.02)', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
+                      <tr style={{ background: 'rgba(15, 23, 42, 0.03)', borderBottom: 'var(--glass-border)' }}>
                         {Object.keys(queryResult[0] || {}).map(k => (
                           <th key={k} style={{ padding: '6px 10px', textAlign: 'left', color: 'var(--text-secondary)' }}>
                             {k}
@@ -2781,9 +2784,9 @@ export default function SqlPlayground({ onBack }) {
                     </thead>
                     <tbody>
                       {queryResult.map((row, idx) => (
-                        <tr key={idx} style={{ borderBottom: '1px solid rgba(255,255,255,0.03)' }}>
+                        <tr key={idx} style={{ borderBottom: 'var(--glass-border)' }}>
                           {Object.keys(queryResult[0] || {}).map(k => (
-                            <td key={k} style={{ padding: '6px 10px', color: '#fff' }}>
+                            <td key={k} style={{ padding: '6px 10px', color: 'var(--text-primary)' }}>
                               {row[k] === null ? 'NULL' : row[k]}
                             </td>
                           ))}
@@ -2805,13 +2808,13 @@ export default function SqlPlayground({ onBack }) {
                     disabled={consoleStatus === 'RUNNING'}
                     style={{
                       flex: '1',
-                      background: 'rgba(255,255,255,0.03)',
-                      border: '1px solid rgba(255,255,255,0.12)',
+                      background: 'var(--input-bg)',
+                      border: 'var(--glass-border)',
                       borderRadius: '8px',
                       padding: '8px 12px',
                       fontSize: '0.74rem',
                       fontWeight: 'bold',
-                      color: '#fff',
+                      color: 'var(--text-primary)',
                       cursor: 'pointer',
                       outline: 'none',
                       display: 'flex',
@@ -2820,8 +2823,8 @@ export default function SqlPlayground({ onBack }) {
                       gap: '5px',
                       transition: 'all 0.2s'
                     }}
-                    onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.08)'}
-                    onMouseLeave={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.03)'}
+                    onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(6, 182, 212, 0.08)'}
+                    onMouseLeave={(e) => e.currentTarget.style.background = 'var(--input-bg)'}
                   >
                     Run Query
                   </button>

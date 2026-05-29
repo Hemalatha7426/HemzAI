@@ -79,9 +79,9 @@ export default function AuthHub({ onLoginSuccess }) {
       
       {/* LEFT PANEL - AI Cartoon Introduction */}
       <div style={{ 
-        background: 'rgba(10, 15, 30, 0.6)', 
+        background: 'var(--left-panel-bg)', 
         padding: '40px 30px', 
-        borderRight: '1px solid rgba(255, 255, 255, 0.08)', 
+        borderRight: 'var(--left-panel-border)', 
         display: 'flex', 
         flexDirection: 'column', 
         justifyContent: 'center', 
@@ -93,7 +93,7 @@ export default function AuthHub({ onLoginSuccess }) {
         
         {/* Cartoon Girl Image Card with glowing border */}
         <div style={{ 
-          border: '2px solid rgba(255, 255, 255, 0.1)',
+          border: '2.5px solid var(--glass-border)',
           borderRadius: '16px',
           overflow: 'hidden',
           width: '170px',
@@ -109,13 +109,13 @@ export default function AuthHub({ onLoginSuccess }) {
         </div>
 
         <div>
-          <h2 style={{ fontFamily: 'var(--font-mono)', fontSize: '1.35rem', fontWeight: '800', color: '#ffffff', marginBottom: '10px', letterSpacing: '0.5px' }}>
+          <h2 style={{ fontFamily: 'var(--font-mono)', fontSize: '1.35rem', fontWeight: '800', color: 'var(--text-primary)', marginBottom: '10px', letterSpacing: '0.5px' }}>
             HEMZ AI STUDY SPACE
           </h2>
           
           {/* Glowing Quote Card */}
           <div style={{ 
-            color: '#ffffff', 
+            color: 'var(--text-secondary)', 
             fontSize: '0.82rem', 
             lineHeight: '1.4', 
             fontWeight: '600', 
@@ -123,7 +123,7 @@ export default function AuthHub({ onLoginSuccess }) {
             margin: '0 auto',
             fontStyle: 'italic',
             padding: '12px 16px',
-            background: 'rgba(245, 158, 11, 0.08)',
+            background: 'var(--input-bg)',
             borderLeft: '4px solid var(--yellow-neon)',
             borderRadius: '8px',
             textAlign: 'left'
@@ -133,7 +133,7 @@ export default function AuthHub({ onLoginSuccess }) {
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', width: '100%', maxWidth: '280px', marginTop: '5px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '0.72rem', color: 'var(--text-secondary)', fontWeight: '600', textAlign: 'left', background: 'rgba(255, 255, 255, 0.03)', padding: '8px 14px', borderRadius: '10px', border: '1px solid rgba(255,255,255,0.06)' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '0.72rem', color: 'var(--text-primary)', fontWeight: '600', textAlign: 'left', background: 'var(--input-bg)', padding: '8px 14px', borderRadius: '10px', border: 'var(--glass-border)' }}>
             <Sparkles size={13} style={{ color: 'var(--cyan-neon)', filter: 'drop-shadow(0 0 5px var(--cyan-neon))' }} />
             <span>Dynamic Voice Synthesis Practice</span>
           </div>

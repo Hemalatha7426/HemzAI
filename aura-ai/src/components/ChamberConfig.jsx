@@ -186,7 +186,7 @@ export default function ChamberConfig({ parsedData, onConfigComplete, onBack }) 
                     borderRadius: '16px',
                     padding: '20px',
                     cursor: 'pointer',
-                    background: isSelected ? 'rgba(255,255,255,0.05)' : 'var(--input-bg)',
+                    background: isSelected ? 'var(--input-bg-focus)' : 'var(--input-bg)',
                     color: 'var(--text-primary)',
                     boxShadow: isSelected ? `0 0 15px ${t.color}33` : 'none',
                     transform: isSelected ? 'translateY(-2px)' : 'none',
@@ -198,14 +198,14 @@ export default function ChamberConfig({ parsedData, onConfigComplete, onBack }) 
                   }}
                   onMouseEnter={(e) => {
                     if (!isSelected) {
-                      e.currentTarget.style.borderColor = 'rgba(255,255,255,0.18)';
-                      e.currentTarget.style.background = 'rgba(255,255,255,0.04)';
+                      e.currentTarget.style.borderColor = t.color;
+                      e.currentTarget.style.background = 'rgba(6, 182, 212, 0.04)';
                     }
                   }}
                   onMouseLeave={(e) => {
                     if (!isSelected) {
-                      e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)';
-                      e.currentTarget.style.background = 'rgba(255,255,255,0.02)';
+                      e.currentTarget.style.borderColor = 'var(--glass-border)';
+                      e.currentTarget.style.background = 'var(--input-bg)';
                     }
                   }}
                 >
@@ -231,7 +231,7 @@ export default function ChamberConfig({ parsedData, onConfigComplete, onBack }) 
                 borderRadius: '16px',
                 cursor: 'pointer',
                 border: mode === 'Mock' ? '2px solid var(--pink-neon)' : '1.5px solid var(--glass-border)',
-                background: mode === 'Mock' ? 'rgba(255,255,255,0.05)' : 'var(--input-bg)',
+                background: mode === 'Mock' ? 'var(--input-bg-focus)' : 'var(--input-bg)',
                 boxShadow: mode === 'Mock' ? '0 0 15px rgba(236, 72, 153, 0.2)' : 'none',
                 transform: mode === 'Mock' ? 'translateY(-2px)' : 'none',
                 display: 'flex',
@@ -241,14 +241,14 @@ export default function ChamberConfig({ parsedData, onConfigComplete, onBack }) 
               }}
               onMouseEnter={(e) => {
                 if (mode !== 'Mock') {
-                  e.currentTarget.style.borderColor = 'rgba(255,255,255,0.18)';
-                  e.currentTarget.style.background = 'rgba(255,255,255,0.04)';
+                  e.currentTarget.style.borderColor = 'var(--pink-neon)';
+                  e.currentTarget.style.background = 'rgba(6, 182, 212, 0.04)';
                 }
               }}
               onMouseLeave={(e) => {
                 if (mode !== 'Mock') {
-                  e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)';
-                  e.currentTarget.style.background = 'rgba(255,255,255,0.02)';
+                  e.currentTarget.style.borderColor = 'var(--glass-border)';
+                  e.currentTarget.style.background = 'var(--input-bg)';
                 }
               }}
             >
@@ -266,7 +266,7 @@ export default function ChamberConfig({ parsedData, onConfigComplete, onBack }) 
                 borderRadius: '16px',
                 cursor: 'pointer',
                 border: mode === 'Practice' ? '2px solid var(--emerald-neon)' : '1.5px solid var(--glass-border)',
-                background: mode === 'Practice' ? 'rgba(255,255,255,0.05)' : 'var(--input-bg)',
+                background: mode === 'Practice' ? 'var(--input-bg-focus)' : 'var(--input-bg)',
                 boxShadow: mode === 'Practice' ? '0 0 15px rgba(16, 185, 129, 0.2)' : 'none',
                 transform: mode === 'Practice' ? 'translateY(-2px)' : 'none',
                 display: 'flex',
@@ -276,14 +276,14 @@ export default function ChamberConfig({ parsedData, onConfigComplete, onBack }) 
               }}
               onMouseEnter={(e) => {
                 if (mode !== 'Practice') {
-                  e.currentTarget.style.borderColor = 'rgba(255,255,255,0.18)';
-                  e.currentTarget.style.background = 'rgba(255,255,255,0.04)';
+                  e.currentTarget.style.borderColor = 'var(--emerald-neon)';
+                  e.currentTarget.style.background = 'rgba(6, 182, 212, 0.04)';
                 }
               }}
               onMouseLeave={(e) => {
                 if (mode !== 'Practice') {
-                  e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)';
-                  e.currentTarget.style.background = 'rgba(255,255,255,0.02)';
+                  e.currentTarget.style.borderColor = 'var(--glass-border)';
+                  e.currentTarget.style.background = 'var(--input-bg)';
                 }
               }}
             >
@@ -411,9 +411,9 @@ export default function ChamberConfig({ parsedData, onConfigComplete, onBack }) 
                 opacity: useCamera ? 1 : 0.45,
                 cursor: useCamera ? 'pointer' : 'not-allowed',
                 boxShadow: useCamera ? '0 0 15px var(--pink-neon)88' : 'none',
-                background: useCamera ? 'linear-gradient(135deg, var(--pink-neon), var(--purple-neon))' : 'rgba(255,255,255,0.04)',
-                color: useCamera ? '#fff' : 'var(--text-secondary)',
-                border: useCamera ? 'none' : '1px solid rgba(255,255,255,0.08)',
+                background: useCamera ? 'linear-gradient(135deg, var(--pink-neon), var(--purple-neon))' : 'var(--input-bg)',
+                color: useCamera ? '#fff' : 'var(--text-muted)',
+                border: useCamera ? 'none' : 'var(--glass-border)',
                 pointerEvents: useCamera ? 'auto' : 'none'
               }} 
               disabled={!useCamera}
