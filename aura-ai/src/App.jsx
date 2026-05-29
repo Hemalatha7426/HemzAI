@@ -574,7 +574,6 @@ export default function App() {
                 boxShadow: 'var(--panel-shadow)',
                 textAlign: 'left'
               }}>
-                <span style={{ fontSize: '1.15rem' }}>✨</span>
                 <p style={{
                   margin: 0,
                   fontSize: '0.78rem',
