@@ -377,7 +377,8 @@ Your tone is professional, extremely supportive, motivational, and technical. Ke
                 onClick={() => setShowSettings(!showSettings)}
                 style={{
                   background: showSettings ? 'rgba(6, 182, 212, 0.15)' : 'rgba(255,255,255,0.03)',
-                  border: showSettings ? '1px solid var(--cyan-neon)' : '1px solid rgba(255,255,255,0.08)',
+                  background: showSettings ? 'rgba(6, 182, 212, 0.08)' : 'var(--input-bg)',
+                  border: showSettings ? '1px solid var(--cyan-neon)' : 'var(--glass-border)',
                   borderRadius: '50%',
                   width: '30px',
                   height: '30px',
@@ -396,8 +397,8 @@ Your tone is professional, extremely supportive, motivational, and technical. Ke
               <button 
                 onClick={() => setIsOpen(false)}
                 style={{
-                  background: 'rgba(255,255,255,0.03)',
-                  border: '1px solid rgba(255,255,255,0.08)',
+                  background: 'var(--input-bg)',
+                  border: 'var(--glass-border)',
                   borderRadius: '50%',
                   width: '30px',
                   height: '30px',
@@ -408,7 +409,7 @@ Your tone is professional, extremely supportive, motivational, and technical. Ke
                   cursor: 'pointer',
                   transition: 'all 0.2s'
                 }}
-                onMouseEnter={(e) => e.currentTarget.style.color = '#fff'}
+                onMouseEnter={(e) => e.currentTarget.style.color = 'var(--text-primary)'}
                 onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}
               >
                 <X size={16} />
@@ -419,9 +420,9 @@ Your tone is professional, extremely supportive, motivational, and technical. Ke
           {/* Settings Panel Drawer Overlay */}
           {showSettings && (
             <div style={{
-              background: 'rgba(10, 15, 30, 0.95)',
+              background: 'var(--drawer-bg)',
               backdropFilter: 'blur(20px)',
-              borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+              borderBottom: 'var(--glass-border)',
               padding: '20px',
               zIndex: 10,
               display: 'flex',
@@ -444,11 +445,11 @@ Your tone is professional, extremely supportive, motivational, and technical. Ke
                       key={engine.id}
                       onClick={() => setSelectedEngine(engine.id)}
                       style={{
-                        background: selectedEngine === engine.id ? 'rgba(6, 182, 212, 0.12)' : 'rgba(255,255,255,0.02)',
-                        border: selectedEngine === engine.id ? '1px solid var(--cyan-neon)' : '1px solid rgba(255,255,255,0.06)',
+                        background: selectedEngine === engine.id ? 'rgba(6, 182, 212, 0.08)' : 'var(--input-bg)',
+                        border: selectedEngine === engine.id ? '1.5px solid var(--cyan-neon)' : 'var(--glass-border)',
                         borderRadius: '8px',
                         padding: '8px 10px',
-                        color: selectedEngine === engine.id ? '#fff' : 'var(--text-secondary)',
+                        color: selectedEngine === engine.id ? 'var(--cyan-neon)' : 'var(--text-secondary)',
                         cursor: 'pointer',
                         textAlign: 'left',
                         transition: 'all 0.2s',
@@ -457,7 +458,7 @@ Your tone is professional, extremely supportive, motivational, and technical. Ke
                         gap: '2px'
                       }}
                     >
-                      <span style={{ fontSize: '0.75rem', fontWeight: 'bold', color: selectedEngine === engine.id ? 'var(--cyan-neon)' : '#cbd5e1' }}>
+                      <span style={{ fontSize: '0.75rem', fontWeight: 'bold', color: selectedEngine === engine.id ? 'var(--cyan-neon)' : 'var(--text-primary)' }}>
                         {engine.label}
                       </span>
                       <span style={{ fontSize: '0.55rem', color: 'var(--text-muted)' }}>
@@ -489,10 +490,10 @@ Your tone is professional, extremely supportive, motivational, and technical. Ke
                     style={{
                       padding: '10px 14px',
                       fontSize: '0.75rem',
-                      background: 'rgba(5, 8, 20, 0.6)',
-                      border: '1px solid rgba(255,255,255,0.1)',
+                      background: 'var(--input-bg)',
+                      border: 'var(--glass-border)',
                       borderRadius: '8px',
-                      color: '#fff',
+                      color: 'var(--text-primary)',
                       margin: 0
                     }}
                   />
@@ -523,10 +524,10 @@ Your tone is professional, extremely supportive, motivational, and technical. Ke
                     style={{
                       padding: '10px 14px',
                       fontSize: '0.75rem',
-                      background: 'rgba(5, 8, 20, 0.6)',
-                      border: '1px solid rgba(255,255,255,0.1)',
+                      background: 'var(--input-bg)',
+                      border: 'var(--glass-border)',
                       borderRadius: '8px',
-                      color: '#fff',
+                      color: 'var(--text-primary)',
                       margin: 0
                     }}
                   />
