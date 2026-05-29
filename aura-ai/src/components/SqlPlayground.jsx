@@ -2638,6 +2638,7 @@ export default function SqlPlayground({ onBack }) {
                   ref={editorRef}
                   value={userCode}
                   onChange={(e) => setUserCode(e.target.value)}
+                  className="code-editor-textarea"
                   style={{
                     width: '100%',
                     height: '100%',
