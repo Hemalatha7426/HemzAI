@@ -559,6 +559,33 @@ export default function App() {
                   ENTER THE CHAMBERS <PlusCircle size={20} />
                 </button>
               </div>
+
+              {/* Premium Zen Quote Card - Related to relaxed speech synthesis & interview state flow */}
+              <div className="float-animation" style={{
+                marginTop: '35px',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '12px',
+                padding: '12px 24px',
+                background: 'var(--input-bg)',
+                border: '1.5px solid var(--glass-border)',
+                borderRadius: '20px',
+                maxWidth: '680px',
+                boxShadow: 'var(--panel-shadow)',
+                textAlign: 'left'
+              }}>
+                <span style={{ fontSize: '1.15rem' }}>✨</span>
+                <p style={{
+                  margin: 0,
+                  fontSize: '0.78rem',
+                  fontFamily: 'var(--font-mono)',
+                  color: 'var(--text-secondary)',
+                  fontWeight: '600',
+                  lineHeight: '1.4'
+                }}>
+                  <strong style={{ color: 'var(--yellow-neon)' }}>ZEN INTERVIEW FLOW:</strong> "Sometimes magic happens when you stop worrying about how things will work out. Relax your voice, breathe deeply, and let your natural preparation lead the way in the chamber."
+                </p>
+              </div>
             </div>
 
             {/* Quick Metrics Panel */}
